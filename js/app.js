@@ -194,13 +194,104 @@ function pantallaSentir(p, i) {
       <p id="falta-carita" class="aviso" role="alert" hidden>${t("faltaCarita")}</p>
       <label class="nota-etiqueta" for="nota">${t("escribir")}</label>
       <input id="nota" class="nota" type="text" maxlength="140" autocomplete="off" placeholder="${t("notaEjemplo")}">
+      ${puedeGrabar() ? `<div class="voz" id="voz">
+        <p class="nota-etiqueta">${t("vozTitulo")}</p>
+        <div id="voz-zona">${zonaVoz()}</div>
+        <p class="chico suave" id="voz-estado" aria-live="polite"></p>
+      </div>` : ""}
       <p class="suave chico"><span aria-hidden="true">🔒</span> ${t("soloProfesional")}</p>
       <button class="boton boton-ancho" type="submit">${t("guardar")}</button>
     </form>
   </section>`;
 }
 
+// --- Nota de voz (hasta 30 segundos) ---
+const VOZ_MAX = 30;
+let vozPendiente = null; // { url, seg, ruta } grabada y todavía no guardada
+let grabacion = null;    // { recorder, stream, inicio, reloj }
+
+function puedeGrabar() {
+  return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+}
+function minSeg(seg) { return `${Math.floor(seg / 60)}:${String(Math.floor(seg % 60)).padStart(2, "0")}`; }
+
+function zonaVoz() {
+  if (vozPendiente && vozPendiente.ruta === location.hash) {
+    return `<p class="voz-lista"><span aria-hidden="true">✓</span> ${t("vozLista")}</p>
+      <audio controls src="${vozPendiente.url}" class="voz-audio"></audio>
+      <button type="button" class="boton boton-secundario boton-ancho" id="voz-borrar"><span aria-hidden="true">🗑️</span> ${t("borrarVoz")}</button>`;
+  }
+  if (grabacion) {
+    return `<button type="button" class="boton boton-ancho boton-grabando" id="voz-detener">
+        <span class="punto-rojo" aria-hidden="true"></span> ${t("detener")}
+        <span class="voz-tiempo" id="voz-tiempo" aria-hidden="true">0:00 / ${minSeg(VOZ_MAX)}</span></button>`;
+  }
+  return `<button type="button" class="boton boton-secundario boton-ancho" id="voz-grabar"><span aria-hidden="true">🎙️</span> ${t("grabar")}</button>`;
+}
+
+function refrescarVoz() {
+  const zona = document.getElementById("voz-zona");
+  if (!zona) return;
+  zona.innerHTML = zonaVoz();
+  document.getElementById("voz-grabar")?.addEventListener("click", empezarGrabacion);
+  document.getElementById("voz-detener")?.addEventListener("click", detenerGrabacion);
+  document.getElementById("voz-borrar")?.addEventListener("click", () => {
+    vozPendiente = null;
+    refrescarVoz();
+    document.getElementById("voz-estado").textContent = t("vozBorrada");
+    document.getElementById("voz-grabar")?.focus();
+  });
+}
+
+async function empezarGrabacion() {
+  const estado = document.getElementById("voz-estado");
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch (e) {
+    estado.textContent = t("vozSinPermiso");
+    return;
+  }
+  const tipo = ["audio/webm;codecs=opus", "audio/mp4", "audio/webm"].find((x) => MediaRecorder.isTypeSupported?.(x));
+  const recorder = new MediaRecorder(stream, { ...(tipo ? { mimeType: tipo } : {}), audioBitsPerSecond: 24000 });
+  const partes = [];
+  const ruta = location.hash;
+  recorder.ondataavailable = (e) => { if (e.data.size) partes.push(e.data); };
+  recorder.onstop = () => {
+    stream.getTracks().forEach((x) => x.stop());
+    const seg = Math.min(VOZ_MAX, Math.round((Date.now() - grabacion.inicio) / 1000));
+    clearInterval(grabacion.reloj);
+    grabacion = null;
+    const lector = new FileReader();
+    lector.onload = () => {
+      vozPendiente = { url: lector.result, seg, ruta };
+      refrescarVoz();
+      vibrar(15);
+      const est = document.getElementById("voz-estado");
+      if (est) est.textContent = t("vozLista");
+    };
+    lector.readAsDataURL(new Blob(partes, { type: recorder.mimeType || "audio/webm" }));
+  };
+  grabacion = { recorder, stream, inicio: Date.now(), reloj: null };
+  recorder.start();
+  vibrar(15);
+  estado.textContent = t("grabando");
+  refrescarVoz();
+  document.getElementById("voz-detener")?.focus();
+  grabacion.reloj = setInterval(() => {
+    const seg = (Date.now() - grabacion.inicio) / 1000;
+    const reloj = document.getElementById("voz-tiempo");
+    if (reloj) reloj.textContent = `${minSeg(seg)} / ${minSeg(VOZ_MAX)}`;
+    if (seg >= VOZ_MAX) detenerGrabacion();
+  }, 250);
+}
+
+function detenerGrabacion() {
+  if (grabacion && grabacion.recorder.state !== "inactive") grabacion.recorder.stop();
+}
+
 function activarSentir(p, i) {
+  refrescarVoz();
   const form = document.getElementById("form-sentir");
   if (!form) return;
   form.addEventListener("change", () => {
@@ -220,6 +311,11 @@ function activarSentir(p, i) {
     const a = p.asignaciones[i];
     a.carita = Number(elegida.value);
     a.nota = document.getElementById("nota").value.trim();
+    if (vozPendiente && vozPendiente.ruta === location.hash) {
+      a.audio = vozPendiente.url;
+      a.audioSeg = vozPendiente.seg;
+    }
+    vozPendiente = null;
     a.completado = new Date().toISOString();
     if (!a.abierto) a.abierto = a.completado;
     guardarDatos();
@@ -374,6 +470,7 @@ function pantallaPacientes() {
             <span aria-hidden="true">${CARITAS[ultimoRegistro.carita - 1]}</span>
             <span class="chico">${t("caritas")[ultimoRegistro.carita - 1]}</span></span>
           <span class="suave chico">${cuando(ultimoRegistro.completado)}</span>
+          ${ultimoRegistro.audio ? `<span class="carita-mini"><span aria-hidden="true">🎙️</span><span class="chico">${t("notaVoz")}</span></span>` : ""}
         </p>` : ""}`;
     }
     return `<article class="tarjeta paciente-tarjeta${alerta ? " con-alerta" : ""}">
@@ -449,6 +546,10 @@ function pantallaFicha(p) {
         <span class="carita-mini"><span aria-hidden="true">${CARITAS[a.carita - 1]}</span>
           <span class="chico">${t("caritas")[a.carita - 1]}</span></span>
         ${a.nota ? `<blockquote><span class="suave chico">${t("escribio")}</span> «${escapar(a.nota)}»</blockquote>` : ""}
+        ${a.audio ? `<div class="voz-ficha">
+          <span class="chico suave"><span aria-hidden="true">🎙️</span> ${t("notaVoz")}${a.audioSeg ? ` · ${minSeg(a.audioSeg)}` : ""}</span>
+          <audio controls preload="none" src="${a.audio}" aria-label="${t("notaVoz")}"></audio>
+        </div>` : ""}
       </div>` : ""}
     </li>`;
   }).join("");
@@ -921,6 +1022,7 @@ function mostrar() {
 }
 
 window.addEventListener("hashchange", () => {
+  detenerGrabacion();
   delete document.getElementById("contenido").dataset.quieto;
   mostrar();
   document.getElementById("contenido").focus();

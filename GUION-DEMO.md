@@ -48,12 +48,15 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 → Tocá **Ver lo que recibe el paciente**.
 - "Arriba, siempre visible: Línea 155 y 911. La app no es un servicio de emergencia."
 - Abrí **Respirar para calmarte** y pasá los pasos: "un paso por pantalla, botones grandes".
-- En **¿Cómo te sentiste?**, elegí una carita y escribí una línea → **Guardar**.
+- En **¿Cómo te sentiste?**, elegí una carita y escribí una línea, o tocá
+  **🎙️ Grabar nota de voz** y decí una frase corta → **Guardar**. El navegador va a pedir
+  permiso para el micrófono: aceptalo antes de la reunión para no perder tiempo.
 - Opcional: tocá **Guaraní** arriba para mostrar el cambio de idioma.
 
 **6. Cierre: la profesional lo ve (30 s)**
 → Tocá el logo **Oñondive** → **Ver como profesional** → **Carlos B.** → **Ver ficha**.
-- "Antes de la próxima consulta, la profesional ya sabe cómo le fue."
+- "Antes de la próxima consulta, la profesional ya sabe cómo le fue." Si grabaste una
+  nota de voz, tocá ▶ para escucharla.
 
 **Si preguntan por datos:** abajo de todo, **Privacidad y seguridad** y **Sobre los
 contenidos** (con la base técnica de cada ejercicio).

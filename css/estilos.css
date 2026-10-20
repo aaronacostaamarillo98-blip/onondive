@@ -1176,6 +1176,28 @@ main[data-quieto] > section > * { animation: none; }
 .dos-columnas { grid-template-columns: 1fr 1fr; }
 #form-nuevo .boton { margin-top: var(--e4); }
 
+/* Nota de voz */
+.voz .nota-etiqueta { margin-top: var(--e3); }
+.voz-lista { margin: 0 0 0.6rem; color: #17594F; font-family: var(--titulos); font-weight: 500; font-size: 1rem; }
+.voz-audio, .voz-ficha audio { width: 100%; height: 48px; margin-bottom: 0.6rem; }
+.voz-ficha { display: flex; flex-direction: column; gap: 0.35rem; width: 100%; }
+.voz-ficha audio { margin: 0; }
+.boton-grabando {
+  background: var(--blanco);
+  color: #8A3B26;
+  box-shadow: inset 0 0 0 2px rgba(var(--coral-rgb), 0.7), 0 6px 18px rgba(var(--coral-rgb), 0.2);
+}
+.boton-grabando:hover { background: var(--coral-suave); }
+.punto-rojo {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--coral);
+  animation: latido 1.2s ease-in-out infinite;
+}
+@keyframes latido { 50% { transform: scale(0.7); opacity: 0.6; } }
+.voz-tiempo { font-variant-numeric: tabular-nums; font-weight: 500; opacity: 0.85; }
+
 /* Aviso de cuidado dentro de un contenido (cálido, no alarmante) */
 .cuidado {
   display: flex;

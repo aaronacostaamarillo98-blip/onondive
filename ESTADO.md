@@ -97,7 +97,11 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - "Nuevo paciente": la profesional carga alias, celular (10 números, empieza con 09) e
   idioma; avisa que no se cargue cédula, nombre completo ni diagnóstico; no deja repetir
   celular; al guardar va directo a asignarle contenido.
-- Los archivos llevan número de versión (?v=21) para que el navegador no muestre
+- Nota de voz del paciente: en "¿Cómo te sentiste?" puede grabar hasta 30 segundos,
+  escucharla y borrarla antes de guardar (opcional). La profesional la escucha en la
+  ficha; en Mis pacientes se marca 🎙️. Pesa ~3 KB por segundo. En la demo queda en el
+  navegador; en la Etapa 2 hay que guardarla cifrada y definir cuánto tiempo se conserva.
+- Los archivos llevan número de versión (?v=23) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta
