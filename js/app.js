@@ -53,7 +53,7 @@ const LOGO = `<svg class="logo-grande" viewBox="0 0 64 40" aria-hidden="true">
 
 function pantallaInicio() {
   return `<section class="inicio">
-    ${LOGO}
+    <span class="halo">${LOGO}</span>
     <h1>Oñondive</h1>
     <p class="lema">${t("lema")}</p>
     <div class="inicio-opciones">

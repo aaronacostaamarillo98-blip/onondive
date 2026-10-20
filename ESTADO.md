@@ -34,6 +34,10 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Pantallas 5 a 8 (paciente): bienvenida con ejercicios para hacer y ya hechos,
   ejercicio paso a paso con barra de avance, caritas 1 a 5 + una línea, ¡Listo!.
   Link de prueba de paciente: .../onondive/#/p/rosa
+- Rediseño visual sereno: fondo "aura" con luces suaves, bordes muy redondeados,
+  tarjetas tipo vidrio, selector de idioma estilo Apple, halo que respira en el logo,
+  títulos y espacios fluidos según la pantalla, aparición suave de cada elemento.
+  Respeta "reducir movimiento" del celular.
 
 ## Falta
 - Pantalla 2 (Biblioteca), 3 (Asignar), 1 (Mis pacientes), 4 (Ficha).
