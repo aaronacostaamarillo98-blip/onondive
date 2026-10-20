@@ -74,15 +74,19 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Aviso de ayuda con colores del entorno (celeste y menta) y la Línea 155 como botón
   principal.
 - Guion de la demo: GUION-DEMO.md.
-- Los archivos llevan número de versión (?v=12) para que el navegador no muestre
+- 8 ejercicios nuevos (total 18): TCC — Otra forma de verlo, Resolver un problema paso
+  a paso, Enfrentar de a poco (con aviso "armala con tu profesional"), Un rato para
+  preocuparse. Familia — Escuchar sin interrumpir, Reunión familiar de 15 minutos,
+  Reglas claras en casa, Cuando discutimos: pausa y volver (con aviso de violencia).
+- Los archivos llevan número de versión (?v=13) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta
-- Ejercicios de TCC y de terapia familiar (pedido de Aaron, a proponer antes de redactar).
 
 ## Pendiente de revisión
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
-- Los 10 contenidos de ejemplo: a revisar por Aaron.
+- Los 18 contenidos de ejemplo: a revisar por Aaron.
+- Línea de ayuda por violencia en Paraguay: confirmar número antes de sumarla.
 
 ## Decisiones pendientes
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
