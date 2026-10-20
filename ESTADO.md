@@ -83,7 +83,7 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   Mis señales de alerta, Cuidar al que cuida, Cuando me enojo. Temas nuevos:
   Medicación y Duelo.
 - Plan de seguridad: borrador en BORRADOR-PLAN-SEGURIDAD.md (solo local, no se sube).
-  Espera la revisión de Aaron.
+  Pasos aprobados por Aaron sin cambios. Decidido: va en la Etapa 2, no en la demo.
 - Auditoría y mejoras institucionales: franja "Prototipo · Propuesta para la red
   pública de salud mental (MSPBS)", inicio con "Cómo funciona" y "Garantías", páginas
   Privacidad y seguridad y Sobre los contenidos (tabla con la base técnica de cada uno,
