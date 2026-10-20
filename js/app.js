@@ -300,12 +300,171 @@ function activarBiblioteca() {
   });
 }
 
+// 3. Asignar y enviar
+const asignacion = { paciente: null, contenidos: new Set() };
+let ultimoEnvio = null;
+
+function linkPaciente(p) {
+  return `${location.origin}${location.pathname}#/p/${p.id}`;
+}
+
+function mensajeWhatsapp(p, ids) {
+  const tx = TEXTOS[p.idioma];
+  const lineas = ids.map((id) => {
+    const c = contenido(id);
+    return `• ${c[p.idioma].titulo} (${c.duracion} min)`;
+  });
+  return [
+    tx.msgHola.replace("{alias}", p.alias),
+    "",
+    tx.msgCuerpo,
+    ...lineas,
+    "",
+    tx.msgAbrir,
+    linkPaciente(p),
+    "",
+    `— ${PROFESIONAL.nombre}`,
+  ].join("\n");
+}
+
+function pantallaAsignar(idInicial) {
+  if (idInicial && contenido(idInicial)) asignacion.contenidos.add(idInicial);
+
+  const pacientes = datos.pacientes.map((p) => `
+    <label class="eleccion${asignacion.paciente === p.id ? " elegida" : ""}">
+      <input type="radio" name="paciente" value="${p.id}" ${asignacion.paciente === p.id ? "checked" : ""}>
+      <span class="avatar avatar-chico" aria-hidden="true">${escapar(p.alias[0])}</span>
+      <span class="eleccion-texto"><strong>${escapar(p.alias)}</strong>
+        <span class="chico suave">${p.telefono} · ${t(p.idioma === "gn" ? "hablaGuarani" : "hablaCastellano")}</span></span>
+    </label>`).join("");
+
+  const contenidos = CONTENIDOS.map((cont) => {
+    const c = cont[idioma];
+    const marcado = asignacion.contenidos.has(cont.id);
+    return `
+    <label class="eleccion${marcado ? " elegida" : ""}">
+      <input type="checkbox" name="contenido" value="${cont.id}" ${marcado ? "checked" : ""}>
+      <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
+      <span class="eleccion-texto"><strong>${c.titulo}</strong>
+        <span class="chico suave">${c.tema} · ${cont.duracion} ${t("minutos")}</span></span>
+    </label>`;
+  }).join("");
+
+  return `<section class="pro pro-angosto">
+    ${encabezadoPro("")}
+    <a class="volver" href="#/pro/biblioteca"><span aria-hidden="true">‹</span> ${t("volverBiblioteca")}</a>
+    <h1>${t("asignarTitulo")}</h1>
+    <form id="form-asignar" novalidate>
+      <fieldset class="grupo">
+        <legend><h2>${t("elegiPaciente")}</h2></legend>
+        <div class="lista-elecciones">${pacientes}</div>
+      </fieldset>
+      <fieldset class="grupo">
+        <legend><h2>${t("elegiContenidos")}</h2></legend>
+        <div class="lista-elecciones">${contenidos}</div>
+      </fieldset>
+      <p id="aviso-asignar" class="aviso" role="alert" hidden></p>
+      <button class="boton boton-ancho boton-whatsapp" type="submit"><span aria-hidden="true">💬</span> ${t("crearLink")}</button>
+    </form>
+  </section>`;
+}
+
+function activarAsignar() {
+  const form = document.getElementById("form-asignar");
+  const aviso = document.getElementById("aviso-asignar");
+  form.addEventListener("change", (e) => {
+    const input = e.target;
+    if (input.name === "paciente") asignacion.paciente = input.value;
+    if (input.name === "contenido") {
+      if (input.checked) asignacion.contenidos.add(input.value);
+      else asignacion.contenidos.delete(input.value);
+    }
+    form.querySelectorAll(".eleccion").forEach((l) => l.classList.toggle("elegida", l.querySelector("input").checked));
+    aviso.hidden = true;
+    vibrar(10);
+  });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const falta = !asignacion.paciente ? "faltaPaciente" : asignacion.contenidos.size === 0 ? "faltaContenido" : null;
+    if (falta) {
+      aviso.textContent = t(falta);
+      aviso.hidden = false;
+      vibrar([80, 50, 80]);
+      return;
+    }
+    const p = paciente(asignacion.paciente);
+    const ahora = new Date().toISOString();
+    const ids = [...asignacion.contenidos];
+    ids.forEach((id) => {
+      // Si ya tiene ese contenido pendiente, no se duplica
+      const pendiente = p.asignaciones.some((a) => a.contenido === id && !a.completado);
+      if (!pendiente) p.asignaciones.push({ contenido: id, enviado: ahora, abierto: null, completado: null, carita: null, nota: "" });
+    });
+    guardarDatos();
+    ultimoEnvio = { paciente: p.id, contenidos: ids };
+    asignacion.paciente = null;
+    asignacion.contenidos.clear();
+    vibrar([30, 60, 30]);
+    location.hash = `#/pro/enviado/${p.id}`;
+  });
+}
+
+function pantallaEnviado(p) {
+  const ids = ultimoEnvio && ultimoEnvio.paciente === p.id
+    ? ultimoEnvio.contenidos
+    : p.asignaciones.filter((a) => !a.completado).map((a) => a.contenido);
+  const mensaje = mensajeWhatsapp(p, ids);
+  const link = linkPaciente(p);
+
+  return `<section class="pro pro-angosto">
+    ${encabezadoPro("")}
+    <div class="centrado">
+      <p class="listo-icono" aria-hidden="true">✓</p>
+      <h1>${t("enviadoTitulo")}</h1>
+      <p class="suave">${tp("enviadoDesc", { alias: escapar(p.alias) })}</p>
+    </div>
+    <h2 class="subtitulo">${t("asiLlega")}</h2>
+    <div class="whatsapp" aria-label="${t("asiLlega")}">
+      <div class="burbuja">${escapar(mensaje).replace(/\n/g, "<br>").replace(escapar(link), `<span class="burbuja-link">${escapar(link)}</span>`)}</div>
+    </div>
+    <div class="acciones-envio">
+      <a class="boton boton-whatsapp" href="https://wa.me/?text=${encodeURIComponent(mensaje)}" target="_blank" rel="noopener"><span aria-hidden="true">💬</span> ${t("abrirWhatsapp")}</a>
+      <button type="button" class="boton boton-secundario" id="copiar"><span aria-hidden="true">🔗</span> ${t("copiarLink")}</button>
+    </div>
+    <p id="copiado" class="centrado chico suave" aria-live="polite"></p>
+    <div class="acciones-envio">
+      <a class="boton boton-secundario" href="#/p/${p.id}"><span aria-hidden="true">📱</span> ${t("verComoPaciente")}</a>
+      <a class="boton boton-secundario" href="#/pro/biblioteca">${t("asignarOtro")}</a>
+    </div>
+  </section>`;
+}
+
+function activarEnviado(p) {
+  document.getElementById("copiar").addEventListener("click", async () => {
+    const link = linkPaciente(p);
+    try {
+      await navigator.clipboard.writeText(link);
+    } catch (e) {
+      const campo = document.createElement("textarea");
+      campo.value = link;
+      document.body.appendChild(campo);
+      campo.select();
+      try { document.execCommand("copy"); } catch (e2) { /* sin copiar */ }
+      campo.remove();
+    }
+    document.getElementById("copiado").textContent = t("copiado");
+    vibrar(15);
+  });
+}
+
 // --- Navegación por #ruta ---
 // #/                     inicio
 // #/p/:id                paciente: bienvenida
 // #/p/:id/c/:i/:paso     paciente: paso del ejercicio
 // #/p/:id/c/:i/sentir    paciente: ¿cómo te sentiste?
 // #/p/:id/c/:i/listo     paciente: listo
+const idiomaDelLink = new Set();
+
 function mostrar() {
   aplicarIdioma();
   const partes = (location.hash.replace(/^#\/?/, "") || "").split("/").filter(Boolean);
@@ -321,7 +480,15 @@ function mostrar() {
     const i = Number(partes[3]);
     const a = p && partes[2] === "c" ? p.asignaciones[i] : null;
     if (!p) html = noEncontrado();
-    else if (partes.length === 2) html = pantallaPaciente(p);
+    else if (partes.length === 2) {
+      // La primera vez que se abre el link, se muestra en el idioma que prefiere el paciente
+      if (!idiomaDelLink.has(p.id)) {
+        idiomaDelLink.add(p.id);
+        idioma = p.idioma;
+        aplicarIdioma();
+      }
+      html = pantallaPaciente(p);
+    }
     else if (!a) html = noEncontrado();
     else if (partes[4] === "sentir") { html = pantallaSentir(p, i); despues = () => activarSentir(p, i); }
     else if (partes[4] === "listo") html = pantallaListo(p);
@@ -331,6 +498,12 @@ function mostrar() {
     // Mientras no exista "Mis pacientes", el profesional entra por la Biblioteca
     const seccion = partes[1] || "biblioteca";
     if (seccion === "biblioteca") { html = pantallaBiblioteca(); despues = activarBiblioteca; }
+    else if (seccion === "asignar") { html = pantallaAsignar(partes[2]); despues = activarAsignar; }
+    else if (seccion === "enviado" && paciente(partes[2])) {
+      const p = paciente(partes[2]);
+      html = pantallaEnviado(p);
+      despues = () => activarEnviado(p);
+    }
     else html = encabezadoPro(seccion === "pacientes" ? "pacientes" : "") + pantallaEnConstruccion();
   } else {
     html = pantallaEnConstruccion();

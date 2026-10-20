@@ -47,9 +47,15 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   "Mis pacientes / Biblioteca", filtro por tema, tarjetas con tema, tipo, duración,
   etiqueta "ejemplo, a revisar", "Ver los pasos" y botón "Asignar".
   En las pantallas del profesional no se muestra el aviso de crisis (es para el paciente).
+- Pantalla 3 — Asignar y enviar: elegir paciente y uno o más contenidos, crear el link,
+  vista del mensaje como burbuja de WhatsApp (en el idioma del paciente), botones
+  "Abrir WhatsApp" (sin número: el profesional elige el contacto), "Copiar link" y
+  "Ver lo que recibe el paciente". El link se abre en el idioma que prefiere el paciente.
 
 ## Falta
-- Pantalla 3 (Asignar), 1 (Mis pacientes), 4 (Ficha).
+- Pantalla 1 (Mis pacientes), 4 (Ficha).
+- Nuevos temas pedidos por Aaron (a proponer antes de redactar): crianza y familia;
+  adicciones (alcohol, drogas, tabaco); estrés postraumático.
 - Revisión final en computadora y celular.
 
 ## Pendiente de revisión
@@ -60,4 +66,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Construir la pantalla 3, Asignar y enviar (link + mensaje de WhatsApp).
+Acordar cómo sumar los temas nuevos a la Biblioteca; después, pantalla 1 (Mis pacientes).
