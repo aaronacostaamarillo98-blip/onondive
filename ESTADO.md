@@ -101,7 +101,7 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   escucharla y borrarla antes de guardar (opcional). La profesional la escucha en la
   ficha; en Mis pacientes se marca 🎙️. Pesa ~3 KB por segundo. En la demo queda en el
   navegador; en la Etapa 2 hay que guardarla cifrada y definir cuánto tiempo se conserva.
-- Los archivos llevan número de versión (?v=23) para que el navegador no muestre
+- Los archivos llevan número de versión (?v=24) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta

@@ -210,6 +210,10 @@ const VOZ_MAX = 30;
 let vozPendiente = null; // { url, seg, ruta } grabada y todavía no guardada
 let grabacion = null;    // { recorder, stream, inicio, reloj }
 
+// Íconos como los de WhatsApp: micrófono blanco en círculo verde; cuadrado para detener
+const ICONO_MIC = `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>`;
+const ICONO_STOP = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2.5" fill="currentColor"/></svg>`;
+
 function puedeGrabar() {
   return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
 }
@@ -222,11 +226,14 @@ function zonaVoz() {
       <button type="button" class="boton boton-secundario boton-ancho" id="voz-borrar"><span aria-hidden="true">🗑️</span> ${t("borrarVoz")}</button>`;
   }
   if (grabacion) {
-    return `<button type="button" class="boton boton-ancho boton-grabando" id="voz-detener">
-        <span class="punto-rojo" aria-hidden="true"></span> ${t("detener")}
+    return `<button type="button" class="boton-voz grabando" id="voz-detener">
+        <span class="mic-circulo">${ICONO_STOP}</span>
+        <span class="voz-texto"><span class="punto-rojo" aria-hidden="true"></span> ${t("detener")}</span>
         <span class="voz-tiempo" id="voz-tiempo" aria-hidden="true">0:00 / ${minSeg(VOZ_MAX)}</span></button>`;
   }
-  return `<button type="button" class="boton boton-secundario boton-ancho" id="voz-grabar"><span aria-hidden="true">🎙️</span> ${t("grabar")}</button>`;
+  return `<button type="button" class="boton-voz" id="voz-grabar">
+      <span class="mic-circulo">${ICONO_MIC}</span>
+      <span class="voz-texto">${t("grabar")}</span></button>`;
 }
 
 function refrescarVoz() {

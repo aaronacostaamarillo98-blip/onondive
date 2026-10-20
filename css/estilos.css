@@ -1182,6 +1182,41 @@ main[data-quieto] > section > * { animation: none; }
 .voz-audio, .voz-ficha audio { width: 100%; height: 48px; margin-bottom: 0.6rem; }
 .voz-ficha { display: flex; flex-direction: column; gap: 0.35rem; width: 100%; }
 .voz-ficha audio { margin: 0; }
+.boton-voz {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  min-height: 64px;
+  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--blanco);
+  color: var(--azul);
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1.5px rgba(29, 53, 87, 0.12), var(--sombra);
+  transition: transform 0.2s var(--suave);
+}
+.boton-voz:active { transform: scale(0.98); }
+.boton-voz .voz-texto { flex: 1; display: inline-flex; align-items: center; gap: 0.5rem; }
+/* Círculo verde de WhatsApp (tono oscuro para buen contraste con el ícono blanco) */
+.mic-circulo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #128C7E;
+  color: var(--blanco);
+  box-shadow: 0 4px 12px rgba(18, 140, 126, 0.35);
+}
+.boton-voz.grabando { box-shadow: inset 0 0 0 2px rgba(var(--coral-rgb), 0.7), 0 6px 18px rgba(var(--coral-rgb), 0.2); color: #8A3B26; }
+.boton-voz.grabando .mic-circulo { background: #C2452A; box-shadow: 0 0 0 6px rgba(var(--coral-rgb), 0.2); animation: latido 1.2s ease-in-out infinite; }
 .boton-grabando {
   background: var(--blanco);
   color: #8A3B26;

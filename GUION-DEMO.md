@@ -49,7 +49,7 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 - "Arriba, siempre visible: Línea 155 y 911. La app no es un servicio de emergencia."
 - Abrí **Respirar para calmarte** y pasá los pasos: "un paso por pantalla, botones grandes".
 - En **¿Cómo te sentiste?**, elegí una carita y escribí una línea, o tocá
-  **🎙️ Grabar nota de voz** y decí una frase corta → **Guardar**. El navegador va a pedir
+  el botón verde del micrófono (**Grabar nota de voz**, como en WhatsApp) y decí una frase corta → **Guardar**. El navegador va a pedir
   permiso para el micrófono: aceptalo antes de la reunión para no perder tiempo.
 - Opcional: tocá **Guaraní** arriba para mostrar el cambio de idioma.
 
