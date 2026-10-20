@@ -1,6 +1,6 @@
 // Oñondive: prototipo. Todo corre en el navegador; los datos se guardan en este dispositivo.
 
-const CLAVE_DATOS = "onondive-demo-v2";
+const CLAVE_DATOS = "onondive-demo-v3";
 const CLAVE_IDIOMA = "onondive-idioma";
 
 // --- Guardado (protegido por si el navegador bloquea el almacenamiento) ---
@@ -242,6 +242,88 @@ function encabezadoPro(activa) {
   </div>`;
 }
 
+// Fecha en palabras: "hoy", "ayer", "hace 3 días"
+function cuando(iso) {
+  const dia = (d) => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+  const n = Math.round((dia(new Date()) - dia(iso)) / 86400000);
+  return n <= 0 ? t("hoy") : n === 1 ? t("ayer") : tp("haceDias", { n });
+}
+
+function estadoAsignacion(a) {
+  if (a.completado) return { clave: "completado", fecha: a.completado, icono: "✓" };
+  if (a.abierto) return { clave: "abierto", fecha: a.abierto, icono: "◐" };
+  return { clave: "enviado", fecha: a.enviado, icono: "➤" };
+}
+
+// La fecha más reciente en que pasó algo con esa asignación
+function ultimaActividad(a) { return a.completado || a.abierto || a.enviado; }
+
+// 1. Mis pacientes
+function pantallaPacientes() {
+  const todas = datos.pacientes.flatMap((p) => p.asignaciones);
+  const hechos = todas.filter((a) => a.completado).length;
+  const porHacer = todas.filter((a) => !a.completado).length;
+
+  const resumen = datos.pacientes.map((p) => {
+    const orden = [...p.asignaciones].sort((x, y) => ultimaActividad(y).localeCompare(ultimaActividad(x)));
+    const ultima = orden[0] || null;
+    const ultimoRegistro = orden.find((a) => a.completado) || null;
+    const alerta = ultimoRegistro && ultimoRegistro.carita <= 2;
+    return { p, ultima, ultimoRegistro, alerta, fecha: ultima ? ultimaActividad(ultima) : "" };
+  }).sort((x, y) => (y.alerta - x.alerta) || y.fecha.localeCompare(x.fecha));
+
+  const tarjeta = ({ p, ultima, ultimoRegistro, alerta }) => {
+    let detalle;
+    if (!ultima) {
+      detalle = `<p class="suave chico">${t("sinContenidos")}</p>`;
+    } else {
+      const est = estadoAsignacion(ultima);
+      detalle = `<p class="paciente-ultimo">
+          <span class="suave">${t("ultimo")}</span> ${contenido(ultima.contenido)[idioma].titulo}
+        </p>
+        <p class="paciente-estado">
+          <span class="estado estado-${est.clave}"><span aria-hidden="true">${est.icono}</span> ${t("estado_" + est.clave)}</span>
+          <span class="suave chico">${cuando(est.fecha)}</span>
+        </p>
+        ${ultimoRegistro ? `<p class="paciente-registro">
+          <span class="suave">${t("comoSeSintio")}</span>
+          <span class="carita-mini">
+            <span aria-hidden="true">${CARITAS[ultimoRegistro.carita - 1]}</span>
+            <span class="chico">${t("caritas")[ultimoRegistro.carita - 1]}</span></span>
+          <span class="suave chico">${cuando(ultimoRegistro.completado)}</span>
+        </p>` : ""}`;
+    }
+    return `<article class="tarjeta paciente-tarjeta${alerta ? " con-alerta" : ""}">
+      ${alerta ? `<p class="alerta"><span aria-hidden="true">●</span> ${t("alertaMal")}</p>` : ""}
+      <div class="paciente-cabeza">
+        <span class="avatar avatar-chico" aria-hidden="true">${escapar(p.alias[0])}</span>
+        <div>
+          <h2>${escapar(p.alias)}</h2>
+          <p class="suave chico">${t(p.idioma === "gn" ? "hablaGuarani" : "hablaCastellano")}</p>
+        </div>
+      </div>
+      ${detalle}
+      <div class="paciente-acciones">
+        <a class="boton boton-secundario" href="#/pro/paciente/${p.id}">${t("verFicha")}</a>
+        <a class="boton" href="#/pro/asignar-a/${p.id}">${t("asignar")} <span aria-hidden="true">›</span></a>
+      </div>
+    </article>`;
+  };
+
+  return `<section class="pro">
+    ${encabezadoPro("pacientes")}
+    <h1>${t("tabPacientes")}</h1>
+    <p class="suave">${t("pacientesDesc")}</p>
+    <div class="stats">
+      <div class="stat"><strong>${datos.pacientes.length}</strong><span>${t("statPacientes")}</span></div>
+      <div class="stat"><strong>${hechos}</strong><span>${t("statCompletados")}</span></div>
+      <div class="stat"><strong>${porHacer}</strong><span>${t("statEsperando")}</span></div>
+    </div>
+    <div class="grilla-contenidos">${resumen.map(tarjeta).join("")}</div>
+    <p class="centrado chico suave privado"><span aria-hidden="true">🔒</span> ${t("soloTuyos")}</p>
+  </section>`;
+}
+
 // 2. Biblioteca de contenidos
 let filtroTema = "todos";
 
@@ -334,7 +416,7 @@ function mensajeWhatsapp(p, ids) {
   ].join("\n");
 }
 
-function pantallaAsignar(idInicial) {
+function pantallaAsignar(idInicial, desdePacientes = false) {
   if (idInicial && contenido(idInicial)) asignacion.contenidos.add(idInicial);
 
   const pacientes = datos.pacientes.map((p) => `
@@ -359,7 +441,7 @@ function pantallaAsignar(idInicial) {
 
   return `<section class="pro pro-angosto">
     ${encabezadoPro("")}
-    <a class="volver" href="#/pro/biblioteca"><span aria-hidden="true">‹</span> ${t("volverBiblioteca")}</a>
+    <a class="volver" href="${desdePacientes ? "#/pro/pacientes" : "#/pro/biblioteca"}"><span aria-hidden="true">‹</span> ${t(desdePacientes ? "tabPacientes" : "volverBiblioteca")}</a>
     <h1>${t("asignarTitulo")}</h1>
     <form id="form-asignar" novalidate>
       <fieldset class="grupo">
@@ -502,16 +584,21 @@ function mostrar() {
     else html = pantallaPaso(p, i, Number(partes[4]));
   } else if (partes[0] === "pro") {
     modoPro = true;
-    // Mientras no exista "Mis pacientes", el profesional entra por la Biblioteca
-    const seccion = partes[1] || "biblioteca";
-    if (seccion === "biblioteca") { html = pantallaBiblioteca(); despues = activarBiblioteca; }
+    const seccion = partes[1] || "pacientes";
+    if (seccion === "pacientes") html = pantallaPacientes();
+    else if (seccion === "biblioteca") { html = pantallaBiblioteca(); despues = activarBiblioteca; }
+    else if (seccion === "asignar-a" && paciente(partes[2])) {
+      asignacion.paciente = partes[2];
+      html = pantallaAsignar(null, true);
+      despues = activarAsignar;
+    }
     else if (seccion === "asignar") { html = pantallaAsignar(partes[2]); despues = activarAsignar; }
     else if (seccion === "enviado" && paciente(partes[2])) {
       const p = paciente(partes[2]);
       html = pantallaEnviado(p);
       despues = () => activarEnviado(p);
     }
-    else html = encabezadoPro(seccion === "pacientes" ? "pacientes" : "") + pantallaEnConstruccion();
+    else html = encabezadoPro("pacientes") + pantallaEnConstruccion();
   } else {
     html = pantallaEnConstruccion();
   }

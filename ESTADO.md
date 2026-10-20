@@ -57,9 +57,16 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   Estrés postraumático (Volver al presente). Avisos de cuidado: en alcohol, no dejar
   de golpe si se toma mucho; en estrés postraumático, solo estabilización (lo que pasó
   se trabaja en consulta).
+- Pantalla 1 — Mis pacientes (inicio del profesional): resumen (pacientes, ejercicios
+  hechos, por hacer), tarjeta por paciente con último contenido, estado (enviado,
+  abierto, hecho), cómo se sintió en su último registro, alerta suave si se sintió mal
+  (1 o 2), y botones "Ver ficha" y "Asignar" (con el paciente ya elegido).
+  Aviso "Solo ves a tus propios pacientes".
+- Los archivos llevan número de versión (?v=9) para que el navegador no muestre
+  copias viejas. Subirlo en cada cambio.
 
 ## Falta
-- Pantalla 1 (Mis pacientes), 4 (Ficha).
+- Pantalla 4 (Ficha del paciente).
 - Revisión final en computadora y celular.
 
 ## Pendiente de revisión
@@ -70,4 +77,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Construir la pantalla 1, Mis pacientes.
+Construir la pantalla 4, Ficha del paciente (cierra el recorrido completo).

@@ -810,6 +810,88 @@ main[data-quieto] > section > * { animation: none; }
   margin-top: var(--e3);
 }
 
+/* Mis pacientes */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e2);
+  margin: var(--e3) 0 var(--e3);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: var(--e2) var(--e3);
+  background: var(--vidrio);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+}
+.stat strong {
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--azul);
+}
+.stat span { font-size: 0.9rem; line-height: 1.3; color: var(--texto-suave); }
+
+.paciente-tarjeta { display: flex; flex-direction: column; gap: 0.6rem; }
+.paciente-tarjeta p { margin: 0; }
+.paciente-cabeza { display: flex; align-items: center; gap: 0.8rem; }
+.paciente-cabeza h2 { font-size: 1.2rem; margin: 0; }
+.paciente-ultimo { font-size: 1.05rem; }
+.paciente-registro { font-size: 1.05rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem; }
+.paciente-estado { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; }
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-family: var(--titulos);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.estado-completado { background: var(--menta); color: var(--verde-oscuro); }
+.estado-abierto { background: #E4EEF6; color: #2A4A6E; }
+.estado-enviado { background: rgba(29, 53, 87, 0.07); color: var(--texto-suave); }
+.carita-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.6rem 0.15rem 0.35rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+}
+.carita-mini span[aria-hidden] { font-size: 1.15rem; line-height: 1; }
+.paciente-acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+.paciente-acciones .boton { min-height: 50px; font-size: 1rem; padding: 0 1rem; }
+.con-alerta { box-shadow: 0 0 0 1.5px rgba(var(--coral-rgb), 0.55), var(--sombra); }
+.alerta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: var(--coral-suave);
+  color: #8A3B26;
+  font-family: var(--titulos);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.alerta span { color: var(--coral); font-size: 0.7rem; }
+.privado { margin-top: var(--e4); }
+
 /* Aviso de cuidado dentro de un contenido (cálido, no alarmante) */
 .cuidado {
   display: flex;

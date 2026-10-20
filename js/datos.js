@@ -318,6 +318,7 @@ function datosIniciales() {
       {
         id: "ramon", alias: "Don Ramón", telefono: "0982 000 202", idioma: "gn",
         asignaciones: [
+          { contenido: "respiracion", enviado: haceDias(14), abierto: haceDias(12, 23), completado: haceDias(12, 23), carita: 2, nota: "Ndaikatúi akera semana pukukue." },
           { contenido: "sueno", enviado: haceDias(5), abierto: haceDias(4, 22), completado: null, carita: null, nota: "" },
         ],
       },
