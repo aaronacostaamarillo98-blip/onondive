@@ -68,11 +68,17 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   "Reenviar link". Aclara que no es historia clínica.
 - Recorrido completo probado: el profesional asigna → el paciente completa → el
   profesional ve el registro en la ficha.
-- Los archivos llevan número de versión (?v=10) para que el navegador no muestre
+- Revisión final: sin errores de accesibilidad automáticos (WCAG 2.2 AA) en todas las
+  pantallas, en castellano y guaraní; botones de al menos 44 px; título de pestaña por
+  pantalla para lectores de pantalla. Peso: ~22 KB de app + ~89 KB de tipografías.
+- Aviso de ayuda con colores del entorno (celeste y menta) y la Línea 155 como botón
+  principal.
+- Guion de la demo: GUION-DEMO.md.
+- Los archivos llevan número de versión (?v=12) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta
-- Revisión final en computadora y celular.
+- Ejercicios de TCC y de terapia familiar (pedido de Aaron, a proponer antes de redactar).
 
 ## Pendiente de revisión
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
@@ -82,5 +88,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Revisión final en computadora y celular (contraste, lector de pantalla, velocidad) y
-ensayo de la demo para la reunión.
+Ensayar la demo con GUION-DEMO.md y acordar los ejercicios de TCC y terapia familiar.

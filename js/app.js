@@ -120,7 +120,7 @@ function pantallaPaciente(p) {
   };
 
   return `<section class="paciente">
-    <h1>${tp("hola", { alias: escapar(p.alias) })} 👋</h1>
+    <h1>${tp("hola", { alias: escapar(p.alias) })} <span aria-hidden="true">👋</span></h1>
     <p class="suave">${tp("deTuProfesional", { nombre: PROFESIONAL.nombre })}</p>
     <h2>${t("paraHacer")}</h2>
     ${pendientes.length
@@ -584,7 +584,7 @@ function pantallaEnviado(p) {
       <p class="suave">${tp("enviadoDesc", { alias: escapar(p.alias) })}</p>
     </div>
     <h2 class="subtitulo">${t("asiLlega")}</h2>
-    <div class="whatsapp" aria-label="${t("asiLlega")}">
+    <div class="whatsapp">
       <div class="burbuja">${escapar(mensaje).replace(/\n/g, "<br>").replace(escapar(link), `<span class="burbuja-link">${escapar(link)}</span>`)}</div>
     </div>
     <div class="acciones-envio">
@@ -679,7 +679,15 @@ function mostrar() {
   document.body.classList.toggle("modo-pro", modoPro);
   main.innerHTML = html;
   if (despues) despues();
-  document.title = "Oñondive";
+  // Título de la pestaña según la pantalla (lo anuncia el lector de pantalla)
+  const h1 = main.querySelector("h1");
+  let titulo = "";
+  if (h1) {
+    const copia = h1.cloneNode(true);
+    copia.querySelectorAll("[aria-hidden]").forEach((x) => x.remove());
+    titulo = copia.textContent.replace(/\s+/g, " ").trim();
+  }
+  document.title = titulo && titulo !== "Oñondive" ? `${titulo} · Oñondive` : "Oñondive";
 }
 
 window.addEventListener("hashchange", () => {

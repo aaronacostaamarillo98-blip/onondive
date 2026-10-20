@@ -124,6 +124,7 @@ a { color: var(--azul); }
   }
 }
 .marca {
+  min-height: 44px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -148,7 +149,7 @@ a { color: var(--azul); }
   font-family: var(--titulos);
   font-weight: 500;
   font-size: 0.9rem;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 0.95rem;
   border: 0;
   border-radius: 999px;
@@ -163,15 +164,16 @@ a { color: var(--azul); }
   box-shadow: 0 1px 3px rgba(29, 53, 87, 0.15), 0 2px 8px rgba(29, 53, 87, 0.06);
 }
 
-/* Aviso de crisis: siempre visible, sereno pero claro */
+/* Aviso de crisis: siempre visible, en armonía con el entorno (celeste y menta) */
 .crisis {
   width: calc(100% - 2rem);
   max-width: 928px;
   margin: 1rem auto 0;
   padding: 0.9rem 1.1rem;
-  background: rgba(253, 241, 236, 0.85);
-  border: 1px solid rgba(var(--coral-rgb), 0.25);
+  background: linear-gradient(135deg, rgba(var(--aura2-rgb), 0.95), rgba(var(--menta-rgb), 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: var(--radio);
+  box-shadow: var(--sombra);
 }
 .crisis p { margin: 0; }
 .crisis-titulo {
@@ -192,14 +194,20 @@ a { color: var(--azul); }
   min-height: 44px;
   padding: 0 1.1rem;
   background: var(--blanco);
-  border: 1px solid rgba(var(--coral-rgb), 0.45);
+  border: 1px solid rgba(29, 53, 87, 0.15);
   border-radius: 999px;
   color: var(--azul);
   font-family: var(--titulos);
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 1px 2px rgba(var(--coral-rgb), 0.12);
+  box-shadow: 0 1px 2px rgba(29, 53, 87, 0.06);
   transition: transform 0.2s var(--suave);
+}
+.crisis-tel a:first-child {
+  background: var(--verde-oscuro);
+  border-color: var(--verde-oscuro);
+  color: var(--blanco);
+  box-shadow: 0 4px 14px rgba(31, 114, 104, 0.25);
 }
 .crisis-tel a:active { transform: scale(0.97); }
 .crisis-nota { font-size: 0.92rem; color: var(--texto-suave); }
@@ -265,6 +273,7 @@ main > section > :nth-child(n+6), main > section > form > :nth-child(n+6) { anim
 .boton-secundario:hover { background: var(--blanco); }
 
 .enlace {
+  min-height: 44px;
   background: none;
   border: 0;
   padding: 0.5rem;
@@ -975,7 +984,7 @@ main[data-quieto] > section > * { animation: none; }
   .barra { padding: 0.6rem 0.9rem; }
   .marca { font-size: 1.1rem; }
   .logo { width: 34px; height: 22px; }
-  .idioma button { padding: 0 0.65rem; font-size: 0.82rem; min-height: 38px; }
+  .idioma button { padding: 0 0.65rem; font-size: 0.82rem; min-height: 44px; }
   .crisis { margin-top: 0.75rem; padding: 0.8rem 0.9rem; border-radius: 20px; }
 }
 
