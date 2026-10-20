@@ -77,9 +77,20 @@ pequeñas actividades, qué es la ansiedad). Marcarlos como "ejemplo, a revisar 
 profesional". Los definitivos los redacta y revisa Aaron.
 
 ## Identidad visual
-- Colores: azul profundo #1D3557 (confianza), verde azulado #2A9D8F (salud y calma),
-  menta #D8EFEC (fondos suaves), ámbar #F4A261 (botones de acción), coral #E76F51
-  (solo alertas), fondo #F5F8F7.
+- Colores (paleta calma, basada en investigación de psicología del color: tonos claros
+  y poco saturados; azul y verde para calma; cálidos intensos solo para alertas.
+  Valdez y Mehrabian 1994; Jonauskaite et al. 2020; Elliot y Maier 2014):
+  - Azul profundo #1D3557: textos y confianza.
+  - Verde azulado suave #4FA89C: acentos, salud y calma.
+  - Verde oscuro #1F7268: texto verde y foco del teclado (contraste suficiente).
+  - Menta #DCEFEB: fondos suaves.
+  - Celeste niebla #E4EEF6: luces suaves del fondo.
+  - Durazno #F6BE94: botones de acción (texto azul encima).
+  - Coral suave #E3907A: solo alertas.
+  - Fondo #F6F9F9.
+- Estilo premium siempre: sereno tipo Apple, fondo "aura" con luces suaves, bordes muy
+  redondeados, espacios y títulos fluidos, letra base de 20 px, vibración suave al
+  confirmar.
 - Tipografías: Poppins (títulos) y Lora (textos).
 - Motivo: dos círculos entrelazados (el logo de Oñondive).
 - Estilo cálido, sereno y profesional. Nada de colores chillones.

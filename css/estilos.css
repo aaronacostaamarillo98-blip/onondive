@@ -1,6 +1,6 @@
 :root {
-  /* Paleta "investigación" (por defecto): mismos tonos de la marca, más claros y menos
-     saturados. Base: Valdez y Mehrabian 1994; Jonauskaite et al. 2020; Elliot y Maier 2014. */
+  /* Paleta calma: tonos claros y poco saturados.
+     Base: Valdez y Mehrabian 1994; Jonauskaite et al. 2020; Elliot y Maier 2014. */
   --azul: #1D3557;
   --verde: #4FA89C;
   --verde-rgb: 79, 168, 156;
@@ -36,24 +36,6 @@
   --e5: clamp(2.2rem, 1.7rem + 2.5vw, 3.5rem);
   --titulos: "Poppins", -apple-system, system-ui, sans-serif;
   --cuerpo: "Lora", Georgia, serif;
-}
-
-/* Paleta anterior (para comparar con ?paleta=actual) */
-:root[data-paleta="actual"] {
-  --verde: #2A9D8F;
-  --verde-rgb: 42, 157, 143;
-  --verde-claro: #5CC2B5;
-  --menta: #D8EFEC;
-  --menta-rgb: 216, 239, 236;
-  --menta-clara: #E8F6F4;
-  --aura2-rgb: 216, 239, 236;
-  --ambar: #F4A261;
-  --ambar-rgb: 244, 162, 97;
-  --ambar-hover: #F29A52;
-  --ambar-oscuro-rgb: 224, 138, 67;
-  --coral: #E76F51;
-  --coral-rgb: 231, 111, 81;
-  --fondo: #F5F8F7;
 }
 
 * { box-sizing: border-box; }
