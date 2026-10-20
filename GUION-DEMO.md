@@ -29,8 +29,9 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 
 **3. Biblioteca (30 s)**
 → Tocá **Biblioteca**.
-- "18 contenidos breves en castellano y guaraní, basados en TCC y terapia familiar:
-  ansiedad, sueño, ánimo, crianza y familia, adicciones y estrés postraumático."
+- "25 contenidos breves en castellano y guaraní, basados en TCC y terapia familiar:
+  ansiedad, ánimo, sueño, duelo, medicación, crianza y familia, adicciones y estrés
+  postraumático."
 - "Son ejemplos: los definitivos los redacta y revisa un profesional."
 - Mostrá el aviso de cuidado de **¿Cuánto tomé esta semana?**
 

@@ -78,14 +78,20 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   a paso, Enfrentar de a poco (con aviso "armala con tu profesional"), Un rato para
   preocuparse. Familia — Escuchar sin interrumpir, Reunión familiar de 15 minutos,
   Reglas claras en casa, Cuando discutimos: pausa y volver (con aviso de violencia).
-- Los archivos llevan número de versión (?v=13) para que el navegador no muestre
+- 7 ejercicios más (total 25): ¿Qué es la depresión?, Tomar mi medicación (aviso: no
+  cambiar sin el médico), Relajar el cuerpo por partes, Cuando perdemos a alguien,
+  Mis señales de alerta, Cuidar al que cuida, Cuando me enojo. Temas nuevos:
+  Medicación y Duelo.
+- Plan de seguridad: borrador en BORRADOR-PLAN-SEGURIDAD.md (solo local, no se sube).
+  Espera la revisión de Aaron.
+- Los archivos llevan número de versión (?v=14) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta
 
 ## Pendiente de revisión
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
-- Los 18 contenidos de ejemplo: a revisar por Aaron.
+- Los 25 contenidos de ejemplo: a revisar por Aaron.
 - Línea de ayuda por violencia en Paraguay: confirmar número antes de sumarla.
 
 ## Decisiones pendientes
