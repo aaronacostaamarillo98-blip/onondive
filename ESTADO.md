@@ -48,7 +48,7 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   etiqueta "ejemplo, a revisar", "Ver los pasos" y botón "Asignar".
   En las pantallas del profesional no se muestra el aviso de crisis (es para el paciente).
 - Pantalla 3 — Asignar y enviar: elegir paciente y uno o más contenidos, crear el link,
-  vista del mensaje como burbuja de WhatsApp (en el idioma del paciente), botones
+  vista del mensaje como burbuja de WhatsApp (en castellano y guaraní, primero el que prefiere el paciente), botones
   "Abrir WhatsApp" (sin número: el profesional elige el contacto), "Copiar link" y
   "Ver lo que recibe el paciente". El link se abre en el idioma que prefiere el paciente.
 

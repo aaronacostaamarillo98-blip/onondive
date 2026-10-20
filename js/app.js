@@ -308,20 +308,25 @@ function linkPaciente(p) {
   return `${location.origin}${location.pathname}#/p/${p.id}`;
 }
 
+// Mensaje en castellano y guaraní: primero el idioma que prefiere el paciente
 function mensajeWhatsapp(p, ids) {
-  const tx = TEXTOS[p.idioma];
-  const lineas = ids.map((id) => {
-    const c = contenido(id);
-    return `• ${c[p.idioma].titulo} (${c.duracion} min)`;
-  });
+  const orden = p.idioma === "gn" ? ["gn", "es"] : ["es", "gn"];
+  const bloque = (lang) => {
+    const tx = TEXTOS[lang];
+    return [
+      tx.msgHola.replace("{alias}", p.alias),
+      tx.msgCuerpo,
+      ...ids.map((id) => {
+        const c = contenido(id);
+        return `• ${c[lang].titulo} (${c.duracion} min)`;
+      }),
+      tx.msgAbrir,
+    ].join("\n");
+  };
   return [
-    tx.msgHola.replace("{alias}", p.alias),
+    ...orden.map(bloque).join("\n\n").split("\n"),
     "",
-    tx.msgCuerpo,
-    ...lineas,
-    "",
-    tx.msgAbrir,
-    linkPaciente(p),
+    `👉 ${linkPaciente(p)}`,
     "",
     `— ${PROFESIONAL.nombre}`,
   ].join("\n");

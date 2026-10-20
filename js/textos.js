@@ -70,7 +70,7 @@ const TEXTOS = {
     asignarOtro: "Asignar otro contenido",
     msgHola: "Hola, {alias} 👋",
     msgCuerpo: "Te envío ejercicios cortos para hacer antes de la próxima consulta:",
-    msgAbrir: "Abrilo acá, no hace falta instalar nada:",
+    msgAbrir: "Abrilo con el link de abajo. No hace falta instalar nada.",
   },
   gn: {
     saltar: "Eho contenido-pe",
@@ -141,6 +141,6 @@ const TEXTOS = {
     asignarOtro: "Emondo ambue contenido",
     msgHola: "Mba'éichapa, {alias} 👋",
     msgCuerpo: "Amondo ndéve ejercicio mbykymi rejapo hag̃ua próxima consulta mboyve:",
-    msgAbrir: "Eipe'a ko'ápe, ndoikotevẽi remoĩ mba'eve:",
+    msgAbrir: "Eipe'a link oĩva iguýpe. Ndoikotevẽi remoĩ mba'eve.",
   },
 };
