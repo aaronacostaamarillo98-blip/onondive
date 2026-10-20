@@ -48,7 +48,7 @@ document.getElementById("reiniciar").addEventListener("click", () => {
 // --- Pantallas ---
 const LOGO = `<svg class="logo-grande" viewBox="0 0 64 40" aria-hidden="true">
   <circle cx="22" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="4"/>
-  <circle cx="42" cy="20" r="14" fill="none" stroke="#2A9D8F" stroke-width="4"/>
+  <circle cx="42" cy="20" r="14" fill="none" style="stroke: var(--verde)" stroke-width="4"/>
 </svg>`;
 
 function pantallaInicio() {
@@ -77,6 +77,14 @@ function pantallaEnConstruccion() {
     <a class="boton boton-secundario" href="#/">${t("volverInicio")}</a>
   </section>`;
 }
+
+// --- Vibración suave (si el celular la tiene) ---
+function vibrar(patron) {
+  try { if (navigator.vibrate) navigator.vibrate(patron); } catch (e) { /* sin vibración */ }
+}
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".boton, .ejercicio, .opcion")) vibrar(10);
+});
 
 // --- Utilidades ---
 function tp(clave, vars) {
@@ -185,12 +193,14 @@ function activarSentir(p, i) {
     document.getElementById("falta-carita").hidden = true;
     // Marca la carita elegida (también en celulares viejos sin :has)
     form.querySelectorAll(".carita").forEach((l) => l.classList.toggle("elegida", l.querySelector("input").checked));
+    vibrar(15);
   });
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const elegida = form.querySelector("input[name=carita]:checked");
     if (!elegida) {
       document.getElementById("falta-carita").hidden = false;
+      vibrar([80, 50, 80]); // atención
       return;
     }
     const a = p.asignaciones[i];
@@ -199,6 +209,7 @@ function activarSentir(p, i) {
     a.completado = new Date().toISOString();
     if (!a.abierto) a.abierto = a.completado;
     guardarDatos();
+    vibrar([30, 60, 30]); // confirmación: "listo"
     location.hash = `#/p/${p.id}/c/${i}/listo`;
   });
 }

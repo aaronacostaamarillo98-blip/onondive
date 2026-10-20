@@ -38,6 +38,11 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   tarjetas tipo vidrio, selector de idioma estilo Apple, halo que respira en el logo,
   títulos y espacios fluidos según la pantalla, aparición suave de cada elemento.
   Respeta "reducir movimiento" del celular.
+- Paleta "investigación" (a prueba): mismos tonos de la marca, más claros y menos
+  saturados (Valdez y Mehrabian 1994; Jonauskaite et al. 2020; Elliot y Maier 2014).
+  Botones durazno #F6BE94, verde #4FA89C, menta #DCEFEB, celeste niebla #E4EEF6,
+  coral suave #E3907A. La paleta anterior se ve agregando ?paleta=actual al link.
+- Letra base de 20 px, vibración suave al tocar y al confirmar, ✓ en la carita elegida.
 
 ## Falta
 - Pantalla 2 (Biblioteca), 3 (Asignar), 1 (Mis pacientes), 4 (Ficha).
@@ -48,6 +53,7 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Los 5 contenidos de ejemplo: a revisar por Aaron.
 
 ## Decisiones pendientes
+- Paleta: ¿queda la de la investigación o volvemos a la anterior?
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
