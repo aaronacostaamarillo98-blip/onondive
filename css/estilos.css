@@ -230,6 +230,143 @@ main:focus { outline: none; }
 .opcion strong { font-family: var(--titulos); font-size: 1.2rem; }
 .opcion span.desc { color: var(--texto-suave); font-size: 1rem; }
 
+/* Comunes */
+.centrado { text-align: center; }
+.suave { color: var(--texto-suave); }
+.chico { font-size: 0.95rem; }
+.boton-ancho { width: 100%; }
+
+/* Paciente */
+.paciente { max-width: 560px; margin: 0 auto; }
+.paciente h2 { margin-top: 1.5rem; font-size: 1.15rem; }
+
+.lista-ejercicios {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.ejercicio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 72px;
+  padding: 0.75rem 1rem;
+  background: var(--blanco);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  color: var(--azul);
+  text-decoration: none;
+}
+a.ejercicio:hover { border-color: var(--verde); background: var(--menta); }
+.ejercicio.hecho { box-shadow: none; background: transparent; border-style: dashed; }
+.ej-icono { font-size: 2rem; line-height: 1; }
+.ej-texto { flex: 1; display: flex; flex-direction: column; }
+.ej-texto strong { font-family: var(--titulos); font-weight: 600; }
+.ej-texto span { color: var(--texto-suave); font-size: 0.95rem; }
+.ej-flecha { font-size: 2rem; color: var(--verde-oscuro); }
+
+.titulo-ejercicio { font-family: var(--titulos); margin: 0 0 0.5rem; }
+.progreso-texto { margin: 0 0 0.35rem; font-size: 0.95rem; color: var(--texto-suave); }
+.progreso {
+  height: 8px;
+  background: var(--menta);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.progreso span { display: block; height: 100%; background: var(--verde); }
+
+.paso { text-align: center; padding: 2rem 1.25rem; }
+.paso-numero {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--menta);
+  color: var(--verde-oscuro);
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 48px;
+}
+.paso-texto {
+  font-family: var(--cuerpo);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.acciones {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* Caritas */
+.caritas { border: 0; padding: 0; margin: 0; }
+.caritas legend { padding: 0; margin-bottom: 1rem; }
+.caritas legend h1 { margin-bottom: 0.25rem; }
+.caritas-fila {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+.carita {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.6rem 0.2rem;
+  background: var(--blanco);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-align: center;
+}
+.carita input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.carita-emoji { font-size: 2.2rem; line-height: 1; }
+.carita-texto { font-size: 0.8rem; line-height: 1.2; color: var(--texto-suave); }
+.carita.elegida,
+.carita:has(input:checked) {
+  border-color: var(--ambar-oscuro);
+  background: #FDF0E5;
+  box-shadow: 0 0 0 2px var(--ambar-oscuro);
+}
+.carita:has(input:focus-visible) { outline: 3px solid var(--ambar-oscuro); outline-offset: 2px; }
+
+.aviso {
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.9rem;
+  background: var(--coral-suave);
+  border-left: 4px solid var(--coral);
+  border-radius: 8px;
+}
+
+.nota-etiqueta { display: block; margin: 1.5rem 0 0.4rem; font-family: var(--titulos); font-weight: 500; }
+.nota {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 1rem;
+  border: 2px solid var(--borde);
+  border-radius: 12px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--blanco);
+}
+.nota:focus { border-color: var(--verde); }
+
+.listo-icono { font-size: 4rem; margin: 1rem 0 0; }
+
 /* Pie */
 .pie {
   text-align: center;

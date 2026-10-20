@@ -166,6 +166,7 @@ function datosIniciales() {
         asignaciones: [
           { contenido: "respiracion", enviado: haceDias(9), abierto: haceDias(8, 19), completado: haceDias(8, 19), carita: 3, nota: "Me costó concentrarme pero lo terminé." },
           { contenido: "ansiedad", enviado: haceDias(9), abierto: haceDias(7, 21), completado: haceDias(7, 21), carita: 4, nota: "" },
+          { contenido: "emociones", enviado: haceDias(1), abierto: null, completado: null, carita: null, nota: "" },
         ],
       },
       {

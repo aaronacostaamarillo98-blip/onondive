@@ -31,9 +31,11 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   (Lic. Ana Benítez, 5 pacientes, 5 contenidos de ejemplo).
 - Paso 2 — Pantalla 0, Inicio.
 - Publicado en GitHub Pages.
+- Pantallas 5 a 8 (paciente): bienvenida con ejercicios para hacer y ya hechos,
+  ejercicio paso a paso con barra de avance, caritas 1 a 5 + una línea, ¡Listo!.
+  Link de prueba de paciente: .../onondive/#/p/rosa
 
 ## Falta
-- Pantallas 5 a 8 (paciente).
 - Pantalla 2 (Biblioteca), 3 (Asignar), 1 (Mis pacientes), 4 (Ficha).
 - Revisión final en computadora y celular.
 
@@ -45,4 +47,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Construir las pantallas 5 a 8 (lado del paciente).
+Construir la pantalla 2, Biblioteca de contenidos (profesional).
