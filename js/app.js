@@ -68,6 +68,19 @@ function pantallaInicio() {
         <span class="desc">${t("verPacienteDesc")}</span>
       </a>
     </div>
+    <h2 class="subtitulo">${t("comoFunciona")}</h2>
+    <ol class="como-funciona">
+      ${[1, 2, 3].map((n) => `<li class="tarjeta">
+        <span class="paso-numero" aria-hidden="true">${n}</span>
+        <strong>${t("paso" + n + "Titulo")}</strong>
+        <span class="suave chico">${t("paso" + n + "Desc")}</span>
+      </li>`).join("")}
+    </ol>
+    <h2 class="subtitulo">${t("garantias")}</h2>
+    <ul class="garantias">
+      ${[["🔒", "g1"], ["🌐", "g2"], ["📶", "g3"], ["♿", "g4"], ["🧠", "g5"], ["🆘", "g6"]]
+        .map(([i, k]) => `<li><span aria-hidden="true">${i}</span> ${t(k)}</li>`).join("")}
+    </ul>
   </section>`;
 }
 
@@ -216,12 +229,82 @@ function activarSentir(p, i) {
 }
 
 // 8. ¡Listo!
-function pantallaListo(p) {
+function pantallaListo(p, a) {
+  const mal = a && a.carita && a.carita <= 2;
   return `<section class="paciente centrado">
-    <p class="listo-icono" aria-hidden="true">🌱</p>
-    <h1>${t("listoTitulo")}</h1>
+    <p class="listo-icono" aria-hidden="true">${mal ? "🤝" : "🌱"}</p>
+    <h1>${t(mal ? "apoyoTitulo" : "listoTitulo")}</h1>
     <p>${t("listoTexto")}</p>
+    ${mal ? `<div class="apoyo">
+      <p>${t("apoyoTexto")}</p>
+      <a class="boton boton-ancho boton-155" href="tel:155"><span aria-hidden="true">📞</span> ${t("llamar155")}</a>
+    </div>` : ""}
     <a class="boton boton-ancho" href="#/p/${p.id}">${t("volverEjercicios")}</a>
+  </section>`;
+}
+
+// --- Información ---
+function pantallaPrivacidad() {
+  return `<section class="pro-angosto info">
+    <h1>${t("privacidad")}</h1>
+    <p class="suave">${t("privIntro")}</p>
+    <ul class="info-lista">
+      ${t("privSecciones").map(([i, titulo, texto]) => `<li class="tarjeta">
+        <span class="ej-icono" aria-hidden="true">${i}</span>
+        <div><h2>${titulo}</h2><p>${texto}</p></div>
+      </li>`).join("")}
+    </ul>
+  </section>`;
+}
+
+function pantallaSobreContenidos() {
+  const temas = [...new Set(CONTENIDOS.map((c) => c.es.tema))];
+  return `<section class="pro-angosto info">
+    <h1>${t("sobreContenidos")}</h1>
+    <p>${t("contP1")}</p>
+    <p>${t("contP2")}</p>
+    <p class="suave">${t("contP3")}</p>
+    <p class="chico suave">${tp("contResumen", { n: CONTENIDOS.length, t: temas.length })}</p>
+    <div class="tabla-envoltura" tabindex="0" role="region" aria-label="${t("sobreContenidos")}">
+      <table class="tabla">
+        <thead><tr><th scope="col">${t("colContenido")}</th><th scope="col">${t("colTema")}</th><th scope="col">${t("colDuracion")}</th><th scope="col">${t("colBase")}</th></tr></thead>
+        <tbody>
+          ${CONTENIDOS.map((c) => `<tr>
+            <th scope="row"><span aria-hidden="true">${c.icono}</span> ${c[idioma].titulo}</th>
+            <td>${c[idioma].tema}</td>
+            <td>${c.duracion} ${t("minutos")}</td>
+            <td>${BASES[c.id]}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>`;
+}
+
+// Vista previa de un contenido (para el profesional): igual que lo ve el paciente
+function pantallaVistaPrevia(cont, n) {
+  const c = cont[idioma];
+  const total = c.pasos.length;
+  if (!(n >= 1 && n <= total)) return noEncontrado();
+  const base = `#/vista/${cont.id}`;
+  const atras = n > 1 ? `${base}/${n - 1}` : "#/pro/biblioteca";
+  const adelante = n < total
+    ? `<a class="boton" href="${base}/${n + 1}">${t("siguiente")} <span aria-hidden="true">›</span></a>`
+    : `<a class="boton" href="#/pro/biblioteca">${t("terminarVista")} <span aria-hidden="true">✓</span></a>`;
+  return `<section class="paciente">
+    <p class="vista-previa"><span aria-hidden="true">👁️</span> ${t("vistaPrevia")}</p>
+    <p class="suave titulo-ejercicio"><span aria-hidden="true">${cont.icono}</span> ${c.titulo}</p>
+    <p class="progreso-texto">${tp("paso", { n, total })}</p>
+    <div class="progreso" aria-hidden="true"><span style="width:${(n / total) * 100}%"></span></div>
+    ${c.aviso && n === 1 ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
+    <div class="tarjeta paso">
+      <p class="paso-numero" aria-hidden="true">${n}</p>
+      <h1 class="paso-texto">${c.pasos[n - 1]}</h1>
+    </div>
+    <div class="acciones">
+      <a class="boton boton-secundario" href="${atras}"><span aria-hidden="true">‹</span> ${t("anterior")}</a>
+      ${adelante}
+    </div>
   </section>`;
 }
 
@@ -369,7 +452,6 @@ function pantallaFicha(p) {
 
   return `<section class="pro pro-angosto">
     ${encabezadoPro("pacientes")}
-    <a class="volver" href="#/pro/pacientes"><span aria-hidden="true">‹</span> ${t("tabPacientes")}</a>
     <div class="ficha-cabeza">
       <span class="avatar" aria-hidden="true">${escapar(p.alias[0])}</span>
       <div>
@@ -397,6 +479,21 @@ function pantallaFicha(p) {
 
 // 2. Biblioteca de contenidos
 let filtroTema = "todos";
+let textoBusqueda = "";
+function cantidadTexto(n) { return n === 1 ? t("cantidadUno") : tp("cantidad", { n }); }
+function sinTildes(x) { return x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
+
+function aplicarBusqueda() {
+  const q = sinTildes(textoBusqueda.trim());
+  let visibles = 0;
+  document.querySelectorAll(".contenido").forEach((c) => {
+    const ok = !q || c.dataset.buscar.includes(q);
+    c.hidden = !ok;
+    if (ok) visibles++;
+  });
+  document.getElementById("cantidad").textContent = cantidadTexto(visibles);
+  document.getElementById("sin-resultados").hidden = visibles > 0;
+}
 
 function pantallaBiblioteca() {
   const temas = [...new Set(CONTENIDOS.map((c) => c.es.tema))];
@@ -408,7 +505,8 @@ function pantallaBiblioteca() {
 
   const tarjeta = (cont) => {
     const c = cont[idioma];
-    return `<article class="tarjeta contenido">
+    const buscable = sinTildes(`${c.titulo} ${c.tema} ${BASES[cont.id]} ${cont.es.titulo}`);
+    return `<article class="tarjeta contenido" data-buscar="${escapar(buscable)}">
       <div class="contenido-cabeza">
         <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
         <div>
@@ -425,7 +523,11 @@ function pantallaBiblioteca() {
         <summary>${t("verPasos")}</summary>
         <ol>${c.pasos.map((x) => `<li>${x}</li>`).join("")}</ol>
       </details>
-      <a class="boton boton-ancho" href="#/pro/asignar/${cont.id}">${t("asignar")} <span aria-hidden="true">›</span></a>
+      <p class="chico suave base"><strong>${t("base")}</strong> ${BASES[cont.id]}</p>
+      <div class="paciente-acciones">
+        <a class="boton boton-secundario" href="#/vista/${cont.id}/1"><span aria-hidden="true">▶</span> ${t("probar")}</a>
+        <a class="boton" href="#/pro/asignar/${cont.id}">${t("asignar")} <span aria-hidden="true">›</span></a>
+      </div>
     </article>`;
   };
 
@@ -433,16 +535,25 @@ function pantallaBiblioteca() {
     ${encabezadoPro("biblioteca")}
     <h1>${t("bibliotecaTitulo")}</h1>
     <p class="suave">${t("bibliotecaDesc")}</p>
+    <label class="buscador">
+      <span aria-hidden="true">🔍</span>
+      <span class="solo-lector">${t("buscar")}</span>
+      <input type="search" id="buscar" placeholder="${t("buscar")}" value="${escapar(textoBusqueda)}" autocomplete="off">
+    </label>
     <div class="chips" role="group" aria-label="${t("filtrarTema")}">
       ${chip("todos", t("todos"))}
       ${temas.map((x) => chip(x, nombreTema(x))).join("")}
     </div>
-    <p class="chico suave" aria-live="polite">${tp("cantidad", { n: lista.length })}</p>
+    <p class="chico suave" id="cantidad" aria-live="polite">${cantidadTexto(lista.length)}</p>
     <div class="grilla-contenidos">${lista.map(tarjeta).join("")}</div>
+    <p class="suave centrado" id="sin-resultados" hidden>${t("sinResultados")}</p>
   </section>`;
 }
 
 function activarBiblioteca() {
+  const buscar = document.getElementById("buscar");
+  buscar.addEventListener("input", () => { textoBusqueda = buscar.value; aplicarBusqueda(); });
+  if (textoBusqueda) aplicarBusqueda();
   document.querySelectorAll(".chip").forEach((b) => {
     b.addEventListener("click", () => {
       filtroTema = b.dataset.tema;
@@ -512,7 +623,6 @@ function pantallaAsignar(idInicial, desdePacientes = false) {
 
   return `<section class="pro pro-angosto">
     ${encabezadoPro("")}
-    <a class="volver" href="${desdePacientes ? "#/pro/pacientes" : "#/pro/biblioteca"}"><span aria-hidden="true">‹</span> ${t(desdePacientes ? "tabPacientes" : "volverBiblioteca")}</a>
     <h1>${t("asignarTitulo")}</h1>
     <form id="form-asignar" novalidate>
       <fieldset class="grupo">
@@ -625,6 +735,25 @@ function activarEnviado(p) {
 // #/p/:id/c/:i/listo     paciente: listo
 const idiomaDelLink = new Set();
 
+// A dónde lleva el botón "Atrás" de arriba (siempre el mismo lugar)
+function destinoAtras(partes) {
+  const [a, b, c, d, e] = partes;
+  if (!a) return null;
+  if (a === "p") {
+    if (!c) return null; // la bienvenida es el inicio del paciente
+    if (e === "sentir" || e === "listo") return `#/p/${b}`;
+    const n = Number(e);
+    return n > 1 ? `#/p/${b}/c/${d}/${n - 1}` : `#/p/${b}`;
+  }
+  if (a === "vista") return "#/pro/biblioteca";
+  if (a === "pro") {
+    if (!b || b === "pacientes") return "#/";
+    if (b === "asignar") return "#/pro/biblioteca";
+    return "#/pro/pacientes";
+  }
+  return "#/";
+}
+
 function mostrar() {
   aplicarIdioma();
   const partes = (location.hash.replace(/^#\/?/, "") || "").split("/").filter(Boolean);
@@ -651,8 +780,15 @@ function mostrar() {
     }
     else if (!a) html = noEncontrado();
     else if (partes[4] === "sentir") { html = pantallaSentir(p, i); despues = () => activarSentir(p, i); }
-    else if (partes[4] === "listo") html = pantallaListo(p);
+    else if (partes[4] === "listo") html = pantallaListo(p, a);
     else html = pantallaPaso(p, i, Number(partes[4]));
+  } else if (partes[0] === "privacidad") {
+    html = pantallaPrivacidad();
+  } else if (partes[0] === "contenidos") {
+    html = pantallaSobreContenidos();
+  } else if (partes[0] === "vista" && contenido(partes[1])) {
+    modoPro = true;
+    html = pantallaVistaPrevia(contenido(partes[1]), Number(partes[2] || 1));
   } else if (partes[0] === "pro") {
     modoPro = true;
     const seccion = partes[1] || "pacientes";
@@ -674,6 +810,11 @@ function mostrar() {
   } else {
     html = pantallaEnConstruccion();
   }
+
+  const atras = document.getElementById("atras");
+  const destino = destinoAtras(partes);
+  atras.hidden = !destino;
+  if (destino) atras.setAttribute("href", destino);
 
   // El aviso de crisis es para el paciente; en las pantallas del profesional no se muestra
   document.body.classList.toggle("modo-pro", modoPro);

@@ -34,6 +34,7 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
   postraumático."
 - "Son ejemplos: los definitivos los redacta y revisa un profesional."
 - Mostrá el aviso de cuidado de **¿Cuánto tomé esta semana?**
+- Tocá **Probar** en un contenido: "la profesional puede ver exactamente lo que verá el paciente".
 
 **4. Asignar y enviar (45 s)**
 → En **Respirar para calmarte**, tocá **Asignar**. Elegí a **Carlos B.** →
@@ -52,6 +53,9 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 **6. Cierre: la profesional lo ve (30 s)**
 → Tocá el logo **Oñondive** → **Ver como profesional** → **Carlos B.** → **Ver ficha**.
 - "Antes de la próxima consulta, la profesional ya sabe cómo le fue."
+
+**Si preguntan por datos:** abajo de todo, **Privacidad y seguridad** y **Sobre los
+contenidos** (con la base técnica de cada ejercicio).
 
 **Frase final**
 "Esto es un prototipo con datos inventados. Para un piloto necesitamos: cuentas para

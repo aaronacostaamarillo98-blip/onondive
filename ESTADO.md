@@ -84,7 +84,14 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   Medicación y Duelo.
 - Plan de seguridad: borrador en BORRADOR-PLAN-SEGURIDAD.md (solo local, no se sube).
   Espera la revisión de Aaron.
-- Los archivos llevan número de versión (?v=14) para que el navegador no muestre
+- Auditoría y mejoras institucionales: franja "Prototipo · Propuesta para la red
+  pública de salud mental (MSPBS)", inicio con "Cómo funciona" y "Garantías", páginas
+  Privacidad y seguridad y Sobre los contenidos (tabla con la base técnica de cada uno,
+  en línea con la guía mhGAP de la OMS), botón "‹ Atrás" fijo arriba en todas las
+  pantallas, búsqueda en la Biblioteca, botón "Probar" para ver cada contenido como el
+  paciente, y apoyo con la Línea 155 si el paciente marca "mal" o "muy mal".
+  Revisión de accesibilidad otra vez sin errores.
+- Los archivos llevan número de versión (?v=18) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta

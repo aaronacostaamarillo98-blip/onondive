@@ -727,6 +727,35 @@ const CONTENIDOS = [
   },
 ];
 
+// Base técnica de cada contenido (para profesionales; términos técnicos en castellano)
+const BASES = {
+  "respiracion": "Respiración diafragmática (TCC)",
+  "ansiedad": "Psicoeducación en ansiedad (TCC)",
+  "emociones": "Registro emocional (TCC)",
+  "sueno": "Higiene del sueño (TCC-I)",
+  "actividades": "Activación conductual",
+  "crianza": "Tiempo especial (PCIT, Triple P)",
+  "alcohol": "Intervención breve y autorregistro (OMS)",
+  "ola": "Surfear el impulso (prevención de recaídas con atención plena)",
+  "tabaco": "Manejo del deseo de fumar (consejería breve)",
+  "presente": "Anclaje 5-4-3-2-1 (estabilización)",
+  "otra-mirada": "Reestructuración cognitiva (TCC)",
+  "problema": "Terapia de resolución de problemas",
+  "escalera": "Exposición gradual (TCC)",
+  "preocupacion": "Postergación de la preocupación (TCC)",
+  "escuchar": "Comunicación familiar (terapia familiar conductual)",
+  "reunion": "Reunión familiar (terapia familiar conductual)",
+  "reglas": "Crianza positiva",
+  "pausa": "Tiempo fuera para adultos (regulación del conflicto)",
+  "depresion": "Psicoeducación en depresión",
+  "medicacion": "Adherencia a la medicación",
+  "relajacion": "Relajación muscular progresiva (Jacobson)",
+  "duelo": "Psicoeducación en duelo",
+  "alerta": "Prevención de recaídas",
+  "cuidador": "Apoyo a cuidadores",
+  "enojo": "Manejo del enojo (TCC)"
+};
+
 // Fecha relativa a hoy, para que la demo siempre se vea reciente.
 function haceDias(dias, hora = 10) {
   const d = new Date();
