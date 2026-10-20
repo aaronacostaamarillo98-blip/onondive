@@ -62,11 +62,16 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   abierto, hecho), cómo se sintió en su último registro, alerta suave si se sintió mal
   (1 o 2), y botones "Ver ficha" y "Asignar" (con el paciente ya elegido).
   Aviso "Solo ves a tus propios pacientes".
-- Los archivos llevan número de versión (?v=9) para que el navegador no muestre
+- Pantalla 4 — Ficha del paciente: datos mínimos (alias, teléfono, idioma), alerta suave,
+  resumen (enviados, abiertos, hechos), "Cómo se viene sintiendo" (caritas en el tiempo),
+  historial con fechas, carita y lo que escribió, botones "Asignar contenido" y
+  "Reenviar link". Aclara que no es historia clínica.
+- Recorrido completo probado: el profesional asigna → el paciente completa → el
+  profesional ve el registro en la ficha.
+- Los archivos llevan número de versión (?v=10) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta
-- Pantalla 4 (Ficha del paciente).
 - Revisión final en computadora y celular.
 
 ## Pendiente de revisión
@@ -77,4 +82,5 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Construir la pantalla 4, Ficha del paciente (cierra el recorrido completo).
+Revisión final en computadora y celular (contraste, lector de pantalla, velocidad) y
+ensayo de la demo para la reunión.

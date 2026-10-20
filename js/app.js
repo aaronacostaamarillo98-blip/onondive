@@ -324,6 +324,77 @@ function pantallaPacientes() {
   </section>`;
 }
 
+// 4. Ficha del paciente
+function pantallaFicha(p) {
+  const asig = p.asignaciones;
+  const registros = asig.filter((a) => a.completado).sort((x, y) => x.completado.localeCompare(y.completado));
+  const ultimo = registros[registros.length - 1];
+  const alerta = ultimo && ultimo.carita <= 2;
+
+  const animo = registros.length
+    ? `<ol class="animo">${registros.map((a) => `
+        <li>
+          <span class="animo-carita nivel-${a.carita}" aria-hidden="true">${CARITAS[a.carita - 1]}</span>
+          <span class="chico">${t("caritas")[a.carita - 1]}</span>
+          <span class="chico suave">${cuando(a.completado)}</span>
+        </li>`).join("")}</ol>`
+    : `<p class="suave">${t("sinRegistros")}</p>`;
+
+  const historial = [...asig].sort((x, y) => ultimaActividad(y).localeCompare(ultimaActividad(x))).map((a) => {
+    const cont = contenido(a.contenido);
+    const est = estadoAsignacion(a);
+    const fechas = [
+      tp("enviadoCuando", { cuando: cuando(a.enviado) }),
+      a.abierto ? tp("abiertoCuando", { cuando: cuando(a.abierto) }) : t("noAbierto"),
+      a.completado ? tp("hechoCuando", { cuando: cuando(a.completado) }) : "",
+    ].filter(Boolean);
+    return `<li class="tarjeta registro">
+      <div class="contenido-cabeza">
+        <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
+        <div>
+          <h3>${cont[idioma].titulo}</h3>
+          <span class="estado estado-${est.clave}"><span aria-hidden="true">${est.icono}</span> ${t("estado_" + est.clave)}</span>
+        </div>
+      </div>
+      <p class="chico suave registro-fechas">${fechas.join(" · ")}</p>
+      ${a.completado ? `<div class="registro-sentir">
+        <span class="carita-mini"><span aria-hidden="true">${CARITAS[a.carita - 1]}</span>
+          <span class="chico">${t("caritas")[a.carita - 1]}</span></span>
+        ${a.nota ? `<blockquote><span class="suave chico">${t("escribio")}</span> «${escapar(a.nota)}»</blockquote>` : ""}
+      </div>` : ""}
+    </li>`;
+  }).join("");
+
+  const n = (f) => asig.filter(f).length;
+
+  return `<section class="pro pro-angosto">
+    ${encabezadoPro("pacientes")}
+    <a class="volver" href="#/pro/pacientes"><span aria-hidden="true">‹</span> ${t("tabPacientes")}</a>
+    <div class="ficha-cabeza">
+      <span class="avatar" aria-hidden="true">${escapar(p.alias[0])}</span>
+      <div>
+        <h1>${escapar(p.alias)}</h1>
+        <p class="suave chico">${p.telefono} · ${t(p.idioma === "gn" ? "hablaGuarani" : "hablaCastellano")}</p>
+      </div>
+    </div>
+    ${alerta ? `<p class="alerta"><span aria-hidden="true">●</span> ${t("alertaMal")}</p>` : ""}
+    <div class="stats">
+      <div class="stat"><strong>${asig.length}</strong><span>${t("statEnviados")}</span></div>
+      <div class="stat"><strong>${n((a) => a.abierto)}</strong><span>${t("statAbiertos")}</span></div>
+      <div class="stat"><strong>${n((a) => a.completado)}</strong><span>${t("statHechos")}</span></div>
+    </div>
+    <h2 class="subtitulo">${t("comoVieneSintiendo")}</h2>
+    ${animo}
+    <h2 class="subtitulo">${t("historial")}</h2>
+    ${asig.length ? `<ul class="lista-registros">${historial}</ul>` : `<p class="suave">${t("sinAsignar")}</p>`}
+    <div class="acciones-envio">
+      <a class="boton" href="#/pro/asignar-a/${p.id}">${t("asignarContenido")} <span aria-hidden="true">›</span></a>
+      ${asig.some((a) => !a.completado) ? `<a class="boton boton-secundario" href="#/pro/enviado/${p.id}"><span aria-hidden="true">💬</span> ${t("reenviar")}</a>` : ""}
+    </div>
+    <p class="centrado chico suave privado"><span aria-hidden="true">🔒</span> ${t("noHistoria")}</p>
+  </section>`;
+}
+
 // 2. Biblioteca de contenidos
 let filtroTema = "todos";
 
@@ -586,6 +657,7 @@ function mostrar() {
     modoPro = true;
     const seccion = partes[1] || "pacientes";
     if (seccion === "pacientes") html = pantallaPacientes();
+    else if (seccion === "paciente" && paciente(partes[2])) html = pantallaFicha(paciente(partes[2]));
     else if (seccion === "biblioteca") { html = pantallaBiblioteca(); despues = activarBiblioteca; }
     else if (seccion === "asignar-a" && paciente(partes[2])) {
       asignacion.paciente = partes[2];

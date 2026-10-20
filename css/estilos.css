@@ -892,6 +892,61 @@ main[data-quieto] > section > * { animation: none; }
 .alerta span { color: var(--coral); font-size: 0.7rem; }
 .privado { margin-top: var(--e4); }
 
+/* Ficha del paciente */
+.ficha-cabeza { display: flex; align-items: center; gap: 1rem; margin-top: var(--e1); }
+.ficha-cabeza h1 { margin: 0; }
+.ficha-cabeza p { margin: 0.2rem 0 0; }
+.ficha-cabeza + .alerta { margin-top: var(--e2); }
+
+.animo {
+  list-style: none;
+  margin: 0;
+  padding: var(--e2);
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  background: var(--vidrio);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+.animo li {
+  flex: 1 0 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-align: center;
+  line-height: 1.25;
+}
+.animo-carita {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0.2rem;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  background: var(--menta);
+}
+.animo-carita.nivel-1, .animo-carita.nivel-2 { background: var(--coral-suave); box-shadow: 0 0 0 2px rgba(var(--coral-rgb), 0.45); }
+.animo-carita.nivel-3 { background: #FFF6EC; }
+
+.lista-registros { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e2); }
+.registro { display: flex; flex-direction: column; gap: 0.6rem; }
+.registro h3 { margin: 0.1rem 0 0.35rem; font-size: 1.1rem; }
+.registro p { margin: 0; }
+.registro-sentir { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+.registro blockquote {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(var(--menta-rgb), 0.55);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+.registro blockquote .suave { font-style: normal; display: block; }
+
 /* Aviso de cuidado dentro de un contenido (cálido, no alarmante) */
 .cuidado {
   display: flex;
