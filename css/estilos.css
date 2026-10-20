@@ -1151,6 +1151,31 @@ main[data-quieto] > section > * { animation: none; }
 .apoyo + .boton { margin-top: 0; }
 .paciente.centrado > .boton { margin-top: var(--e3); }
 
+/* Nuevo paciente */
+.titulo-con-accion {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--e2);
+}
+.titulo-con-accion p { margin: 0; }
+.titulo-con-accion .boton { min-height: 50px; font-size: 1rem; }
+.campo { margin-top: var(--e3); }
+.campo label { display: block; font-family: var(--titulos); font-weight: 600; }
+.campo > p { margin: 0.15rem 0 0.5rem; }
+.campo .nota[aria-invalid="true"] { border-color: var(--coral); box-shadow: 0 0 0 4px rgba(var(--coral-rgb), 0.15); }
+.error-campo {
+  margin: 0.45rem 0 0;
+  color: #8A3B26;
+  font-family: var(--titulos);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.error-campo::before { content: "⚠ "; }
+.dos-columnas { grid-template-columns: 1fr 1fr; }
+#form-nuevo .boton { margin-top: var(--e4); }
+
 /* Aviso de cuidado dentro de un contenido (cálido, no alarmante) */
 .cuidado {
   display: flex;

@@ -395,8 +395,13 @@ function pantallaPacientes() {
 
   return `<section class="pro">
     ${encabezadoPro("pacientes")}
-    <h1>${t("tabPacientes")}</h1>
-    <p class="suave">${t("pacientesDesc")}</p>
+    <div class="titulo-con-accion">
+      <div>
+        <h1>${t("tabPacientes")}</h1>
+        <p class="suave">${t("pacientesDesc")}</p>
+      </div>
+      <a class="boton" href="#/pro/nuevo"><span aria-hidden="true">＋</span> ${t("nuevoPaciente")}</a>
+    </div>
     <div class="stats">
       <div class="stat"><strong>${datos.pacientes.length}</strong><span>${t("statPacientes")}</span></div>
       <div class="stat"><strong>${hechos}</strong><span>${t("statCompletados")}</span></div>
@@ -475,6 +480,87 @@ function pantallaFicha(p) {
     </div>
     <p class="centrado chico suave privado"><span aria-hidden="true">🔒</span> ${t("noHistoria")}</p>
   </section>`;
+}
+
+// Nuevo paciente (solo alias, celular e idioma)
+function pantallaNuevo() {
+  const opcionIdioma = (valor, texto, marcado) => `
+    <label class="eleccion${marcado ? " elegida" : ""}">
+      <input type="radio" name="idioma" value="${valor}" ${marcado ? "checked" : ""}>
+      <span class="eleccion-texto"><strong>${texto}</strong></span>
+    </label>`;
+  return `<section class="pro pro-angosto">
+    ${encabezadoPro("pacientes")}
+    <h1>${t("nuevoPaciente")}</h1>
+    <p class="cuidado"><span aria-hidden="true">🔒</span> ${t("nuevoDesc")}</p>
+    <form id="form-nuevo" novalidate>
+      <div class="campo">
+        <label for="alias">${t("campoAlias")}</label>
+        <p class="chico suave" id="ayuda-alias">${t("ayudaAlias")}</p>
+        <input class="nota" id="alias" name="alias" type="text" maxlength="30" autocomplete="off"
+          aria-describedby="ayuda-alias error-alias">
+        <p class="error-campo" id="error-alias" hidden></p>
+      </div>
+      <div class="campo">
+        <label for="celular">${t("campoCelular")}</label>
+        <p class="chico suave" id="ayuda-celular">${t("ayudaCelular")}</p>
+        <input class="nota" id="celular" name="celular" type="tel" inputmode="numeric" maxlength="14" autocomplete="off"
+          aria-describedby="ayuda-celular error-celular">
+        <p class="error-campo" id="error-celular" hidden></p>
+      </div>
+      <fieldset class="grupo">
+        <legend><h2>${t("campoIdioma")}</h2></legend>
+        <div class="lista-elecciones dos-columnas">
+          ${opcionIdioma("es", t("castellano"), true)}
+          ${opcionIdioma("gn", t("guarani"), false)}
+        </div>
+      </fieldset>
+      <button class="boton boton-ancho" type="submit">${t("guardarPaciente")} <span aria-hidden="true">›</span></button>
+    </form>
+  </section>`;
+}
+
+function activarNuevo() {
+  const form = document.getElementById("form-nuevo");
+  const error = (campo, clave) => {
+    const p = document.getElementById("error-" + campo);
+    const input = document.getElementById(campo);
+    p.textContent = clave ? t(clave) : "";
+    p.hidden = !clave;
+    input.setAttribute("aria-invalid", clave ? "true" : "false");
+  };
+  form.addEventListener("input", (e) => { if (e.target.id) error(e.target.id, null); });
+  form.addEventListener("change", () => {
+    form.querySelectorAll(".eleccion").forEach((l) => l.classList.toggle("elegida", l.querySelector("input").checked));
+  });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const alias = document.getElementById("alias").value.trim();
+    const numeros = document.getElementById("celular").value.replace(/\D/g, "");
+    const celular = numeros.replace(/^(\d{4})(\d{3})(\d{3})$/, "$1 $2 $3");
+    const errAlias = alias ? null : "errAlias";
+    const errCel = !/^09\d{8}$/.test(numeros) ? "errCelular"
+      : datos.pacientes.some((p) => p.telefono.replace(/\D/g, "") === numeros) ? "errCelularRepetido" : null;
+    error("alias", errAlias);
+    error("celular", errCel);
+    if (errAlias || errCel) {
+      document.getElementById(errAlias ? "alias" : "celular").focus();
+      vibrar([80, 50, 80]);
+      return;
+    }
+    // Identificador simple a partir del alias, sin repetir
+    const baseId = sinTildes(alias).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "paciente";
+    let id = baseId, n = 2;
+    while (paciente(id)) id = `${baseId}-${n++}`;
+    datos.pacientes.push({
+      id, alias, telefono: celular,
+      idioma: form.querySelector("input[name=idioma]:checked").value,
+      asignaciones: [],
+    });
+    guardarDatos();
+    vibrar([30, 60, 30]);
+    location.hash = `#/pro/asignar-a/${id}`;
+  });
 }
 
 // 2. Biblioteca de contenidos
@@ -601,7 +687,9 @@ function mensajeWhatsapp(p, ids) {
 function pantallaAsignar(idInicial, desdePacientes = false) {
   if (idInicial && contenido(idInicial)) asignacion.contenidos.add(idInicial);
 
-  const pacientes = datos.pacientes.map((p) => `
+  // El paciente ya elegido aparece primero
+  const ordenados = [...datos.pacientes].sort((x, y) => (y.id === asignacion.paciente) - (x.id === asignacion.paciente));
+  const pacientes = ordenados.map((p) => `
     <label class="eleccion${asignacion.paciente === p.id ? " elegida" : ""}">
       <input type="radio" name="paciente" value="${p.id}" ${asignacion.paciente === p.id ? "checked" : ""}>
       <span class="avatar avatar-chico" aria-hidden="true">${escapar(p.alias[0])}</span>
@@ -795,6 +883,7 @@ function mostrar() {
     if (seccion === "pacientes") html = pantallaPacientes();
     else if (seccion === "paciente" && paciente(partes[2])) html = pantallaFicha(paciente(partes[2]));
     else if (seccion === "biblioteca") { html = pantallaBiblioteca(); despues = activarBiblioteca; }
+    else if (seccion === "nuevo") { html = pantallaNuevo(); despues = activarNuevo; }
     else if (seccion === "asignar-a" && paciente(partes[2])) {
       asignacion.paciente = partes[2];
       html = pantallaAsignar(null, true);

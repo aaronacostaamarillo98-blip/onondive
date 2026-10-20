@@ -94,7 +94,10 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Tema nuevo Salud sexual (total 29 contenidos, 10 temas): Infecciones de transmisión
   sexual, PrEP, PEP (antes de las 72 horas, con aviso de violencia sexual y 911) y
   Anticoncepción. Psicoeducación general con aviso de consultar en el servicio de salud.
-- Los archivos llevan número de versión (?v=19) para que el navegador no muestre
+- "Nuevo paciente": la profesional carga alias, celular (10 números, empieza con 09) e
+  idioma; avisa que no se cargue cédula, nombre completo ni diagnóstico; no deja repetir
+  celular; al guardar va directo a asignarle contenido.
+- Los archivos llevan número de versión (?v=21) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta

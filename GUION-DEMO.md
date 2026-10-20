@@ -21,6 +21,7 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 - Mostrá a **Don Ramón**: tiene un aviso suave porque se sintió mal.
   "La app no diagnostica: solo avisa para que la profesional mire primero."
 - "Cada profesional ve solo a sus propios pacientes."
+- Opcional: tocá **＋ Nuevo paciente** para mostrar que solo pide alias y celular.
 
 **2. Ficha de Don Ramón (30 s)**
 → Tocá **Ver ficha**.
