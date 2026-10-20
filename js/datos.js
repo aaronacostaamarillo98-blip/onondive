@@ -725,6 +725,126 @@ const CONTENIDOS = [
       ],
     },
   },
+  {
+    id: "its",
+    icono: "🛡️",
+    tipo: "psicoeducacion",
+    duracion: 3,
+    es: {
+      titulo: "Infecciones de transmisión sexual",
+      tema: "Salud sexual",
+      aviso: "Es información general. Para hacerte un test, recibir tratamiento o elegir un método, consultá en tu servicio de salud.",
+      pasos: [
+        "Las infecciones de transmisión sexual (ITS) se pasan en las relaciones sexuales.",
+        "Muchas no dan síntomas. Por eso es importante hacerse un test.",
+        "El preservativo, bien usado, protege de la mayoría.",
+        "Casi todas se tratan, y muchas se curan.",
+        "Si tenés una ITS, avisá a tu pareja para que también se cuide.",
+      ],
+    },
+    gn: {
+      titulo: "ITS: infección de transmisión sexual",
+      tema: "Salud sexual",
+      aviso: "Kóva ha'e marandu general. Rejapo hag̃ua test, rehupyty hag̃ua tratamiento térã reiporavo hag̃ua método, eporandu nde servicio de salud-pe.",
+      pasos: [
+        "ITS ohasa relación sexual rupi.",
+        "Heta ndohechaukái síntoma. Upévare iporã rejapo test.",
+        "Preservativo, ojepurúramo porã, oñangareko hetavégui.",
+        "Haimete opavave ojepohanokuaa, ha heta okuera.",
+        "Rerekóramo ITS, emombe'u nde pareja-pe oñangareko hag̃ua avei.",
+      ],
+    },
+  },
+  {
+    id: "prep",
+    icono: "💊",
+    tipo: "psicoeducacion",
+    duracion: 3,
+    es: {
+      titulo: "PrEP: prevenir el VIH antes",
+      tema: "Salud sexual",
+      aviso: "Es información general. Para hacerte un test, recibir tratamiento o elegir un método, consultá en tu servicio de salud.",
+      pasos: [
+        "La PrEP es una pastilla para personas sin VIH que quieren prevenirlo.",
+        "Se toma como indica el equipo de salud, por lo general todos los días.",
+        "Antes de empezar, te hacen un test de VIH.",
+        "Tomada bien, protege mucho del VIH.",
+        "No protege de otras ITS ni del embarazo. Usá también preservativo.",
+      ],
+    },
+    gn: {
+      titulo: "PrEP: eñangareko VIH-gui mboyve",
+      tema: "Salud sexual",
+      aviso: "Kóva ha'e marandu general. Rejapo hag̃ua test, rehupyty hag̃ua tratamiento térã reiporavo hag̃ua método, eporandu nde servicio de salud-pe.",
+      pasos: [
+        "PrEP ha'e peteĩ pohã tapicha ndorekóiva VIH ha oipotáva oñangareko.",
+        "Ojey'u equipo de salud he'iháicha, jepiveguáicha ára ha ára.",
+        "Reñepyrũ mboyve, ojejapo ndéve test VIH rehegua.",
+        "Rey'úramo porã, oñangareko mbarete VIH-gui.",
+        "Noñangarekói ambue ITS-gui ni hyeguasúgui. Eipuru avei preservativo.",
+      ],
+    },
+  },
+  {
+    id: "pep",
+    icono: "⏱️",
+    tipo: "psicoeducacion",
+    duracion: 2,
+    es: {
+      titulo: "PEP: actuá antes de las 72 horas",
+      tema: "Salud sexual",
+      aviso: "Andá cuanto antes a un servicio de salud. Si hubo violencia sexual, también podés llamar al 911. No es tu culpa.",
+      pasos: [
+        "La PEP es un tratamiento para después de un riesgo de VIH.",
+        "Por ejemplo: una relación sin preservativo, o si el preservativo se rompió.",
+        "Hay que empezarla lo antes posible, dentro de las 72 horas.",
+        "Se toma durante 28 días, como indica el equipo de salud.",
+        "Andá a un servicio de salud cuanto antes. Cada hora cuenta.",
+      ],
+    },
+    gn: {
+      titulo: "PEP: ejapo 72 aravo mboyve",
+      tema: "Salud sexual",
+      aviso: "Eho pya'e peteĩ servicio de salud-pe. Oiko ramo violencia sexual, ikatu avei rehenói 911. Ndaha'éi nde kulpa.",
+      pasos: [
+        "PEP ha'e peteĩ tratamiento ojejapóva oĩ rire peligro VIH rehegua.",
+        "Techapyrã: relación preservativo'ỹre, térã preservativo oñembyai ramo.",
+        "Oñepyrũva'erã pya'eporã, 72 aravo mboyve.",
+        "Ojey'u 28 ára, equipo de salud he'iháicha.",
+        "Eho pya'e peteĩ servicio de salud-pe. Peteĩteĩ aravo iñimportante.",
+      ],
+    },
+  },
+  {
+    id: "anticoncepcion",
+    icono: "🌼",
+    tipo: "psicoeducacion",
+    duracion: 3,
+    es: {
+      titulo: "Anticoncepción: elegir con información",
+      tema: "Salud sexual",
+      aviso: "Es información general. Para hacerte un test, recibir tratamiento o elegir un método, consultá en tu servicio de salud.",
+      pasos: [
+        "Hay muchos métodos para decidir si tener hijos y cuándo.",
+        "Algunos: pastillas, inyecciones, implante, DIU y preservativo.",
+        "El preservativo es el único que también protege de las ITS.",
+        "Si tuviste una relación sin protección, existe la pastilla de emergencia. Cuanto antes, mejor.",
+        "En tu servicio de salud te ayudan a elegir el método que mejor te queda.",
+      ],
+    },
+    gn: {
+      titulo: "Anticoncepción: eiporavo reikuaávo",
+      tema: "Salud sexual",
+      aviso: "Kóva ha'e marandu general. Rejapo hag̃ua test, rehupyty hag̃ua tratamiento térã reiporavo hag̃ua método, eporandu nde servicio de salud-pe.",
+      pasos: [
+        "Oĩ heta método redesidi hag̃ua rerekosépa mitã ha araka'épa.",
+        "Umíva apytépe: pohã, inyección, implante, DIU ha preservativo.",
+        "Preservativo añoite oñangareko avei ITS-gui.",
+        "Rerekóramo relación ñangareko'ỹre, oĩ pastilla de emergencia. Pya'eve, iporãve.",
+        "Nde servicio de salud-pe nepytyvõ reiporavo hag̃ua método iporãvéva ndéve g̃uarã.",
+      ],
+    },
+  },
 ];
 
 // Base técnica de cada contenido (para profesionales; términos técnicos en castellano)
@@ -753,7 +873,11 @@ const BASES = {
   "duelo": "Psicoeducación en duelo",
   "alerta": "Prevención de recaídas",
   "cuidador": "Apoyo a cuidadores",
-  "enojo": "Manejo del enojo (TCC)"
+  "enojo": "Manejo del enojo (TCC)",
+  "its": "Educación en salud sexual (OMS)",
+  "prep": "Profilaxis preexposición al VIH (OMS)",
+  "pep": "Profilaxis posexposición al VIH (OMS)",
+  "anticoncepcion": "Planificación familiar (OMS)"
 };
 
 // Fecha relativa a hoy, para que la demo siempre se vea reciente.

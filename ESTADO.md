@@ -91,14 +91,18 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   pantallas, búsqueda en la Biblioteca, botón "Probar" para ver cada contenido como el
   paciente, y apoyo con la Línea 155 si el paciente marca "mal" o "muy mal".
   Revisión de accesibilidad otra vez sin errores.
-- Los archivos llevan número de versión (?v=18) para que el navegador no muestre
+- Tema nuevo Salud sexual (total 29 contenidos, 10 temas): Infecciones de transmisión
+  sexual, PrEP, PEP (antes de las 72 horas, con aviso de violencia sexual y 911) y
+  Anticoncepción. Psicoeducación general con aviso de consultar en el servicio de salud.
+- Los archivos llevan número de versión (?v=19) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
 ## Falta
 
 ## Pendiente de revisión
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
-- Los 25 contenidos de ejemplo: a revisar por Aaron.
+- Los 29 contenidos de ejemplo: a revisar por Aaron. Salud sexual: revisión médica y
+  confirmar dónde se consiguen PrEP, PEP y anticonceptivos en Paraguay (¿PRONASIDA?).
 - Línea de ayuda por violencia en Paraguay: confirmar número antes de sumarla.
 
 ## Decisiones pendientes
