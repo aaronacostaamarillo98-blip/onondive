@@ -71,7 +71,7 @@ y el profesional no sabe cómo está.
   servicio de emergencia.
 
 ## Contenidos de ejemplo
-Crear 5 contenidos de ejemplo basados en psicoeducación y TCC (por ejemplo:
+Contenidos de ejemplo basados en psicoeducación y TCC (hoy son 10; por ejemplo:
 respiración para calmarse, registro de emociones, rutina de sueño, activación con
 pequeñas actividades, qué es la ansiedad). Marcarlos como "ejemplo, a revisar por un
 profesional". Los definitivos los redacta y revisa Aaron.

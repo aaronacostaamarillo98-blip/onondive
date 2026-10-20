@@ -51,19 +51,23 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   vista del mensaje como burbuja de WhatsApp (en castellano y guaraní, primero el que prefiere el paciente), botones
   "Abrir WhatsApp" (sin número: el profesional elige el contacto), "Copiar link" y
   "Ver lo que recibe el paciente". El link se abre en el idioma que prefiere el paciente.
+- 5 contenidos nuevos de ejemplo (total 10), con 3 temas nuevos:
+  Crianza y familia (Tiempo especial con tu hijo), Adicciones (¿Cuánto tomé esta
+  semana?, Las ganas vienen como una ola, Cuando aparecen las ganas de fumar) y
+  Estrés postraumático (Volver al presente). Avisos de cuidado: en alcohol, no dejar
+  de golpe si se toma mucho; en estrés postraumático, solo estabilización (lo que pasó
+  se trabaja en consulta).
 
 ## Falta
 - Pantalla 1 (Mis pacientes), 4 (Ficha).
-- Nuevos temas pedidos por Aaron (a proponer antes de redactar): crianza y familia;
-  adicciones (alcohol, drogas, tabaco); estrés postraumático.
 - Revisión final en computadora y celular.
 
 ## Pendiente de revisión
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
-- Los 5 contenidos de ejemplo: a revisar por Aaron.
+- Los 10 contenidos de ejemplo: a revisar por Aaron.
 
 ## Decisiones pendientes
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Acordar cómo sumar los temas nuevos a la Biblioteca; después, pantalla 1 (Mis pacientes).
+Construir la pantalla 1, Mis pacientes.

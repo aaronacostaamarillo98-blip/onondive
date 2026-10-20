@@ -151,6 +151,7 @@ function pantallaPaso(p, i, n) {
     <p class="suave titulo-ejercicio"><span aria-hidden="true">${cont.icono}</span> ${c.titulo}</p>
     <p class="progreso-texto">${tp("paso", { n, total })}</p>
     <div class="progreso" aria-hidden="true"><span style="width:${(n / total) * 100}%"></span></div>
+    ${c.aviso && n === 1 ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
     <div class="tarjeta paso">
       <p class="paso-numero" aria-hidden="true">${n}</p>
       <h1 class="paso-texto">${c.pasos[n - 1]}</h1>
@@ -266,6 +267,7 @@ function pantallaBiblioteca() {
         <span class="etiqueta-ejemplo">${t("ejemplo")}</span>
         <span class="chico suave"><span aria-hidden="true">🌐</span> ${t("idiomas")}</span>
       </p>
+      ${c.aviso ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
       <details class="pasos">
         <summary>${t("verPasos")}</summary>
         <ol>${c.pasos.map((x) => `<li>${x}</li>`).join("")}</ol>

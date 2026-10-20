@@ -810,6 +810,21 @@ main[data-quieto] > section > * { animation: none; }
   margin-top: var(--e3);
 }
 
+/* Aviso de cuidado dentro de un contenido (cálido, no alarmante) */
+.cuidado {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0 0 var(--e2);
+  padding: 0.8rem 1rem;
+  background: #FFF6EC;
+  border: 1px solid rgba(var(--ambar-rgb), 0.55);
+  border-radius: var(--radio-chico);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.contenido .cuidado { margin: 0; }
+
 /* Pie */
 .pie {
   text-align: center;
