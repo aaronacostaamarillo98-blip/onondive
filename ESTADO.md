@@ -43,9 +43,13 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   Botones durazno #F6BE94, verde #4FA89C, menta #DCEFEB, celeste niebla #E4EEF6,
   coral suave #E3907A. CLAUDE.md actualizado con estos colores.
 - Letra base de 20 px, vibración suave al tocar y al confirmar, ✓ en la carita elegida.
+- Pantalla 2 — Biblioteca (profesional): encabezado con la profesional y pestañas
+  "Mis pacientes / Biblioteca", filtro por tema, tarjetas con tema, tipo, duración,
+  etiqueta "ejemplo, a revisar", "Ver los pasos" y botón "Asignar".
+  En las pantallas del profesional no se muestra el aviso de crisis (es para el paciente).
 
 ## Falta
-- Pantalla 2 (Biblioteca), 3 (Asignar), 1 (Mis pacientes), 4 (Ficha).
+- Pantalla 3 (Asignar), 1 (Mis pacientes), 4 (Ficha).
 - Revisión final en computadora y celular.
 
 ## Pendiente de revisión
@@ -56,4 +60,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Construir la pantalla 2, Biblioteca de contenidos (profesional).
+Construir la pantalla 3, Asignar y enviar (link + mensaje de WhatsApp).

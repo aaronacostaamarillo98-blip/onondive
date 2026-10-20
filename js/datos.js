@@ -81,7 +81,7 @@ const CONTENIDOS = [
     },
     gn: {
       titulo: "Ehai mba'épa reñandu",
-      tema: "Emociones",
+      tema: "Ñeñandu",
       pasos: [
         "Nemandu'a peteĩ mba'e oikova'ekuére ko árape.",
         "Mba'épa oiko? Nemandu'a py'aguapýpe.",
@@ -109,7 +109,7 @@ const CONTENIDOS = [
     },
     gn: {
       titulo: "Reke porãve hag̃ua",
-      tema: "Sueño",
+      tema: "Ke",
       pasos: [
         "Eñeno ha epu'ã peteĩ aravópe ára ha ára.",
         "Ehejánte nde celular peteĩ aravo reke mboyve.",
@@ -137,7 +137,7 @@ const CONTENIDOS = [
     },
     gn: {
       titulo: "Mba'e michĩmi rejapo hag̃ua",
-      tema: "Ánimo",
+      tema: "Py'a",
       pasos: [
         "Ñañembyasy jave, sa'ive mba'e ñajapo.",
         "Sa'ive jajapóramo, ñañembyasyve.",

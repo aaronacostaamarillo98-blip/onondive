@@ -224,6 +224,82 @@ function pantallaListo(p) {
   </section>`;
 }
 
+// --- Profesional ---
+function encabezadoPro(activa) {
+  const iniciales = PROFESIONAL.nombre.replace(/^Lic\.\s*/, "").split(" ").map((x) => x[0]).join("");
+  const tab = (id, href, texto) =>
+    `<a href="${href}" ${activa === id ? 'aria-current="page"' : ""}>${texto}</a>`;
+  return `<div class="pro-encabezado">
+    <div class="pro-quien">
+      <span class="avatar" aria-hidden="true">${iniciales}</span>
+      <span><strong>${PROFESIONAL.nombre}</strong><span class="suave chico">${PROFESIONAL.servicio}</span></span>
+    </div>
+    <nav class="pro-tabs" aria-label="Profesional">
+      ${tab("pacientes", "#/pro/pacientes", t("tabPacientes"))}
+      ${tab("biblioteca", "#/pro/biblioteca", t("tabBiblioteca"))}
+    </nav>
+  </div>`;
+}
+
+// 2. Biblioteca de contenidos
+let filtroTema = "todos";
+
+function pantallaBiblioteca() {
+  const temas = [...new Set(CONTENIDOS.map((c) => c.es.tema))];
+  const lista = CONTENIDOS.filter((c) => filtroTema === "todos" || c.es.tema === filtroTema);
+  const nombreTema = (temaEs) => CONTENIDOS.find((c) => c.es.tema === temaEs)[idioma].tema;
+
+  const chip = (valor, texto) =>
+    `<button type="button" class="chip" data-tema="${valor}" aria-pressed="${filtroTema === valor}">${texto}</button>`;
+
+  const tarjeta = (cont) => {
+    const c = cont[idioma];
+    return `<article class="tarjeta contenido">
+      <div class="contenido-cabeza">
+        <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
+        <div>
+          <h2>${c.titulo}</h2>
+          <p class="suave chico">${c.tema} · ${t(cont.tipo)} · ${cont.duracion} ${t("minutos")}</p>
+        </div>
+      </div>
+      <p class="contenido-meta">
+        <span class="etiqueta-ejemplo">${t("ejemplo")}</span>
+        <span class="chico suave"><span aria-hidden="true">🌐</span> ${t("idiomas")}</span>
+      </p>
+      <details class="pasos">
+        <summary>${t("verPasos")}</summary>
+        <ol>${c.pasos.map((x) => `<li>${x}</li>`).join("")}</ol>
+      </details>
+      <a class="boton boton-ancho" href="#/pro/asignar/${cont.id}">${t("asignar")} <span aria-hidden="true">›</span></a>
+    </article>`;
+  };
+
+  return `<section class="pro">
+    ${encabezadoPro("biblioteca")}
+    <h1>${t("bibliotecaTitulo")}</h1>
+    <p class="suave">${t("bibliotecaDesc")}</p>
+    <div class="chips" role="group" aria-label="${t("filtrarTema")}">
+      ${chip("todos", t("todos"))}
+      ${temas.map((x) => chip(x, nombreTema(x))).join("")}
+    </div>
+    <p class="chico suave" aria-live="polite">${tp("cantidad", { n: lista.length })}</p>
+    <div class="grilla-contenidos">${lista.map(tarjeta).join("")}</div>
+  </section>`;
+}
+
+function activarBiblioteca() {
+  document.querySelectorAll(".chip").forEach((b) => {
+    b.addEventListener("click", () => {
+      filtroTema = b.dataset.tema;
+      vibrar(10);
+      const main = document.getElementById("contenido");
+      main.dataset.quieto = "1"; // sin animación de entrada al filtrar
+      mostrar();
+      document.querySelector(`.chip[data-tema="${filtroTema}"]`)?.focus();
+    });
+  });
+}
+
 // --- Navegación por #ruta ---
 // #/                     inicio
 // #/p/:id                paciente: bienvenida
@@ -236,6 +312,7 @@ function mostrar() {
   const main = document.getElementById("contenido");
   let html;
   let despues = null;
+  let modoPro = false;
 
   if (partes.length === 0) {
     html = pantallaInicio();
@@ -249,16 +326,25 @@ function mostrar() {
     else if (partes[4] === "sentir") { html = pantallaSentir(p, i); despues = () => activarSentir(p, i); }
     else if (partes[4] === "listo") html = pantallaListo(p);
     else html = pantallaPaso(p, i, Number(partes[4]));
+  } else if (partes[0] === "pro") {
+    modoPro = true;
+    // Mientras no exista "Mis pacientes", el profesional entra por la Biblioteca
+    const seccion = partes[1] || "biblioteca";
+    if (seccion === "biblioteca") { html = pantallaBiblioteca(); despues = activarBiblioteca; }
+    else html = encabezadoPro(seccion === "pacientes" ? "pacientes" : "") + pantallaEnConstruccion();
   } else {
     html = pantallaEnConstruccion();
   }
 
+  // El aviso de crisis es para el paciente; en las pantallas del profesional no se muestra
+  document.body.classList.toggle("modo-pro", modoPro);
   main.innerHTML = html;
   if (despues) despues();
   document.title = "Oñondive";
 }
 
 window.addEventListener("hashchange", () => {
+  delete document.getElementById("contenido").dataset.quieto;
   mostrar();
   document.getElementById("contenido").focus();
   window.scrollTo(0, 0);
