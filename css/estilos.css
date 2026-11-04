@@ -958,7 +958,9 @@ main[data-quieto] > section > * { animation: none; }
 
 /* --- Institucional y navegación --- */
 [hidden] { display: none !important; }
-.solo-lector {
+.solo-lector,
+.crisis-compacta .crisis-titulo,
+.crisis-compacta .crisis-nota {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -1263,8 +1265,30 @@ main[data-quieto] > section > * { animation: none; }
   .logo { width: 34px; height: 22px; }
   .idioma button { padding: 0 0.65rem; font-size: 0.82rem; min-height: 44px; }
   .crisis { margin-top: 0.75rem; padding: 0.8rem 0.9rem; border-radius: 20px; }
+  .paso { padding: var(--e4) var(--e3); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before { transition: none !important; animation: none !important; }
 }
+
+/* Franja de crisis compacta: dentro del ejercicio, una sola línea con 155 y 911 a un toque.
+   El título y la nota completos quedan para el lector de pantalla (mismas reglas que .solo-lector). */
+.crisis-corto { display: none; }
+.crisis-compacta .crisis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  padding: 0.45rem 0.5rem 0.45rem 1rem;
+  border-radius: 30px;
+}
+.crisis-compacta .crisis-corto {
+  display: block;
+  flex: 1;
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.crisis-compacta .crisis-tel { margin: 0; gap: 0.4rem; }
+.crisis-compacta .crisis-tel a { padding: 0 0.85rem; font-size: 0.95rem; }

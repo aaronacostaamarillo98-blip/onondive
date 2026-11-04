@@ -957,6 +957,7 @@ function mostrar() {
   let html;
   let despues = null;
   let modoPro = false;
+  let crisisCompacta = false;
 
   if (partes.length === 0) {
     html = pantallaInicio();
@@ -978,6 +979,9 @@ function mostrar() {
     else if (partes[4] === "sentir") { html = pantallaSentir(p, i); despues = () => activarSentir(p, i); }
     else if (partes[4] === "listo") html = pantallaListo(p, a);
     else html = pantallaPaso(p, i, Number(partes[4]));
+    // Dentro del ejercicio el aviso de crisis queda como franja de una línea (155 y 911 a un toque).
+    // Vuelve a verse completo si el paciente marcó "mal" o "muy mal".
+    crisisCompacta = Boolean(a) && !(partes[4] === "listo" && a.carita && a.carita <= 2);
   } else if (partes[0] === "privacidad") {
     html = pantallaPrivacidad();
   } else if (partes[0] === "contenidos") {
@@ -1015,6 +1019,7 @@ function mostrar() {
 
   // El aviso de crisis es para el paciente; en las pantallas del profesional no se muestra
   document.body.classList.toggle("modo-pro", modoPro);
+  document.body.classList.toggle("crisis-compacta", crisisCompacta);
   main.innerHTML = html;
   if (despues) despues();
   // Título de la pestaña según la pantalla (lo anuncia el lector de pantalla)
