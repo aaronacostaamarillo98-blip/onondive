@@ -818,6 +818,12 @@ const CONTENIDOS = [
   },
 ];
 
+// Temas desactivados: no aparecen en la Biblioteca, en Asignar ni en "Sobre los contenidos".
+// Salud sexual queda oculto hasta que tenga revisión médica. Para volver a activarlo,
+// borrá "Salud sexual" de esta lista. Los contenidos no se borran.
+const TEMAS_DESACTIVADOS = ["Salud sexual"];
+const CONTENIDOS_ACTIVOS = CONTENIDOS.filter((c) => !TEMAS_DESACTIVADOS.includes(c.es.tema));
+
 // Base técnica de cada contenido (para profesionales; términos técnicos en castellano)
 const BASES = {
   "respiracion": "Respiración diafragmática (TCC)",

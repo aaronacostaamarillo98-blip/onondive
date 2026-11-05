@@ -123,6 +123,10 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   salen de la pantalla (ya pasaba antes de las mejoras).
 
 ## Pendiente de revisión
+- Salud sexual (ITS, PrEP, PEP, Anticoncepción): OCULTO hasta que tenga revisión médica
+  (4/11/2026). No aparece en la Biblioteca, Asignar ni "Sobre los contenidos"; los textos
+  siguen en js/datos.js. Para activarlo: sacar "Salud sexual" de TEMAS_DESACTIVADOS en
+  js/datos.js. Hoy se muestran 25 contenidos en 9 temas.
 - "Por qué puede ayudarte" en guaraní (js/datos.js, PORQUE): los 29 son borrador, a revisar
   por un hablante nativo. Se marcan en la Biblioteca y en la vista previa en guaraní. Cuando
   estén revisados, poner PORQUE_GN_REVISADO = true. (El castellano ya es el texto final de Aaron.)

@@ -447,18 +447,18 @@ function pantallaPrivacidad() {
 }
 
 function pantallaSobreContenidos() {
-  const temas = [...new Set(CONTENIDOS.map((c) => c.es.tema))];
+  const temas = [...new Set(CONTENIDOS_ACTIVOS.map((c) => c.es.tema))];
   return `<section class="pro-angosto info">
     <h1>${t("sobreContenidos")}</h1>
     <p>${t("contP1")}</p>
     <p>${t("contP2")}</p>
     <p class="suave">${t("contP3")}</p>
-    <p class="chico suave">${tp("contResumen", { n: CONTENIDOS.length, t: temas.length })}</p>
+    <p class="chico suave">${tp("contResumen", { n: CONTENIDOS_ACTIVOS.length, t: temas.length })}</p>
     <div class="tabla-envoltura" tabindex="0" role="region" aria-label="${t("sobreContenidos")}">
       <table class="tabla">
         <thead><tr><th scope="col">${t("colContenido")}</th><th scope="col">${t("colTema")}</th><th scope="col">${t("colDuracion")}</th><th scope="col">${t("colBase")}</th></tr></thead>
         <tbody>
-          ${CONTENIDOS.map((c) => `<tr>
+          ${CONTENIDOS_ACTIVOS.map((c) => `<tr>
             <th scope="row">${iconoContenido(c, "icono-chico")} ${c[idioma].titulo}</th>
             <td>${c[idioma].tema}</td>
             <td>${c.duracion} ${t("minutos")}</td>
@@ -789,8 +789,8 @@ function aplicarBusqueda() {
 }
 
 function pantallaBiblioteca() {
-  const temas = [...new Set(CONTENIDOS.map((c) => c.es.tema))];
-  const lista = CONTENIDOS.filter((c) => filtroTema === "todos" || c.es.tema === filtroTema);
+  const temas = [...new Set(CONTENIDOS_ACTIVOS.map((c) => c.es.tema))];
+  const lista = CONTENIDOS_ACTIVOS.filter((c) => filtroTema === "todos" || c.es.tema === filtroTema);
   const nombreTema = (temaEs) => CONTENIDOS.find((c) => c.es.tema === temaEs)[idioma].tema;
 
   const chip = (valor, texto) =>
@@ -893,7 +893,7 @@ function mensajeWhatsapp(p, ids) {
 }
 
 function pantallaAsignar(idInicial, desdePacientes = false) {
-  if (idInicial && contenido(idInicial)) asignacion.contenidos.add(idInicial);
+  if (idInicial && CONTENIDOS_ACTIVOS.some((c) => c.id === idInicial)) asignacion.contenidos.add(idInicial);
 
   // El paciente ya elegido aparece primero
   const ordenados = [...datos.pacientes].sort((x, y) => (y.id === asignacion.paciente) - (x.id === asignacion.paciente));
@@ -905,7 +905,7 @@ function pantallaAsignar(idInicial, desdePacientes = false) {
         <span class="chico suave">${p.telefono} · ${t(p.idioma === "gn" ? "hablaGuarani" : "hablaCastellano")}</span></span>
     </label>`).join("");
 
-  const contenidos = CONTENIDOS.map((cont) => {
+  const contenidos = CONTENIDOS_ACTIVOS.map((cont) => {
     const c = cont[idioma];
     const marcado = asignacion.contenidos.has(cont.id);
     return `
@@ -1090,11 +1090,13 @@ function mostrar() {
     html = pantallaPrivacidad();
   } else if (partes[0] === "contenidos") {
     html = pantallaSobreContenidos();
-  } else if (partes[0] === "vista" && contenido(partes[1])) {
+  } else if (partes[0] === "vista" && CONTENIDOS_ACTIVOS.some((c) => c.id === partes[1])) {
     modoPro = true;
     html = partes[2]
       ? pantallaVistaPrevia(contenido(partes[1]), Number(partes[2]))
       : pantallaVistaPortada(contenido(partes[1]));
+  } else if (partes[0] === "vista") {
+    html = noEncontrado(); // contenido inexistente o de un tema desactivado
   } else if (partes[0] === "pro") {
     modoPro = true;
     const seccion = partes[1] || "pacientes";

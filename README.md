@@ -20,7 +20,7 @@ Entre consulta y consulta pueden pasar semanas, y el profesional no sabe si el p
 ## Funcionalidades
 
 - Vista de profesional y vista de paciente.
-- Biblioteca de **29 contenidos breves** en 10 temas (ansiedad, ánimo, sueño, duelo, medicación, crianza y familia, adicciones, estrés postraumático, salud sexual), basados en TCC y terapia familiar, alineados con la guía **mhGAP de la OMS**.
+- Biblioteca de **25 contenidos breves** en 9 temas (ansiedad, emociones, ánimo, sueño, duelo, medicación, crianza y familia, adicciones, estrés postraumático; salud sexual queda oculto hasta su revisión médica), basados en TCC y terapia familiar, alineados con la guía **mhGAP de la OMS**.
 - **Bilingüe castellano / guaraní**, con el idioma preferido de cada paciente.
 - **Aviso de crisis siempre visible** para el paciente: Línea 155 y 911.
 - Datos mínimos: solo alias, celular e idioma. No se cargan cédula, nombre completo ni diagnóstico.
