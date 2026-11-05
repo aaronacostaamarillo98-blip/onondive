@@ -9,7 +9,6 @@ const PROFESIONAL = {
 const CONTENIDOS = [
   {
     id: "respiracion",
-    icono: "🌬️",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -37,7 +36,6 @@ const CONTENIDOS = [
   },
   {
     id: "ansiedad",
-    icono: "💡",
     tipo: "psicoeducacion",
     duracion: 2,
     es: {
@@ -65,7 +63,6 @@ const CONTENIDOS = [
   },
   {
     id: "emociones",
-    icono: "📝",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -93,7 +90,6 @@ const CONTENIDOS = [
   },
   {
     id: "sueno",
-    icono: "🌙",
     tipo: "psicoeducacion",
     duracion: 3,
     es: {
@@ -121,7 +117,6 @@ const CONTENIDOS = [
   },
   {
     id: "actividades",
-    icono: "🚶",
     tipo: "ejercicio",
     duracion: 4,
     es: {
@@ -149,7 +144,6 @@ const CONTENIDOS = [
   },
   {
     id: "crianza",
-    icono: "🧸",
     tipo: "ejercicio",
     duracion: 10,
     es: {
@@ -179,7 +173,6 @@ const CONTENIDOS = [
   },
   {
     id: "alcohol",
-    icono: "📅",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -209,7 +202,6 @@ const CONTENIDOS = [
   },
   {
     id: "ola",
-    icono: "🌊",
     tipo: "ejercicio",
     duracion: 4,
     es: {
@@ -237,7 +229,6 @@ const CONTENIDOS = [
   },
   {
     id: "tabaco",
-    icono: "🚭",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -265,7 +256,6 @@ const CONTENIDOS = [
   },
   {
     id: "presente",
-    icono: "🖐️",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -295,7 +285,6 @@ const CONTENIDOS = [
   },
   {
     id: "otra-mirada",
-    icono: "🔍",
     tipo: "ejercicio",
     duracion: 5,
     es: {
@@ -323,7 +312,6 @@ const CONTENIDOS = [
   },
   {
     id: "problema",
-    icono: "🧩",
     tipo: "ejercicio",
     duracion: 5,
     es: {
@@ -351,7 +339,6 @@ const CONTENIDOS = [
   },
   {
     id: "escalera",
-    icono: "🪜",
     tipo: "ejercicio",
     duracion: 5,
     es: {
@@ -381,7 +368,6 @@ const CONTENIDOS = [
   },
   {
     id: "preocupacion",
-    icono: "⏰",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -409,7 +395,6 @@ const CONTENIDOS = [
   },
   {
     id: "escuchar",
-    icono: "👂",
     tipo: "ejercicio",
     duracion: 10,
     es: {
@@ -439,7 +424,6 @@ const CONTENIDOS = [
   },
   {
     id: "reunion",
-    icono: "🏡",
     tipo: "ejercicio",
     duracion: 15,
     es: {
@@ -469,7 +453,6 @@ const CONTENIDOS = [
   },
   {
     id: "reglas",
-    icono: "📋",
     tipo: "ejercicio",
     duracion: 5,
     es: {
@@ -499,7 +482,6 @@ const CONTENIDOS = [
   },
   {
     id: "pausa",
-    icono: "⏸️",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -529,7 +511,6 @@ const CONTENIDOS = [
   },
   {
     id: "depresion",
-    icono: "💭",
     tipo: "psicoeducacion",
     duracion: 2,
     es: {
@@ -557,7 +538,6 @@ const CONTENIDOS = [
   },
   {
     id: "medicacion",
-    icono: "💊",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -587,7 +567,6 @@ const CONTENIDOS = [
   },
   {
     id: "relajacion",
-    icono: "🌿",
     tipo: "ejercicio",
     duracion: 5,
     es: {
@@ -615,7 +594,6 @@ const CONTENIDOS = [
   },
   {
     id: "duelo",
-    icono: "🕊️",
     tipo: "psicoeducacion",
     duracion: 3,
     es: {
@@ -643,7 +621,6 @@ const CONTENIDOS = [
   },
   {
     id: "alerta",
-    icono: "🚦",
     tipo: "ejercicio",
     duracion: 4,
     es: {
@@ -671,7 +648,6 @@ const CONTENIDOS = [
   },
   {
     id: "cuidador",
-    icono: "🤲",
     tipo: "psicoeducacion",
     duracion: 3,
     es: {
@@ -699,7 +675,6 @@ const CONTENIDOS = [
   },
   {
     id: "enojo",
-    icono: "🌡️",
     tipo: "ejercicio",
     duracion: 3,
     es: {
@@ -727,7 +702,6 @@ const CONTENIDOS = [
   },
   {
     id: "its",
-    icono: "🛡️",
     tipo: "psicoeducacion",
     duracion: 3,
     es: {
@@ -757,7 +731,6 @@ const CONTENIDOS = [
   },
   {
     id: "prep",
-    icono: "💊",
     tipo: "psicoeducacion",
     duracion: 3,
     es: {
@@ -787,7 +760,6 @@ const CONTENIDOS = [
   },
   {
     id: "pep",
-    icono: "⏱️",
     tipo: "psicoeducacion",
     duracion: 2,
     es: {
@@ -817,7 +789,6 @@ const CONTENIDOS = [
   },
   {
     id: "anticoncepcion",
-    icono: "🌼",
     tipo: "psicoeducacion",
     duracion: 3,
     es: {
@@ -880,6 +851,42 @@ const BASES = {
   "anticoncepcion": "Planificación familiar (OMS)"
 };
 
+// "Por qué puede ayudarte": una línea por contenido para la portada del ejercicio.
+// Castellano: textos finales revisados por Aaron (4/11/2026).
+// Guaraní: TODOS son borrador, a revisar por un hablante nativo (no publicar como revisados).
+const PORQUE_GN_REVISADO = false;
+const PORQUE = {
+  "respiracion": { es: "Respirar lento le avisa a tu cuerpo que puede calmarse.", gn: "Rembopytu mbeguekatu ramo, nde rete ikatu oñemopy'aguapy." },
+  "ansiedad": { es: "Entender qué te pasa cuando sentís ansiedad puede hacer que te asuste menos.", gn: "Reikuaáramo mba'épa ojehu ndéve reñeñandúramo ansiedad, ikatu sa'ive rekyhyje." },
+  "emociones": { es: "Ponerle nombre a lo que sentís puede ayudarte a entenderlo y manejarlo mejor.", gn: "Rembohérarõ reñandúva, ikatu ndepytyvõ reikuaa ha resambyhy porãve hag̃ua." },
+  "sueno": { es: "Repetir hábitos simples cada noche puede ayudar a tu cuerpo a prepararse para dormir.", gn: "Rejapo jeýramo mba'e michĩ ñepyrũ pyhare ha pyhare, ikatu nde rete oñembosako'i oke hag̃ua." },
+  "actividades": { es: "Hacer cosas chicas, aunque no tengas ganas, puede levantar el ánimo de a poco.", gn: "Rejapóramo mba'e michĩ, ikatu nde py'a ojupi mbeguépe." },
+  "crianza": { es: "Un rato de atención solo para tu hijo puede fortalecer el vínculo.", gn: "Peteĩ aravo ne memby rehegua añoite ikatu omombarete pende joaju." },
+  "alcohol": { es: "Anotar cuánto tomás puede ayudarte a verlo con claridad y decidir si querés cambiar algo.", gn: "Rehaíramo mboy reho'u, ikatu rehechakuaa porã ha reiporavo remoambuesépa mba'e." },
+  "ola": { es: "Las ganas suben y bajan: saberlo puede ayudarte a esperar a que pasen.", gn: "Pe pota ojupi ha oguejy: reikuaáramo, ikatu rehaarõ ohasa peve." },
+  "tabaco": { es: "Las ganas de fumar suelen durar pocos minutos: tener un plan puede ayudarte a pasarlas.", gn: "Pe pota repita hag̃ua ohasa mbovy minúto-pe: peteĩ plan ikatu ndepytyvõ." },
+  "presente": { es: "Cuando un recuerdo te desborda, usar tus sentidos puede ayudarte a volver al aquí y ahora.", gn: "Peteĩ mandu'a ndepy'apyeterei jave, nde sentido-kuéra ikatu ndepytyvõ rejevy hag̃ua ko'ágãme." },
+  "otra-mirada": { es: "Revisar un pensamiento y buscar otra forma de verlo puede aliviar lo que sentís.", gn: "Rehesa'ỹijóramo peteĩ remiandu ha reheka ambue hechapyrã, ikatu nepy'aguapyve." },
+  "problema": { es: "Ir paso a paso puede hacer que un problema se vea más manejable.", gn: "Mbeguépe rejapóramo, pe apañuãi ikatu ojehecha michĩve." },
+  "escalera": { es: "Acercarte de a poco a lo que te da miedo, con la guía de tu profesional, puede hacer que el miedo baje con el tiempo.", gn: "Reñemboja mbeguépe pe nemondýivape, nde profesional pytyvõ reheve, ikatu pe kyhyje oguejy ára ohasávo." },
+  "preocupacion": { es: "Darle un horario a la preocupación puede ayudar a que no ocupe todo tu día.", gn: "Remoĩramo aravo nde jepy'apýpe, ikatu ani ojagarra nde ára pukukue." },
+  "escuchar": { es: "Escuchar sin interrumpir ayuda a que el otro se sienta escuchado y puede bajar la tensión en la familia.", gn: "Rehendúramo nemboja'o'ỹre, ambue oñeñandu ojehenduha ha ikatu oguejy pe ñembopochy ogapýpe." },
+  "reunion": { es: "Hablar en un momento tranquilo puede ayudar a la familia a ponerse de acuerdo.", gn: "Peñemongetáramo py'aguapýpe, ikatu peñoñe'ẽme'ẽ ogaygua." },
+  "reglas": { es: "Pocas reglas y claras pueden dar calma y orden en casa.", gn: "Mbovy tembiapoukapy hesakãva ikatu ome'ẽ py'aguapy ogapýpe." },
+  "pausa": { es: "Una pausa a tiempo puede evitar que la discusión crezca.", gn: "Peteĩ pytu'u ijaravópe ikatu ojoko ani okakuaa pe ñorairõ." },
+  "depresion": { es: "Entender la depresión puede ayudarte a no culparte y a pedir ayuda.", gn: "Reikuaáramo mba'épa depresión, ikatu nderejekulpái ha rejerure pytyvõ." },
+  "medicacion": { es: "Tomarla como te la indicaron puede ayudar a que el tratamiento funcione.", gn: "Re'úramo pe pohã he'iháicha ndéve, ikatu oipytyvõ tratamiento-pe." },
+  "relajacion": { es: "Tensar y aflojar los músculos puede ayudarte a notar la tensión y soltarla.", gn: "Remohatã ha remboipiro'ýramo nde ro'o, ikatu rehechakuaa pe tensión ha reheja." },
+  "duelo": { es: "Saber que el dolor del duelo es normal puede ayudarte a darte permiso para sentirlo.", gn: "Reikuaáramo pe mba'asy duelo-pegua ha'eha normal, ikatu ndepytyvõ reheja hag̃ua ndejehe reñandu." },
+  "alerta": { es: "Conocer tus señales puede ayudarte a pedir ayuda a tiempo.", gn: "Reikuaáramo nde señal-kuéra, ikatu rejerure pytyvõ ijaravópe." },
+  "cuidador": { es: "Cuidarte no es egoísmo: puede ayudarte a seguir cuidando a otros.", gn: "Reñangarekóramo ndejehe ndaha'éi egoísmo: ikatu ndepytyvõ resegi hag̃ua reñangareko ambuére." },
+  "enojo": { es: "Notar el enojo a tiempo puede ayudarte a elegir qué hacer.", gn: "Rehechakuaáramo nde pochy ijaravópe, ikatu reiporavo mba'épa rejapóta." },
+  "its": { es: "Informarte puede ayudarte a cuidarte y a saber dónde consultar.", gn: "Reikuaáramo, ikatu reñangareko ndejehe ha reikuaa moõpa reho." },
+  "prep": { es: "Saber que existe la PrEP puede ayudarte a preguntar por ella en tu servicio de salud.", gn: "Reikuaáramo oĩha PrEP, ikatu reporandu hese nde servicio de salud-pe." },
+  "pep": { es: "Si tuviste un posible contacto con el VIH, la PEP se empieza lo antes posible y dentro de las 72 horas: saberlo puede ayudarte a actuar a tiempo.", gn: "Oiméramo rejotopa VIH ndive, PEP oñepyrũva'erã pya'eporãve ha 72 aravo mboyve: reikuaáramo, ikatu rejapo ijaravópe." },
+  "anticoncepcion": { es: "Conocer las opciones puede ayudarte a elegir con tu servicio de salud.", gn: "Reikuaáramo umi opción, ikatu reiporavo nde servicio de salud ndive." },
+};
+
 // Fecha relativa a hoy, para que la demo siempre se vea reciente.
 function haceDias(dias, hora = 10) {
   const d = new Date();
@@ -895,15 +902,15 @@ function datosIniciales() {
       {
         id: "rosa", alias: "Rosa M.", telefono: "0981 000 101", idioma: "es",
         asignaciones: [
-          { contenido: "respiracion", enviado: haceDias(9), abierto: haceDias(8, 19), completado: haceDias(8, 19), carita: 3, nota: "Me costó concentrarme pero lo terminé." },
-          { contenido: "ansiedad", enviado: haceDias(9), abierto: haceDias(7, 21), completado: haceDias(7, 21), carita: 4, nota: "" },
+          { contenido: "respiracion", enviado: haceDias(9), abierto: haceDias(8, 19), completado: haceDias(8, 19), antes: 2, carita: 3, nota: "Me costó concentrarme pero lo terminé." },
+          { contenido: "ansiedad", enviado: haceDias(9), abierto: haceDias(7, 21), completado: haceDias(7, 21), antes: 3, carita: 4, nota: "" },
           { contenido: "emociones", enviado: haceDias(1), abierto: null, completado: null, carita: null, nota: "" },
         ],
       },
       {
         id: "ramon", alias: "Don Ramón", telefono: "0982 000 202", idioma: "gn",
         asignaciones: [
-          { contenido: "respiracion", enviado: haceDias(14), abierto: haceDias(12, 23), completado: haceDias(12, 23), carita: 2, nota: "Ndaikatúi akera semana pukukue." },
+          { contenido: "respiracion", enviado: haceDias(14), abierto: haceDias(12, 23), completado: haceDias(12, 23), antes: 1, carita: 2, nota: "Ndaikatúi akera semana pukukue." },
           { contenido: "sueno", enviado: haceDias(5), abierto: haceDias(4, 22), completado: null, carita: null, nota: "" },
         ],
       },
@@ -911,7 +918,7 @@ function datosIniciales() {
         id: "lili", alias: "Lili", telefono: "0983 000 303", idioma: "es",
         asignaciones: [
           { contenido: "actividades", enviado: haceDias(12), abierto: haceDias(11, 9), completado: haceDias(11, 9), carita: 2, nota: "Caminé un poco. Igual me sentí cansada." },
-          { contenido: "actividades", enviado: haceDias(4), abierto: haceDias(3, 18), completado: haceDias(3, 18), carita: 4, nota: "Hoy regué las plantas con mi hija." },
+          { contenido: "actividades", enviado: haceDias(4), abierto: haceDias(3, 18), completado: haceDias(3, 18), antes: 3, carita: 4, nota: "Hoy regué las plantas con mi hija." },
         ],
       },
       {

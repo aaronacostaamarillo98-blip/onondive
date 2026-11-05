@@ -70,7 +70,7 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   profesional ve el registro en la ficha.
 - Revisión final: sin errores de accesibilidad automáticos (WCAG 2.2 AA) en todas las
   pantallas, en castellano y guaraní; botones de al menos 44 px; título de pestaña por
-  pantalla para lectores de pantalla. Peso: ~22 KB de app + ~89 KB de tipografías.
+  pantalla para lectores de pantalla. Peso: ~35 KB comprimido de app + ~89 KB de tipografías.
 - Aviso de ayuda con colores del entorno (celeste y menta) y la Línea 155 como botón
   principal.
 - Guion de la demo: GUION-DEMO.md.
@@ -104,9 +104,28 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Los archivos llevan número de versión (?v=24) para que el navegador no muestre
   copias viejas. Subirlo en cada cambio.
 
+- Auditoría app-premium (4/11/2026): benchmark con PTSD Coach, Step-by-Step, Doing What
+  Matters (OMS), CONEMO y MindShift. El punto más débil era el contenido psicoeducativo
+  (2/5). Mejoras aplicadas (rama worktree-mejoras-contenido):
+  1. Franja de crisis compacta dentro del ejercicio: 155 y 911 a un toque y "Siguiente"
+     visible en un celular de 360x640. El aviso completo sigue en la bienvenida y vuelve si
+     el paciente marca mal o muy mal.
+  2. Portada de cada contenido: ícono propio por tema (10 SVG, sin emojis), Aprender o
+     Practicar, duración, pasos, "Por qué puede ayudarte" y aviso de cuidado.
+  3. "¿Cómo estás ahora?" antes de empezar. Si marca 1 o 2: apoyo con la Línea 155 y elige
+     si sigue. En la ficha: "Registro del paciente", Antes y Después.
+  Revisión: 0 errores de axe (WCAG 2.2 AA) en castellano y guaraní, sin errores de consola.
+  Peso real: ~35 KB comprimido + tipografías.
+
 ## Falta
+- Pasar la rama de mejoras a main (así se publica en GitHub Pages).
+- Con la letra del sistema al 200 % en celular, el selector de idioma y algunos botones se
+  salen de la pantalla (ya pasaba antes de las mejoras).
 
 ## Pendiente de revisión
+- "Por qué puede ayudarte" en guaraní (js/datos.js, PORQUE): los 29 son borrador, a revisar
+  por un hablante nativo. Se marcan en la Biblioteca y en la vista previa en guaraní. Cuando
+  estén revisados, poner PORQUE_GN_REVISADO = true. (El castellano ya es el texto final de Aaron.)
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
 - Los 29 contenidos de ejemplo: a revisar por Aaron. Salud sexual: revisión médica y
   confirmar dónde se consiguen PrEP, PEP y anticonceptivos en Paraguay (¿PRONASIDA?).
@@ -116,4 +135,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Ensayar la demo con GUION-DEMO.md y acordar los ejercicios de TCC y terapia familiar.
+Pasar la rama de mejoras a main (PR #1) y ensayar la demo con GUION-DEMO.md.
