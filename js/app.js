@@ -110,6 +110,27 @@ function contenido(id) { return CONTENIDOS.find((c) => c.id === id); }
 function paciente(id) { return datos.pacientes.find((p) => p.id === id); }
 const CARITAS = ["😣", "🙁", "😐", "🙂", "😄"];
 
+// Íconos propios por tema (trazo redondeado, mismo estilo en todos). Reemplazan a los emojis,
+// que cambian según la marca del celular.
+const ICONOS_TEMA = {
+  "Ansiedad": '<path d="M3 8h10a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/>',
+  "Emociones": '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+  "Sueño": '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+  "Ánimo": '<path d="M12 21v-9"/><path d="M12 12c0-4 3-7 8-7 0 4-3 7-8 7z"/><path d="M12 15c0-3-2.5-5.5-7-5.5 0 3 2.5 5.5 7 5.5z"/>',
+  "Crianza y familia": '<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/>',
+  "Adicciones": '<path d="M2 10c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5 0"/><path d="M2 16c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5 0"/>',
+  "Estrés postraumático": '<circle cx="12" cy="5" r="2"/><path d="M12 7v14"/><path d="M5 13a7 7 0 0 0 14 0"/><path d="M8 11h8"/>',
+  "Medicación": '<rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="M9.5 9.5l5 5"/>',
+  "Duelo": '<path d="M5 19c0-8 5-14 14-14 0 9-6 14-14 14z"/><path d="M5 19l8-8"/>',
+  "Salud sexual": '<path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+};
+const ICONO_HECHO = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+function svgIcono(trazos, clase = "") {
+  return `<svg class="icono-svg ${clase}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${trazos}</svg>`;
+}
+function iconoContenido(cont, clase) { return svgIcono(ICONOS_TEMA[cont.es.tema], clase); }
+function tipoTexto(cont) { return t(cont.tipo === "psicoeducacion" ? "aprender" : "practicar"); }
+
 function noEncontrado() {
   return `<section class="tarjeta centrado">
     <p>${t("noEncontrado")}</p>
@@ -125,11 +146,11 @@ function pantallaPaciente(p) {
 
   const item = ({ i, c }, hecho) => {
     const cont = contenido(p.asignaciones[i].contenido);
-    const interior = `<span class="ej-icono" aria-hidden="true">${hecho ? "✅" : cont.icono}</span>
-      <span class="ej-texto"><strong>${c.titulo}</strong><span>${cont.duracion} ${t("minutos")}</span></span>`;
+    const interior = `<span class="ej-icono" aria-hidden="true">${hecho ? svgIcono(ICONO_HECHO) : iconoContenido(cont)}</span>
+      <span class="ej-texto"><strong>${c.titulo}</strong><span>${tipoTexto(cont)} · ${cont.duracion} ${t("minutos")}</span></span>`;
     return hecho
       ? `<li class="ejercicio hecho">${interior}</li>`
-      : `<li><a class="ejercicio" href="#/p/${p.id}/c/${i}/1">${interior}<span class="ej-flecha" aria-hidden="true">›</span></a></li>`;
+      : `<li><a class="ejercicio" href="#/p/${p.id}/c/${i}">${interior}<span class="ej-flecha" aria-hidden="true">›</span></a></li>`;
   };
 
   return `<section class="paciente">
@@ -155,16 +176,15 @@ function pantallaPaso(p, i, n) {
   if (!a.abierto) { a.abierto = new Date().toISOString(); guardarDatos(); }
 
   const base = `#/p/${p.id}/c/${i}`;
-  const atras = n > 1 ? `${base}/${n - 1}` : `#/p/${p.id}`;
+  const atras = n > 1 ? `${base}/${n - 1}` : base;
   const adelante = n < total
     ? `<a class="boton" href="${base}/${n + 1}">${t("siguiente")} <span aria-hidden="true">›</span></a>`
     : `<a class="boton" href="${base}/sentir">${t("termine")} <span aria-hidden="true">✓</span></a>`;
 
   return `<section class="paciente">
-    <p class="suave titulo-ejercicio"><span aria-hidden="true">${cont.icono}</span> ${c.titulo}</p>
+    <p class="suave titulo-ejercicio">${iconoContenido(cont, "icono-chico")} ${c.titulo}</p>
     <p class="progreso-texto">${tp("paso", { n, total })}</p>
     <div class="progreso" aria-hidden="true"><span style="width:${(n / total) * 100}%"></span></div>
-    ${c.aviso && n === 1 ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
     <div class="tarjeta paso">
       <p class="paso-numero" aria-hidden="true">${n}</p>
       <h1 class="paso-texto">${c.pasos[n - 1]}</h1>
@@ -174,6 +194,29 @@ function pantallaPaso(p, i, n) {
       ${adelante}
     </div>
   </section>`;
+}
+
+// 5b. Portada del contenido: qué es, cuánto dura, por qué puede ayudar y el aviso de cuidado
+function portada(cont, empezar, { extra = "", borrador = false } = {}) {
+  const c = cont[idioma];
+  return `<section class="paciente portada">
+    ${extra}
+    <p class="portada-icono">${iconoContenido(cont)}</p>
+    <p class="portada-tipo"><span class="tipo-${cont.tipo}">${tipoTexto(cont)}</span>
+      <span class="suave">${cont.duracion} ${t("minutos")} · ${tp("pasosN", { n: c.pasos.length })}</span></p>
+    <h1>${c.titulo}</h1>
+    <div class="porque">
+      <h2>${t("porQue")}${borrador ? ` <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span>` : ""}</h2>
+      <p>${PORQUE[cont.id][idioma]}</p>
+    </div>
+    ${c.aviso ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
+    <a class="boton boton-ancho" href="${empezar}">${t("empezar")} <span aria-hidden="true">›</span></a>
+  </section>`;
+}
+function pantallaPortada(p, i) {
+  const a = p.asignaciones[i];
+  if (!a.abierto) { a.abierto = new Date().toISOString(); guardarDatos(); }
+  return portada(contenido(a.contenido), `#/p/${p.id}/c/${i}/1`);
 }
 
 // 7. ¿Cómo te sentiste?
@@ -373,7 +416,7 @@ function pantallaSobreContenidos() {
         <thead><tr><th scope="col">${t("colContenido")}</th><th scope="col">${t("colTema")}</th><th scope="col">${t("colDuracion")}</th><th scope="col">${t("colBase")}</th></tr></thead>
         <tbody>
           ${CONTENIDOS.map((c) => `<tr>
-            <th scope="row"><span aria-hidden="true">${c.icono}</span> ${c[idioma].titulo}</th>
+            <th scope="row">${iconoContenido(c, "icono-chico")} ${c[idioma].titulo}</th>
             <td>${c[idioma].tema}</td>
             <td>${c.duracion} ${t("minutos")}</td>
             <td>${BASES[c.id]}</td>
@@ -385,21 +428,26 @@ function pantallaSobreContenidos() {
 }
 
 // Vista previa de un contenido (para el profesional): igual que lo ve el paciente
+function pantallaVistaPortada(cont) {
+  return portada(cont, `#/vista/${cont.id}/1`, {
+    extra: `<p class="vista-previa"><span aria-hidden="true">👁️</span> ${t("vistaPrevia")}</p>`,
+    borrador: true,
+  });
+}
 function pantallaVistaPrevia(cont, n) {
   const c = cont[idioma];
   const total = c.pasos.length;
   if (!(n >= 1 && n <= total)) return noEncontrado();
   const base = `#/vista/${cont.id}`;
-  const atras = n > 1 ? `${base}/${n - 1}` : "#/pro/biblioteca";
+  const atras = n > 1 ? `${base}/${n - 1}` : base;
   const adelante = n < total
     ? `<a class="boton" href="${base}/${n + 1}">${t("siguiente")} <span aria-hidden="true">›</span></a>`
     : `<a class="boton" href="#/pro/biblioteca">${t("terminarVista")} <span aria-hidden="true">✓</span></a>`;
   return `<section class="paciente">
     <p class="vista-previa"><span aria-hidden="true">👁️</span> ${t("vistaPrevia")}</p>
-    <p class="suave titulo-ejercicio"><span aria-hidden="true">${cont.icono}</span> ${c.titulo}</p>
+    <p class="suave titulo-ejercicio">${iconoContenido(cont, "icono-chico")} ${c.titulo}</p>
     <p class="progreso-texto">${tp("paso", { n, total })}</p>
     <div class="progreso" aria-hidden="true"><span style="width:${(n / total) * 100}%"></span></div>
-    ${c.aviso && n === 1 ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
     <div class="tarjeta paso">
       <p class="paso-numero" aria-hidden="true">${n}</p>
       <h1 class="paso-texto">${c.pasos[n - 1]}</h1>
@@ -542,7 +590,7 @@ function pantallaFicha(p) {
     ].filter(Boolean);
     return `<li class="tarjeta registro">
       <div class="contenido-cabeza">
-        <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
+        <span class="ej-icono" aria-hidden="true">${iconoContenido(cont)}</span>
         <div>
           <h3>${cont[idioma].titulo}</h3>
           <span class="estado estado-${est.clave}"><span aria-hidden="true">${est.icono}</span> ${t("estado_" + est.clave)}</span>
@@ -702,7 +750,7 @@ function pantallaBiblioteca() {
     const buscable = sinTildes(`${c.titulo} ${c.tema} ${BASES[cont.id]} ${cont.es.titulo}`);
     return `<article class="tarjeta contenido" data-buscar="${escapar(buscable)}">
       <div class="contenido-cabeza">
-        <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
+        <span class="ej-icono" aria-hidden="true">${iconoContenido(cont)}</span>
         <div>
           <h2>${c.titulo}</h2>
           <p class="suave chico">${c.tema} · ${t(cont.tipo)} · ${cont.duracion} ${t("minutos")}</p>
@@ -712,6 +760,7 @@ function pantallaBiblioteca() {
         <span class="etiqueta-ejemplo">${t("ejemplo")}</span>
         <span class="chico suave"><span aria-hidden="true">🌐</span> ${t("idiomas")}</span>
       </p>
+      <p class="porque-pro"><strong>${t("porQue")}:</strong> ${PORQUE[cont.id][idioma]} <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span></p>
       ${c.aviso ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
       <details class="pasos">
         <summary>${t("verPasos")}</summary>
@@ -719,7 +768,7 @@ function pantallaBiblioteca() {
       </details>
       <p class="chico suave base"><strong>${t("base")}</strong> ${BASES[cont.id]}</p>
       <div class="paciente-acciones">
-        <a class="boton boton-secundario" href="#/vista/${cont.id}/1"><span aria-hidden="true">▶</span> ${t("probar")}</a>
+        <a class="boton boton-secundario" href="#/vista/${cont.id}"><span aria-hidden="true">▶</span> ${t("probar")}</a>
         <a class="boton" href="#/pro/asignar/${cont.id}">${t("asignar")} <span aria-hidden="true">›</span></a>
       </div>
     </article>`;
@@ -811,7 +860,7 @@ function pantallaAsignar(idInicial, desdePacientes = false) {
     return `
     <label class="eleccion${marcado ? " elegida" : ""}">
       <input type="checkbox" name="contenido" value="${cont.id}" ${marcado ? "checked" : ""}>
-      <span class="ej-icono" aria-hidden="true">${cont.icono}</span>
+      <span class="ej-icono" aria-hidden="true">${iconoContenido(cont)}</span>
       <span class="eleccion-texto"><strong>${c.titulo}</strong>
         <span class="chico suave">${c.tema} · ${cont.duracion} ${t("minutos")}</span></span>
     </label>`;
@@ -937,9 +986,9 @@ function destinoAtras(partes) {
   if (!a) return null;
   if (a === "p") {
     if (!c) return null; // la bienvenida es el inicio del paciente
-    if (e === "sentir" || e === "listo") return `#/p/${b}`;
+    if (!e || e === "sentir" || e === "listo") return `#/p/${b}`;
     const n = Number(e);
-    return n > 1 ? `#/p/${b}/c/${d}/${n - 1}` : `#/p/${b}`;
+    return n > 1 ? `#/p/${b}/c/${d}/${n - 1}` : `#/p/${b}/c/${d}`;
   }
   if (a === "vista") return "#/pro/biblioteca";
   if (a === "pro") {
@@ -976,6 +1025,7 @@ function mostrar() {
       html = pantallaPaciente(p);
     }
     else if (!a) html = noEncontrado();
+    else if (partes.length === 4) html = pantallaPortada(p, i);
     else if (partes[4] === "sentir") { html = pantallaSentir(p, i); despues = () => activarSentir(p, i); }
     else if (partes[4] === "listo") html = pantallaListo(p, a);
     else html = pantallaPaso(p, i, Number(partes[4]));
@@ -988,7 +1038,9 @@ function mostrar() {
     html = pantallaSobreContenidos();
   } else if (partes[0] === "vista" && contenido(partes[1])) {
     modoPro = true;
-    html = pantallaVistaPrevia(contenido(partes[1]), Number(partes[2] || 1));
+    html = partes[2]
+      ? pantallaVistaPrevia(contenido(partes[1]), Number(partes[2]))
+      : pantallaVistaPortada(contenido(partes[1]));
   } else if (partes[0] === "pro") {
     modoPro = true;
     const seccion = partes[1] || "pacientes";

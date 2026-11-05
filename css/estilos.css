@@ -1292,3 +1292,66 @@ main[data-quieto] > section > * { animation: none; }
 }
 .crisis-compacta .crisis-tel { margin: 0; gap: 0.4rem; }
 .crisis-compacta .crisis-tel a { padding: 0 0.85rem; font-size: 0.95rem; }
+
+/* Íconos propios por tema (SVG de trazo) */
+.icono-svg { width: 28px; height: 28px; color: var(--verde-oscuro); }
+.icono-chico { width: 1.15em; height: 1.15em; vertical-align: -0.18em; margin-right: 0.15em; }
+.titulo-ejercicio .icono-chico, .tabla .icono-chico { color: var(--verde-oscuro); }
+
+/* Portada del contenido */
+.portada { text-align: center; }
+.portada-icono {
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin: var(--e3) auto var(--e2);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--blanco), var(--menta));
+  box-shadow: 0 0 0 12px rgba(var(--menta-rgb), 0.5), 0 12px 32px rgba(var(--verde-rgb), 0.18);
+}
+.portada-icono .icono-svg { width: 52px; height: 52px; }
+.portada-tipo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+  margin: 0 0 var(--e1);
+  font-size: 0.95rem;
+}
+.portada-tipo > span:first-child {
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--titulos);
+  font-weight: 600;
+}
+.tipo-ejercicio { background: var(--menta); color: var(--verde-oscuro); }
+.tipo-psicoeducacion { background: rgb(var(--aura2-rgb)); color: var(--azul); }
+.portada h1 { margin: 0 0 var(--e3); text-wrap: balance; }
+.porque {
+  margin: 0 0 var(--e2);
+  padding: var(--e2) var(--e3);
+  text-align: left;
+  background: var(--vidrio);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+.porque h2 {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--verde-oscuro);
+}
+.porque h2 .etiqueta-ejemplo { margin-left: 0.3rem; text-transform: none; letter-spacing: 0; vertical-align: 0.1em; }
+.porque p { margin: 0; line-height: 1.5; }
+.portada .cuidado { text-align: left; }
+.porque-pro { margin: 0; font-size: 1rem; line-height: 1.5; }
+@media (max-width: 420px) {
+  .portada-icono { width: 80px; height: 80px; margin: var(--e2) auto var(--e2); box-shadow: 0 0 0 10px rgba(var(--menta-rgb), 0.5), 0 10px 26px rgba(var(--verde-rgb), 0.16); }
+  .portada-icono .icono-svg { width: 40px; height: 40px; }
+  .portada h1 { margin-bottom: var(--e2); }
+}
