@@ -1,6 +1,6 @@
 // Oñondive: prototipo. Todo corre en el navegador; los datos se guardan en este dispositivo.
 
-const CLAVE_DATOS = "onondive-demo-v3";
+const CLAVE_DATOS = "onondive-demo-v4";
 const CLAVE_IDIOMA = "onondive-idioma";
 
 // --- Guardado (protegido por si el navegador bloquea el almacenamiento) ---
@@ -216,7 +216,48 @@ function portada(cont, empezar, { extra = "", borrador = false } = {}) {
 function pantallaPortada(p, i) {
   const a = p.asignaciones[i];
   if (!a.abierto) { a.abierto = new Date().toISOString(); guardarDatos(); }
-  return portada(contenido(a.contenido), `#/p/${p.id}/c/${i}/1`);
+  return portada(contenido(a.contenido), `#/p/${p.id}/c/${i}/antes`);
+}
+
+// 5c. ¿Cómo estás ahora? (antes de empezar). Si marca 1 o 2, primero se ofrece apoyo.
+function pantallaAntes(p, i) {
+  const botones = CARITAS.map((emoji, k) => `
+    <button type="button" class="carita" data-valor="${k + 1}">
+      <span class="carita-emoji" aria-hidden="true">${emoji}</span>
+      <span class="carita-texto">${t("caritas")[k]}</span>
+    </button>`).join("");
+  return `<section class="paciente">
+    <h1>${t("antesTitulo")}</h1>
+    <p class="suave">${t("antesDesc")}</p>
+    <div class="caritas-fila" id="caritas-antes">${botones}</div>
+    <p class="centrado"><a class="enlace" href="#/p/${p.id}/c/${i}/1">${t("prefieroNo")}</a></p>
+  </section>`;
+}
+function activarAntes(p, i) {
+  document.getElementById("caritas-antes").addEventListener("click", (e) => {
+    const boton = e.target.closest("[data-valor]");
+    if (!boton) return;
+    const valor = Number(boton.dataset.valor);
+    p.asignaciones[i].antes = valor;
+    guardarDatos();
+    vibrar(valor <= 2 ? [30, 60, 30] : 15);
+    location.hash = `#/p/${p.id}/c/${i}/${valor <= 2 ? "apoyo" : 1}`;
+  });
+}
+function pantallaApoyoAntes(p, i) {
+  return `<section class="paciente centrado">
+    <p class="listo-icono" aria-hidden="true">🤝</p>
+    <h1>${t("apoyoTitulo")}</h1>
+    <div class="apoyo">
+      <p>${t("apoyoTexto")}</p>
+      <a class="boton boton-ancho boton-155" href="tel:155"><span aria-hidden="true">📞</span> ${t("llamar155")}</a>
+    </div>
+    <h2>${t("seguirPregunta")}</h2>
+    <div class="acciones acciones-iguales">
+      <a class="boton boton-secundario" href="#/p/${p.id}">${t("ahoraNo")}</a>
+      <a class="boton" href="#/p/${p.id}/c/${i}/1">${t("siSeguir")} <span aria-hidden="true">›</span></a>
+    </div>
+  </section>`;
 }
 
 // 7. ¿Cómo te sentiste?
@@ -491,6 +532,8 @@ function estadoAsignacion(a) {
 
 // La fecha más reciente en que pasó algo con esa asignación
 function ultimaActividad(a) { return a.completado || a.abierto || a.enviado; }
+// Lo último que marcó el paciente en esa asignación: después del ejercicio o, si no lo hizo, antes de empezar
+function ultimoSentir(a) { return a.carita || a.antes || null; }
 
 // 1. Mis pacientes
 function pantallaPacientes() {
@@ -502,7 +545,8 @@ function pantallaPacientes() {
     const orden = [...p.asignaciones].sort((x, y) => ultimaActividad(y).localeCompare(ultimaActividad(x)));
     const ultima = orden[0] || null;
     const ultimoRegistro = orden.find((a) => a.completado) || null;
-    const alerta = ultimoRegistro && ultimoRegistro.carita <= 2;
+    const sentir = orden.map(ultimoSentir).find(Boolean);
+    const alerta = Boolean(sentir && sentir <= 2);
     return { p, ultima, ultimoRegistro, alerta, fecha: ultima ? ultimaActividad(ultima) : "" };
   }).sort((x, y) => (y.alerta - x.alerta) || y.fecha.localeCompare(x.fecha));
 
@@ -568,8 +612,8 @@ function pantallaPacientes() {
 function pantallaFicha(p) {
   const asig = p.asignaciones;
   const registros = asig.filter((a) => a.completado).sort((x, y) => x.completado.localeCompare(y.completado));
-  const ultimo = registros[registros.length - 1];
-  const alerta = ultimo && ultimo.carita <= 2;
+  const sentir = [...asig].sort((x, y) => ultimaActividad(y).localeCompare(ultimaActividad(x))).map(ultimoSentir).find(Boolean);
+  const alerta = Boolean(sentir && sentir <= 2);
 
   const animo = registros.length
     ? `<ol class="animo">${registros.map((a) => `
@@ -597,9 +641,14 @@ function pantallaFicha(p) {
         </div>
       </div>
       <p class="chico suave registro-fechas">${fechas.join(" · ")}</p>
-      ${a.completado ? `<div class="registro-sentir">
-        <span class="carita-mini"><span aria-hidden="true">${CARITAS[a.carita - 1]}</span>
-          <span class="chico">${t("caritas")[a.carita - 1]}</span></span>
+      ${a.antes || a.completado ? `<div class="registro-sentir">
+        <p class="registro-titulo chico">${t("registroPaciente")}</p>
+        <div class="antes-despues">
+          ${a.antes ? `<span class="carita-mini"><span class="chico suave">${t("antesEj")}:</span> <span aria-hidden="true">${CARITAS[a.antes - 1]}</span>
+            <span class="chico">${t("caritas")[a.antes - 1]}</span></span>` : ""}
+          ${a.completado ? `<span class="carita-mini">${a.antes ? `<span class="chico suave">${t("despuesEj")}:</span> ` : ""}<span aria-hidden="true">${CARITAS[a.carita - 1]}</span>
+            <span class="chico">${t("caritas")[a.carita - 1]}</span></span>` : ""}
+        </div>
         ${a.nota ? `<blockquote><span class="suave chico">${t("escribio")}</span> «${escapar(a.nota)}»</blockquote>` : ""}
         ${a.audio ? `<div class="voz-ficha">
           <span class="chico suave"><span aria-hidden="true">🎙️</span> ${t("notaVoz")}${a.audioSeg ? ` · ${minSeg(a.audioSeg)}` : ""}</span>
@@ -987,6 +1036,7 @@ function destinoAtras(partes) {
   if (a === "p") {
     if (!c) return null; // la bienvenida es el inicio del paciente
     if (!e || e === "sentir" || e === "listo") return `#/p/${b}`;
+    if (e === "antes" || e === "apoyo") return `#/p/${b}/c/${d}`;
     const n = Number(e);
     return n > 1 ? `#/p/${b}/c/${d}/${n - 1}` : `#/p/${b}/c/${d}`;
   }
@@ -1026,12 +1076,14 @@ function mostrar() {
     }
     else if (!a) html = noEncontrado();
     else if (partes.length === 4) html = pantallaPortada(p, i);
+    else if (partes[4] === "antes") { html = pantallaAntes(p, i); despues = () => activarAntes(p, i); }
+    else if (partes[4] === "apoyo") html = pantallaApoyoAntes(p, i);
     else if (partes[4] === "sentir") { html = pantallaSentir(p, i); despues = () => activarSentir(p, i); }
     else if (partes[4] === "listo") html = pantallaListo(p, a);
     else html = pantallaPaso(p, i, Number(partes[4]));
     // Dentro del ejercicio el aviso de crisis queda como franja de una línea (155 y 911 a un toque).
     // Vuelve a verse completo si el paciente marcó "mal" o "muy mal".
-    crisisCompacta = Boolean(a) && !(partes[4] === "listo" && a.carita && a.carita <= 2);
+    crisisCompacta = Boolean(a) && partes[4] !== "apoyo" && !(partes[4] === "listo" && a.carita && a.carita <= 2);
   } else if (partes[0] === "privacidad") {
     html = pantallaPrivacidad();
   } else if (partes[0] === "contenidos") {

@@ -901,15 +901,15 @@ function datosIniciales() {
       {
         id: "rosa", alias: "Rosa M.", telefono: "0981 000 101", idioma: "es",
         asignaciones: [
-          { contenido: "respiracion", enviado: haceDias(9), abierto: haceDias(8, 19), completado: haceDias(8, 19), carita: 3, nota: "Me costó concentrarme pero lo terminé." },
-          { contenido: "ansiedad", enviado: haceDias(9), abierto: haceDias(7, 21), completado: haceDias(7, 21), carita: 4, nota: "" },
+          { contenido: "respiracion", enviado: haceDias(9), abierto: haceDias(8, 19), completado: haceDias(8, 19), antes: 2, carita: 3, nota: "Me costó concentrarme pero lo terminé." },
+          { contenido: "ansiedad", enviado: haceDias(9), abierto: haceDias(7, 21), completado: haceDias(7, 21), antes: 3, carita: 4, nota: "" },
           { contenido: "emociones", enviado: haceDias(1), abierto: null, completado: null, carita: null, nota: "" },
         ],
       },
       {
         id: "ramon", alias: "Don Ramón", telefono: "0982 000 202", idioma: "gn",
         asignaciones: [
-          { contenido: "respiracion", enviado: haceDias(14), abierto: haceDias(12, 23), completado: haceDias(12, 23), carita: 2, nota: "Ndaikatúi akera semana pukukue." },
+          { contenido: "respiracion", enviado: haceDias(14), abierto: haceDias(12, 23), completado: haceDias(12, 23), antes: 1, carita: 2, nota: "Ndaikatúi akera semana pukukue." },
           { contenido: "sueno", enviado: haceDias(5), abierto: haceDias(4, 22), completado: null, carita: null, nota: "" },
         ],
       },
@@ -917,7 +917,7 @@ function datosIniciales() {
         id: "lili", alias: "Lili", telefono: "0983 000 303", idioma: "es",
         asignaciones: [
           { contenido: "actividades", enviado: haceDias(12), abierto: haceDias(11, 9), completado: haceDias(11, 9), carita: 2, nota: "Caminé un poco. Igual me sentí cansada." },
-          { contenido: "actividades", enviado: haceDias(4), abierto: haceDias(3, 18), completado: haceDias(3, 18), carita: 4, nota: "Hoy regué las plantas con mi hija." },
+          { contenido: "actividades", enviado: haceDias(4), abierto: haceDias(3, 18), completado: haceDias(3, 18), antes: 3, carita: 4, nota: "Hoy regué las plantas con mi hija." },
         ],
       },
       {

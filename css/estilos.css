@@ -1355,3 +1355,14 @@ main[data-quieto] > section > * { animation: none; }
   .portada-icono .icono-svg { width: 40px; height: 40px; }
   .portada h1 { margin-bottom: var(--e2); }
 }
+
+/* ¿Cómo estás ahora? (caritas como botones: tocar una lleva al paso siguiente) */
+button.carita { font: inherit; color: inherit; }
+button.carita:focus-visible { outline: 3px solid var(--verde-oscuro); outline-offset: 3px; }
+#caritas-antes { margin: var(--e3) 0 var(--e2); }
+.enlace { display: inline-flex; align-items: center; }
+
+/* Ficha: registro del paciente antes y después del ejercicio */
+.registro-titulo { margin: 0; font-family: var(--titulos); font-weight: 600; color: var(--texto-suave); }
+.antes-despues { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+.acciones-iguales { grid-template-columns: 1fr 1fr; }
