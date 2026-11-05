@@ -128,15 +128,17 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   dónde conseguir PrEP y PEP en Paraguay y el 137 (SOS Mujer) en el aviso de PEP. Tema
   reactivado: 29 contenidos en 10 temas. Marcado "Revisado por una médica" en la Biblioteca
   y en "Sobre los contenidos".
+- Botones "Atrás / Siguiente" fijos abajo en todos los pasos (paciente y vista previa), así
+  "Siguiente" queda siempre a la vista aunque el paso sea largo. Al final del paso la barra
+  vuelve a su lugar y no tapa el texto. Con letra muy grande, "Atrás" muestra solo "‹" (el
+  lector dice "Atrás") para que la barra no ocupe media pantalla. Verificado a 360x640, en
+  castellano y guaraní, con letra normal y al 200 %: 0 errores de axe.
 
 ## Falta
 
 ## Pendiente de revisión
 - Salud sexual en guaraní (ITS, PrEP, PEP, Anticoncepción): adaptado a los textos de la
   médica, a revisar por un hablante nativo.
-- En celulares de 360x640, 4 pasos largos de Salud sexual (ITS paso 5, PrEP pasos 1 y 5,
-  PEP paso 2) dejan "Siguiente" abajo del borde: hay que bajar para verlo. El texto no se
-  cortó. Decidir con Aaron cómo resolverlo.
 - "Por qué puede ayudarte" en guaraní (js/datos.js, PORQUE): los 29 son borrador, a revisar
   por un hablante nativo. Se marcan en la Biblioteca y en la vista previa en guaraní. Cuando
   estén revisados, poner PORQUE_GN_REVISADO = true. (El castellano ya es el texto final de Aaron.)

@@ -191,8 +191,8 @@ function pantallaPaso(p, i, n) {
       <p class="paso-numero" aria-hidden="true">${n}</p>
       <h1 class="paso-texto">${c.pasos[n - 1]}</h1>
     </div>
-    <div class="acciones">
-      <a class="boton boton-secundario" href="${atras}"><span aria-hidden="true">‹</span> ${t("anterior")}</a>
+    <div class="acciones acciones-fijas">
+      <a class="boton boton-secundario boton-atras" href="${atras}"><span aria-hidden="true">‹</span> <span class="texto-atras">${t("anterior")}</span></a>
       ${adelante}
     </div>
   </section>`;
@@ -496,8 +496,8 @@ function pantallaVistaPrevia(cont, n) {
       <p class="paso-numero" aria-hidden="true">${n}</p>
       <h1 class="paso-texto">${c.pasos[n - 1]}</h1>
     </div>
-    <div class="acciones">
-      <a class="boton boton-secundario" href="${atras}"><span aria-hidden="true">‹</span> ${t("anterior")}</a>
+    <div class="acciones acciones-fijas">
+      <a class="boton boton-secundario boton-atras" href="${atras}"><span aria-hidden="true">‹</span> <span class="texto-atras">${t("anterior")}</span></a>
       ${adelante}
     </div>
   </section>`;

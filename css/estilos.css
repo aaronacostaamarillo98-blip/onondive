@@ -1405,3 +1405,35 @@ fieldset, legend { min-width: 0; max-width: 100%; }
   background: rgb(var(--aura2-rgb));
   color: var(--azul);
 }
+
+/* Pasos del ejercicio: Atrás y Siguiente quedan fijos abajo, siempre a la vista.
+   La barra sigue en el flujo de la página: al llegar al final del paso vuelve a su lugar
+   debajo de la tarjeta, así que nunca tapa el texto. */
+.acciones-fijas {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin-inline: -0.75rem;
+  padding: 0.75rem 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: var(--fondo);
+  border-radius: var(--radio) var(--radio) 0 0;
+  box-shadow: 0 -10px 24px rgba(29, 53, 87, 0.08);
+}
+/* Con letra muy grande (o pantalla muy angosta), "Atrás" muestra solo la flecha para que los dos
+   botones entren en una fila y la barra no ocupe media pantalla. El lector sigue diciendo "Atrás". */
+.acciones-fijas { container-type: inline-size; }
+@container (max-width: 14em) {
+  .acciones-fijas .boton { padding-inline: 0.8rem; }
+  .boton-atras { flex: 0 0 auto; }
+  .acciones-fijas .boton:not(.boton-atras) > [aria-hidden="true"] { display: none; }
+  .boton-atras .texto-atras {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+/* Lo que recibe el foco o se lleva a la vista no queda debajo de la barra */
+html:has(.acciones-fijas) { scroll-padding-bottom: 12rem; }
