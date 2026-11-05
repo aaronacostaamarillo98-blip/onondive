@@ -117,10 +117,13 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   Revisión: 0 errores de axe (WCAG 2.2 AA) en castellano y guaraní, sin errores de consola.
   Peso real: ~35 KB comprimido + tipografías.
 
+- Publicado en main (PR #1) y verificado en GitHub Pages.
+- Letra del sistema al 200 % en un celular de 360 px: nada se sale ni se corta (barra,
+  selector de idioma, botones, caritas, pestañas, formularios). Probado en las 18 pantallas,
+  en castellano y guaraní, también con zoom de página (equivale a 180 px de ancho).
+  0 errores de axe (WCAG 2.2 AA). A tamaño normal el diseño no cambia.
+
 ## Falta
-- Pasar la rama de mejoras a main (así se publica en GitHub Pages).
-- Con la letra del sistema al 200 % en celular, el selector de idioma y algunos botones se
-  salen de la pantalla (ya pasaba antes de las mejoras).
 
 ## Pendiente de revisión
 - Salud sexual (ITS, PrEP, PEP, Anticoncepción): OCULTO hasta que tenga revisión médica
@@ -139,4 +142,5 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Pasar la rama de mejoras a main (PR #1) y ensayar la demo con GUION-DEMO.md.
+Ensayar la demo con GUION-DEMO.md y conseguir la revisión médica de Salud sexual y la del
+guaraní.

@@ -318,7 +318,7 @@ main > section > :nth-child(n+6), main > section > form > :nth-child(n+6) { anim
 .inicio .lema { color: var(--texto-suave); margin: 0 0 var(--e5); font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem); }
 .inicio-opciones {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--e2);
   max-width: 640px;
   margin: 0 auto;
@@ -468,11 +468,13 @@ a.ejercicio:active { transform: scale(0.98); }
 }
 
 .acciones {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--e2);
   margin-top: var(--e3);
 }
+.acciones > * { flex: 1 1 auto; }
+.acciones > :last-child { flex-grow: 1.6; }
 
 /* Caritas */
 .caritas { border: 0; padding: 0; margin: 0; }
@@ -480,7 +482,7 @@ a.ejercicio:active { transform: scale(0.98); }
 .caritas legend h1 { margin-bottom: 0.25rem; }
 .caritas-fila {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 2.8rem), 1fr));
   gap: 0.5rem;
 }
 .carita {
@@ -735,7 +737,7 @@ main[data-quieto] > section > * { animation: none; }
   margin: 0 0 var(--e2);
 }
 .subtitulo { margin-top: var(--e4); }
-.lista-elecciones { display: grid; gap: 0.6rem; }
+.lista-elecciones { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
 .eleccion {
   position: relative;
   display: flex;
@@ -822,7 +824,7 @@ main[data-quieto] > section > * { animation: none; }
 /* Mis pacientes */
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 4.5em), 1fr));
   gap: var(--e2);
   margin: var(--e3) 0 var(--e3);
 }
@@ -877,13 +879,13 @@ main[data-quieto] > section > * { animation: none; }
 }
 .carita-mini span[aria-hidden] { font-size: 1.15rem; line-height: 1; }
 .paciente-acciones {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: auto;
   padding-top: 0.4rem;
 }
-.paciente-acciones .boton { min-height: 50px; font-size: 1rem; padding: 0 1rem; }
+.paciente-acciones .boton { flex: 1 1 auto; min-height: 50px; font-size: 1rem; padding: 0 1rem; }
 .con-alerta { box-shadow: 0 0 0 1.5px rgba(var(--coral-rgb), 0.55), var(--sombra); }
 .alerta {
   display: inline-flex;
@@ -912,8 +914,8 @@ main[data-quieto] > section > * { animation: none; }
   margin: 0;
   padding: var(--e2);
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  overflow-x: auto;
   background: var(--vidrio);
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: var(--radio);
@@ -1175,7 +1177,7 @@ main[data-quieto] > section > * { animation: none; }
   font-weight: 500;
 }
 .error-campo::before { content: "⚠ "; }
-.dos-columnas { grid-template-columns: 1fr 1fr; }
+.dos-columnas { grid-template-columns: repeat(auto-fit, minmax(min(100%, 7em), 1fr)); }
 #form-nuevo .boton { margin-top: var(--e4); }
 
 /* Nota de voz */
@@ -1263,7 +1265,7 @@ main[data-quieto] > section > * { animation: none; }
   .barra { padding: 0.6rem 0.9rem; }
   .marca { font-size: 1.1rem; }
   .logo { width: 34px; height: 22px; }
-  .idioma button { padding: 0 0.65rem; font-size: 0.82rem; min-height: 44px; }
+  .idioma button { padding: 0 0.6rem; font-size: 0.82rem; min-height: 44px; }
   .crisis { margin-top: 0.75rem; padding: 0.8rem 0.9rem; border-radius: 20px; }
   .paso { padding: var(--e4) var(--e3); }
 }
@@ -1365,4 +1367,23 @@ button.carita:focus-visible { outline: 3px solid var(--verde-oscuro); outline-of
 /* Ficha: registro del paciente antes y después del ejercicio */
 .registro-titulo { margin: 0; font-family: var(--titulos); font-weight: 600; color: var(--texto-suave); }
 .antes-despues { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-.acciones-iguales { grid-template-columns: 1fr 1fr; }
+.acciones-iguales > :last-child { flex-grow: 1; }
+
+/* Letra grande del sistema (hasta 200 %) y pantallas angostas: nada se sale ni se corta.
+   A tamaño normal estas reglas no cambian el diseño. */
+h1, h2, h3, p, li, legend, strong, label, .boton, .carita-texto, .ej-texto, .eleccion-texto { overflow-wrap: anywhere; }
+fieldset, legend { min-width: 0; max-width: 100%; }
+.barra { flex-wrap: wrap; gap: 0.4rem 0.5rem; padding-inline: min(1.25rem, 3.5vw); }
+.idioma { flex-wrap: wrap; justify-content: center; max-width: 100%; border-radius: 24px; }
+.idioma button { white-space: normal; }
+.boton { padding: 0.45rem min(1.6rem, 7vw); text-align: center; }
+.pro-tabs { flex-wrap: wrap; max-width: 100%; border-radius: 26px; }
+.pro-tabs a { flex: 1 1 auto; justify-content: center; text-align: center; }
+.buscador input { min-width: 0; width: 100%; }
+.ej-texto, .eleccion-texto, .info-lista li > div, .contenido-cabeza > div, .ficha-cabeza > div { min-width: 0; }
+.crisis-tel { flex-wrap: wrap; }
+.saltar { max-width: calc(100% - 1rem); }
+.stat span { overflow-wrap: anywhere; }
+.avatar { min-width: 2.4em; min-height: 2.4em; }
+.crisis-tel a { white-space: normal; max-width: 100%; }
+@media (max-width: 260px) { .halo::before { inset: -20%; } }
