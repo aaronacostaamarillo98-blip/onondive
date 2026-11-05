@@ -47,7 +47,10 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 **5. Lo que recibe el paciente (90 s)**
 → Tocá **Ver lo que recibe el paciente**.
 - "Arriba, siempre visible: Línea 155 y 911. La app no es un servicio de emergencia."
-- Abrí **Respirar para calmarte** y pasá los pasos: "un paso por pantalla, botones grandes".
+- Abrí **Respirar para calmarte**: la portada dice qué es, cuánto dura y por qué puede ayudar.
+- Tocá **Empezar** → "¿Cómo estás ahora?": tocá una carita (por ejemplo **Más o menos**).
+  "Si marca mal o muy mal, primero le ofrece apoyo y la Línea 155, y elige si sigue."
+- Pasá los pasos: "un paso por pantalla, botones grandes; arriba, 155 y 911 a un toque".
 - En **¿Cómo te sentiste?**, elegí una carita y escribí una línea, o tocá
   el botón verde del micrófono (**Grabar nota de voz**, como en WhatsApp) y decí una frase corta → **Guardar**. El navegador va a pedir
   permiso para el micrófono: aceptalo antes de la reunión para no perder tiempo.
@@ -55,7 +58,8 @@ Link: https://aaronacostaamarillo98-blip.github.io/onondive/
 
 **6. Cierre: la profesional lo ve (30 s)**
 → Tocá el logo **Oñondive** → **Ver como profesional** → **Carlos B.** → **Ver ficha**.
-- "Antes de la próxima consulta, la profesional ya sabe cómo le fue." Si grabaste una
+- "Antes de la próxima consulta, la profesional ya sabe cómo le fue": en **Registro del
+  paciente** ve cómo estaba antes y después. No es una medición de eficacia. Si grabaste una
   nota de voz, tocá ▶ para escucharla.
 
 **Si preguntan por datos:** abajo de todo, **Privacidad y seguridad** y **Sobre los
