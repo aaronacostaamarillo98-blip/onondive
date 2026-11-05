@@ -453,6 +453,7 @@ function pantallaSobreContenidos() {
     <p>${t("contP1")}</p>
     <p>${t("contP2")}</p>
     <p class="suave">${t("contP3")}</p>
+    ${CONTENIDOS_ACTIVOS.some((c) => c.revisadoMedica) ? `<p class="revision-medica"><span aria-hidden="true">✓</span> ${t("contRevisionMedica")}</p>` : ""}
     <p class="chico suave">${tp("contResumen", { n: CONTENIDOS_ACTIVOS.length, t: temas.length })}</p>
     <div class="tabla-envoltura" tabindex="0" role="region" aria-label="${t("sobreContenidos")}">
       <table class="tabla">
@@ -460,7 +461,7 @@ function pantallaSobreContenidos() {
         <tbody>
           ${CONTENIDOS_ACTIVOS.map((c) => `<tr>
             <th scope="row">${iconoContenido(c, "icono-chico")} ${c[idioma].titulo}</th>
-            <td>${c[idioma].tema}</td>
+            <td>${c[idioma].tema}${c.revisadoMedica ? `<br><span class="etiqueta-revisado"><span aria-hidden="true">✓</span> ${t("revisadoMedica")}</span>` : ""}</td>
             <td>${c.duracion} ${t("minutos")}</td>
             <td>${BASES[c.id]}</td>
           </tr>`).join("")}
@@ -808,7 +809,9 @@ function pantallaBiblioteca() {
         </div>
       </div>
       <p class="contenido-meta">
-        <span class="etiqueta-ejemplo">${t("ejemplo")}</span>
+        ${cont.revisadoMedica
+          ? `<span class="etiqueta-revisado"><span aria-hidden="true">✓</span> ${t("revisadoMedica")} · ${cont.revisadoMedica}</span>`
+          : `<span class="etiqueta-ejemplo">${t("ejemplo")}</span>`}
         <span class="chico suave"><span aria-hidden="true">🌐</span> ${t("idiomas")}</span>
       </p>
       <p class="porque-pro"><strong>${t("porQue")}:</strong> ${PORQUE[cont.id][idioma]}${porQuePendiente() ? ` <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span>` : ""}</p>

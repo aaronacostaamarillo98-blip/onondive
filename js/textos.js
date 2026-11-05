@@ -178,6 +178,8 @@ const TEXTOS = {
     colDuracion: "Duración",
     colBase: "Base",
     contResumen: "{n} contenidos en {t} temas",
+    contRevisionMedica: "Salud sexual fue revisado por una médica el 05/11/2026, con enfoque inclusivo.",
+    revisadoMedica: "Revisado por una médica",
   },
   gn: {
     saltar: "Eho contenido-pe",
@@ -356,5 +358,7 @@ const TEXTOS = {
     colDuracion: "Aravo",
     colBase: "Base",
     contResumen: "{n} contenido {t} tema-pe",
+    contRevisionMedica: "Salud sexual ohecha jey peteĩ médica 05/11/2026-pe, opavave tapicha rehegua. Guaraní ojehecha jeyva'erã peteĩ oñe'ẽva guaraníme.",
+    revisadoMedica: "Médica ohecha jey (castellano)",
   },
 };

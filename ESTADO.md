@@ -123,20 +123,25 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   en castellano y guaraní, también con zoom de página (equivale a 180 px de ancho).
   0 errores de axe (WCAG 2.2 AA). A tamaño normal el diseño no cambia.
 
+- Salud sexual revisada por médica el 05/11/2026, con enfoque inclusivo: ITS (4 min, 7 pasos),
+  PrEP (4 min, 7 pasos), PEP (3 min, 6 pasos) y Anticoncepción (3 min, 5 pasos). Incluye
+  dónde conseguir PrEP y PEP en Paraguay y el 137 (SOS Mujer) en el aviso de PEP. Tema
+  reactivado: 29 contenidos en 10 temas. Marcado "Revisado por una médica" en la Biblioteca
+  y en "Sobre los contenidos".
+
 ## Falta
 
 ## Pendiente de revisión
-- Salud sexual (ITS, PrEP, PEP, Anticoncepción): OCULTO hasta que tenga revisión médica
-  (4/11/2026). No aparece en la Biblioteca, Asignar ni "Sobre los contenidos"; los textos
-  siguen en js/datos.js. Para activarlo: sacar "Salud sexual" de TEMAS_DESACTIVADOS en
-  js/datos.js. Hoy se muestran 25 contenidos en 9 temas.
+- Salud sexual en guaraní (ITS, PrEP, PEP, Anticoncepción): adaptado a los textos de la
+  médica, a revisar por un hablante nativo.
+- En celulares de 360x640, 4 pasos largos de Salud sexual (ITS paso 5, PrEP pasos 1 y 5,
+  PEP paso 2) dejan "Siguiente" abajo del borde: hay que bajar para verlo. El texto no se
+  cortó. Decidir con Aaron cómo resolverlo.
 - "Por qué puede ayudarte" en guaraní (js/datos.js, PORQUE): los 29 son borrador, a revisar
   por un hablante nativo. Se marcan en la Biblioteca y en la vista previa en guaraní. Cuando
   estén revisados, poner PORQUE_GN_REVISADO = true. (El castellano ya es el texto final de Aaron.)
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
-- Los 29 contenidos de ejemplo: a revisar por Aaron. Salud sexual: revisión médica y
-  confirmar dónde se consiguen PrEP, PEP y anticonceptivos en Paraguay (¿PRONASIDA?).
-- Línea de ayuda por violencia en Paraguay: confirmar número antes de sumarla.
+- Los contenidos de ejemplo (salvo Salud sexual): a revisar por Aaron.
 
 ## Decisiones pendientes
 - Condición del piloto: gratis o pago para el centro (definir con Alex).

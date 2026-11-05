@@ -1387,3 +1387,21 @@ fieldset, legend { min-width: 0; max-width: 100%; }
 .avatar { min-width: 2.4em; min-height: 2.4em; }
 .crisis-tel a { white-space: normal; max-width: 100%; }
 @media (max-width: 260px) { .halo::before { inset: -20%; } }
+
+/* Contenidos revisados por una médica */
+.etiqueta-revisado {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(var(--aura2-rgb));
+  color: var(--azul);
+  font-family: var(--titulos);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.revision-medica {
+  padding: 0.7rem 1rem;
+  border-radius: var(--radio-chico);
+  background: rgb(var(--aura2-rgb));
+  color: var(--azul);
+}
