@@ -123,8 +123,9 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
   salen de la pantalla (ya pasaba antes de las mejoras).
 
 ## Pendiente de revisión
-- Los 29 "Por qué puede ayudarte" (js/datos.js, PORQUE): borradores de Claude a revisar por
-  Aaron; el guaraní, por un hablante nativo.
+- "Por qué puede ayudarte" en guaraní (js/datos.js, PORQUE): los 29 son borrador, a revisar
+  por un hablante nativo. Se marcan en la Biblioteca y en la vista previa en guaraní. Cuando
+  estén revisados, poner PORQUE_GN_REVISADO = true. (El castellano ya es el texto final de Aaron.)
 - Textos en guaraní: borrador, a revisar por un hablante nativo.
 - Los 29 contenidos de ejemplo: a revisar por Aaron. Salud sexual: revisión médica y
   confirmar dónde se consiguen PrEP, PEP y anticonceptivos en Paraguay (¿PRONASIDA?).
@@ -134,5 +135,4 @@ en un mismo dispositivo. Botón "Reiniciar demo" al pie.
 - Condición del piloto: gratis o pago para el centro (definir con Alex).
 
 ## Próximo paso
-Corregir la lista de "Por qué puede ayudarte", pasar la rama a main y ensayar la demo con
-GUION-DEMO.md.
+Pasar la rama de mejoras a main (PR #1) y ensayar la demo con GUION-DEMO.md.

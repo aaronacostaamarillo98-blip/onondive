@@ -852,37 +852,38 @@ const BASES = {
 };
 
 // "Por qué puede ayudarte": una línea por contenido para la portada del ejercicio.
-// BORRADOR, A REVISAR por un profesional (basado en la base técnica de BASES y en mhGAP de la OMS).
-// Guaraní: borrador, a revisar por un hablante nativo.
+// Castellano: textos finales revisados por Aaron (4/11/2026).
+// Guaraní: TODOS son borrador, a revisar por un hablante nativo (no publicar como revisados).
+const PORQUE_GN_REVISADO = false;
 const PORQUE = {
   "respiracion": { es: "Respirar lento le avisa a tu cuerpo que puede calmarse.", gn: "Rembopytu mbeguekatu ramo, nde rete ikatu oñemopy'aguapy." },
-  "ansiedad": { es: "Entender la ansiedad puede hacer que asuste menos.", gn: "Reikuaáramo mba'épa ansiedad, ikatu sa'ive rekyhyje." },
-  "emociones": { es: "Ponerle nombre a lo que sentís puede ayudarte a manejarlo.", gn: "Rembohérarõ reñandúva, ikatu ndepytyvõ." },
-  "sueno": { es: "Hábitos simples a la noche pueden ayudarte a dormir mejor.", gn: "Mba'e michĩ pyharevépe ikatu ndepytyvõ reke porãve hag̃ua." },
+  "ansiedad": { es: "Entender qué te pasa cuando sentís ansiedad puede hacer que te asuste menos.", gn: "Reikuaáramo mba'épa ojehu ndéve reñeñandúramo ansiedad, ikatu sa'ive rekyhyje." },
+  "emociones": { es: "Ponerle nombre a lo que sentís puede ayudarte a entenderlo y manejarlo mejor.", gn: "Rembohérarõ reñandúva, ikatu ndepytyvõ reikuaa ha resambyhy porãve hag̃ua." },
+  "sueno": { es: "Repetir hábitos simples cada noche puede ayudar a tu cuerpo a prepararse para dormir.", gn: "Rejapo jeýramo mba'e michĩ ñepyrũ pyhare ha pyhare, ikatu nde rete oñembosako'i oke hag̃ua." },
   "actividades": { es: "Hacer cosas chicas, aunque no tengas ganas, puede levantar el ánimo de a poco.", gn: "Rejapóramo mba'e michĩ, ikatu nde py'a ojupi mbeguépe." },
   "crianza": { es: "Un rato de atención solo para tu hijo puede fortalecer el vínculo.", gn: "Peteĩ aravo ne memby rehegua añoite ikatu omombarete pende joaju." },
-  "alcohol": { es: "Anotar cuánto tomás puede ayudarte a verlo claro y decidir.", gn: "Rehaíramo mboy reho'u, ikatu rehechakuaa porã ha reiporavo." },
-  "ola": { es: "Las ganas suben y bajan: saberlo puede ayudarte a esperar que pasen.", gn: "Pe pota ojupi ha oguejy: reikuaáramo, ikatu rehaarõ ohasa peve." },
-  "tabaco": { es: "Las ganas de fumar duran poco: un plan puede ayudarte a pasarlas.", gn: "Pe pota repita hag̃ua sapy'ami ohasa: peteĩ plan ikatu ndepytyvõ." },
-  "presente": { es: "Usar tus sentidos puede ayudarte a volver al aquí y ahora.", gn: "Nde sentido-kuéra ikatu ndepytyvõ rejevy hag̃ua ko'ágãme." },
-  "otra-mirada": { es: "Mirar un pensamiento desde otro lado puede aliviar lo que sentís.", gn: "Rehecháramo peteĩ remiandu ambue hendágui, ikatu nepy'aguapyve." },
+  "alcohol": { es: "Anotar cuánto tomás puede ayudarte a verlo con claridad y decidir si querés cambiar algo.", gn: "Rehaíramo mboy reho'u, ikatu rehechakuaa porã ha reiporavo remoambuesépa mba'e." },
+  "ola": { es: "Las ganas suben y bajan: saberlo puede ayudarte a esperar a que pasen.", gn: "Pe pota ojupi ha oguejy: reikuaáramo, ikatu rehaarõ ohasa peve." },
+  "tabaco": { es: "Las ganas de fumar suelen durar pocos minutos: tener un plan puede ayudarte a pasarlas.", gn: "Pe pota repita hag̃ua ohasa mbovy minúto-pe: peteĩ plan ikatu ndepytyvõ." },
+  "presente": { es: "Cuando un recuerdo te desborda, usar tus sentidos puede ayudarte a volver al aquí y ahora.", gn: "Peteĩ mandu'a ndepy'apyeterei jave, nde sentido-kuéra ikatu ndepytyvõ rejevy hag̃ua ko'ágãme." },
+  "otra-mirada": { es: "Revisar un pensamiento y buscar otra forma de verlo puede aliviar lo que sentís.", gn: "Rehesa'ỹijóramo peteĩ remiandu ha reheka ambue hechapyrã, ikatu nepy'aguapyve." },
   "problema": { es: "Ir paso a paso puede hacer que un problema se vea más manejable.", gn: "Mbeguépe rejapóramo, pe apañuãi ikatu ojehecha michĩve." },
-  "escalera": { es: "Enfrentar el miedo de a poco, con apoyo, puede hacer que pese menos.", gn: "Rembohováiramo nde kyhyje mbeguépe, pytyvõ reheve, ikatu ipohýi'ive." },
-  "preocupacion": { es: "Darle un horario a la preocupación puede liberar el resto del día.", gn: "Remoĩramo aravo nde jepy'apýpe, ikatu nde sãsõve ára pukukue." },
-  "escuchar": { es: "Sentirse escuchado puede bajar la tensión en la familia.", gn: "Ojehendúramo, ikatu oguejy pe ñembopochy ogapýpe." },
+  "escalera": { es: "Acercarte de a poco a lo que te da miedo, con la guía de tu profesional, puede hacer que el miedo baje con el tiempo.", gn: "Reñemboja mbeguépe pe nemondýivape, nde profesional pytyvõ reheve, ikatu pe kyhyje oguejy ára ohasávo." },
+  "preocupacion": { es: "Darle un horario a la preocupación puede ayudar a que no ocupe todo tu día.", gn: "Remoĩramo aravo nde jepy'apýpe, ikatu ani ojagarra nde ára pukukue." },
+  "escuchar": { es: "Escuchar sin interrumpir ayuda a que el otro se sienta escuchado y puede bajar la tensión en la familia.", gn: "Rehendúramo nemboja'o'ỹre, ambue oñeñandu ojehenduha ha ikatu oguejy pe ñembopochy ogapýpe." },
   "reunion": { es: "Hablar en un momento tranquilo puede ayudar a la familia a ponerse de acuerdo.", gn: "Peñemongetáramo py'aguapýpe, ikatu peñoñe'ẽme'ẽ ogaygua." },
   "reglas": { es: "Pocas reglas y claras pueden dar calma y orden en casa.", gn: "Mbovy tembiapoukapy hesakãva ikatu ome'ẽ py'aguapy ogapýpe." },
   "pausa": { es: "Una pausa a tiempo puede evitar que la discusión crezca.", gn: "Peteĩ pytu'u ijaravópe ikatu ojoko ani okakuaa pe ñorairõ." },
   "depresion": { es: "Entender la depresión puede ayudarte a no culparte y a pedir ayuda.", gn: "Reikuaáramo mba'épa depresión, ikatu nderejekulpái ha rejerure pytyvõ." },
-  "medicacion": { es: "Tomarla como te indicaron puede ayudar a que el tratamiento funcione.", gn: "Re'úramo pe pohã he'iháicha ndéve, ikatu oipytyvõ tratamiento-pe." },
-  "relajacion": { es: "Aflojar los músculos puede ayudar a bajar la tensión del cuerpo.", gn: "Remboipiro'ýramo nde ro'o, ikatu oguejy nde rete jepy'apy." },
-  "duelo": { es: "Saber que el dolor del duelo es normal puede acompañarte en este tiempo.", gn: "Reikuaáramo ko mba'asy ha'eha normal, ikatu nde acompaña ko arapýpe." },
+  "medicacion": { es: "Tomarla como te la indicaron puede ayudar a que el tratamiento funcione.", gn: "Re'úramo pe pohã he'iháicha ndéve, ikatu oipytyvõ tratamiento-pe." },
+  "relajacion": { es: "Tensar y aflojar los músculos puede ayudarte a notar la tensión y soltarla.", gn: "Remohatã ha remboipiro'ýramo nde ro'o, ikatu rehechakuaa pe tensión ha reheja." },
+  "duelo": { es: "Saber que el dolor del duelo es normal puede ayudarte a darte permiso para sentirlo.", gn: "Reikuaáramo pe mba'asy duelo-pegua ha'eha normal, ikatu ndepytyvõ reheja hag̃ua ndejehe reñandu." },
   "alerta": { es: "Conocer tus señales puede ayudarte a pedir ayuda a tiempo.", gn: "Reikuaáramo nde señal-kuéra, ikatu rejerure pytyvõ ijaravópe." },
-  "cuidador": { es: "Cuidarte también puede ayudarte a seguir cuidando a otros.", gn: "Reñangarekóramo ndejehe, ikatu reñangareko porãve ambuére." },
+  "cuidador": { es: "Cuidarte no es egoísmo: puede ayudarte a seguir cuidando a otros.", gn: "Reñangarekóramo ndejehe ndaha'éi egoísmo: ikatu ndepytyvõ resegi hag̃ua reñangareko ambuére." },
   "enojo": { es: "Notar el enojo a tiempo puede ayudarte a elegir qué hacer.", gn: "Rehechakuaáramo nde pochy ijaravópe, ikatu reiporavo mba'épa rejapóta." },
   "its": { es: "Informarte puede ayudarte a cuidarte y a saber dónde consultar.", gn: "Reikuaáramo, ikatu reñangareko ndejehe ha reikuaa moõpa reho." },
-  "prep": { es: "Saber que existe la PrEP puede ayudarte a consultarla en tu servicio de salud.", gn: "Reikuaáramo oĩha PrEP, ikatu reporandu hese nde servicio de salud-pe." },
-  "pep": { es: "Saber que hay 72 horas puede ayudarte a actuar a tiempo.", gn: "Reikuaáramo oĩha 72 aravo, ikatu rejapo ijaravópe." },
+  "prep": { es: "Saber que existe la PrEP puede ayudarte a preguntar por ella en tu servicio de salud.", gn: "Reikuaáramo oĩha PrEP, ikatu reporandu hese nde servicio de salud-pe." },
+  "pep": { es: "Si tuviste un posible contacto con el VIH, la PEP se empieza lo antes posible y dentro de las 72 horas: saberlo puede ayudarte a actuar a tiempo.", gn: "Oiméramo rejotopa VIH ndive, PEP oñepyrũva'erã pya'eporãve ha 72 aravo mboyve: reikuaáramo, ikatu rejapo ijaravópe." },
   "anticoncepcion": { es: "Conocer las opciones puede ayudarte a elegir con tu servicio de salud.", gn: "Reikuaáramo umi opción, ikatu reiporavo nde servicio de salud ndive." },
 };
 

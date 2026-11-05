@@ -129,6 +129,8 @@ function svgIcono(trazos, clase = "") {
   return `<svg class="icono-svg ${clase}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${trazos}</svg>`;
 }
 function iconoContenido(cont, clase) { return svgIcono(ICONOS_TEMA[cont.es.tema], clase); }
+// El castellano de "por qué" ya está revisado; el guaraní, todavía no
+function porQuePendiente() { return idioma === "gn" && !PORQUE_GN_REVISADO; }
 function tipoTexto(cont) { return t(cont.tipo === "psicoeducacion" ? "aprender" : "practicar"); }
 
 function noEncontrado() {
@@ -206,7 +208,7 @@ function portada(cont, empezar, { extra = "", borrador = false } = {}) {
       <span class="suave">${cont.duracion} ${t("minutos")} · ${tp("pasosN", { n: c.pasos.length })}</span></p>
     <h1>${c.titulo}</h1>
     <div class="porque">
-      <h2>${t("porQue")}${borrador ? ` <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span>` : ""}</h2>
+      <h2>${t("porQue")}${borrador && porQuePendiente() ? ` <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span>` : ""}</h2>
       <p>${PORQUE[cont.id][idioma]}</p>
     </div>
     ${c.aviso ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
@@ -809,7 +811,7 @@ function pantallaBiblioteca() {
         <span class="etiqueta-ejemplo">${t("ejemplo")}</span>
         <span class="chico suave"><span aria-hidden="true">🌐</span> ${t("idiomas")}</span>
       </p>
-      <p class="porque-pro"><strong>${t("porQue")}:</strong> ${PORQUE[cont.id][idioma]} <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span></p>
+      <p class="porque-pro"><strong>${t("porQue")}:</strong> ${PORQUE[cont.id][idioma]}${porQuePendiente() ? ` <span class="etiqueta-ejemplo">${t("porQueBorrador")}</span>` : ""}</p>
       ${c.aviso ? `<p class="cuidado"><span aria-hidden="true">💛</span> ${c.aviso}</p>` : ""}
       <details class="pasos">
         <summary>${t("verPasos")}</summary>
